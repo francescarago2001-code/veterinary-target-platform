@@ -8,23 +8,26 @@ from pathlib import Path
 from urllib.parse import parse_qs
 
 PORT = int(os.environ.get("PORT", 8000))
-CANDIDATE_TO_EMAIL = os.environ.get("CANDIDATE_TO_EMAIL", "aetoscorporatefinance@gmail.com")
-SMTP_SERVER = os.environ.get("SMTP_SERVER", "smtp.gmail.com")
-SMTP_PORT = int(os.environ.get("SMTP_PORT", 587))
-SMTP_USER = os.environ.get("SMTP_USER")
-SMTP_PASSWORD = os.environ.get("SMTP_PASSWORD")
+CANDIDATE_TO_EMAIL = os.environ.get("MAIL_RECIPIENT") or os.environ.get("CANDIDATE_TO_EMAIL", "aetoscorporatefinance@gmail.com")
+SMTP_SERVER = os.environ.get("MAIL_SERVER") or os.environ.get("SMTP_SERVER", "smtp.gmail.com")
+SMTP_PORT = int(os.environ.get("MAIL_PORT") or os.environ.get("SMTP_PORT", 587))
+SMTP_USER = os.environ.get("MAIL_USERNAME") or os.environ.get("SMTP_USER")
+SMTP_PASSWORD = os.environ.get("MAIL_PASSWORD") or os.environ.get("SMTP_PASSWORD")
 CSV_FILE = Path(__file__).with_name("candidature.csv")
 CSV_FIELDNAMES = [
     "nome_struttura",
     "anno_apertura",
     "regione",
     "provincia",
+    "comune",
     "tipologia",
+    "tipologia_altro",
     "numero_sedi",
     "fatturato",
     "ebitda_margin",
     "capex",
     "ricavi",
+    "ricavi_altro",
     "numero_veterinari",
     "veterinari_dipendenti",
     "veterinari_partita_iva",
@@ -87,7 +90,8 @@ def save_candidature(payload):
 
 
 def send_candidate_email(payload):
-    if not SMTP_USER or not SMTP_PASSWORD:
+    if not SMTP_USER or not SMTP_PASSWORD or not CANDIDATE_TO_EMAIL:
+        print("Email non inviata: credenziali SMTP o destinatario mancanti.")
         return False
 
     email = EmailMessage()
@@ -108,8 +112,10 @@ def send_candidate_email(payload):
             server.starttls()
             server.login(SMTP_USER, SMTP_PASSWORD)
             server.send_message(email)
+        print("Email inviata correttamente.")
         return True
-    except Exception:
+    except Exception as exc:
+        print(f"Errore durante l'invio email: {exc}")
         return False
 
 

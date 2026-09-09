@@ -1315,8 +1315,12 @@
                                 <span class="mini-badge">Nessun impegno preventivo</span>
                             </div>
 
+                            <p class="lead" style="margin-top: 18px; margin-bottom: 0;">
+                                Se vuoi conoscere prima il valore della tua azienda richiedi il preventivo per una valutazione.
+                            </p>
+
                             <div class="hero-actions">
-                                <a class="primary-button" href="mailto:cirodicarluccio1@gmail.com">Richiedi preventivo per una valutazione</a>
+                                <a class="primary-button" href="mailto:cirodicarluccio1@gmail.com">Richiedi il preventivo per una valutazione</a>
                             </div>
                         </div>
 
@@ -1374,8 +1378,8 @@
                         <div class="process-grid">
                             <article class="process-step">
                                 <span class="step-number">01</span>
-                                <h3>Compila il form</h3>
-                                <p>Compili il form e raccogliamo le informazioni in forma riservata. Qualora ti selezionassimo, ti chiederemo di conferire il mandato per avviare il percorso di valutazione e negoziazione.</p>
+                                <h3>Compila il questionario</h3>
+                                <p>Compili il questionario e raccogliamo le informazioni in forma riservata. Qualora ti selezionassimo, ti chiederemo di conferire il mandato per avviare il percorso di valutazione e negoziazione.</p>
                             </article>
 
                             <article class="process-step">
@@ -1420,7 +1424,7 @@
                             <article class="condition-card">
                                 <span class="condition-tag">Mandato &amp; riservatezza</span>
                                 <h3>Durata, esclusiva e confidentialità</h3>
-                                <p>Il mandato ha durata di 12 mesi, rinnovabile per altri 6 in assenza di disdetta, e attribuisce a AETOS l’esclusiva per l’interlocuzione con il profilo selezionato. Assicuriamo inoltre la massima riservatezza delle informazioni e dei nomi condivisi nel percorso.</p>
+                                <p>Il mandato ha durata di 12 mesi, rinnovabile per altri 6 in assenza di disdetta, e attribuisce a AETOS l’esclusiva a vendere. Assicuriamo inoltre la massima riservatezza delle informazioni e dei nomi condivisi nel percorso.</p>
                             </article>
                         </div>
                     </section>
@@ -1457,6 +1461,11 @@
                 <input type="text" name="provincia" required>
             </div>
 
+            <div class="question">
+                <label>Comune</label>
+                <input type="text" name="comune" required>
+            </div>
+
         </div>
 
         <div class="question">
@@ -1470,6 +1479,11 @@
                 <option>Gruppo con più sedi</option>
                 <option>Altro</option>
             </select>
+        </div>
+
+        <div class="question" id="tipologia-altro-wrapper" style="display: none;">
+            <label>Specificare la tipologia di struttura</label>
+            <input type="text" name="tipologia_altro" placeholder="Es. struttura ibrida, centro di riabilitazione, ecc.">
         </div>
 
         <div class="question">
@@ -1490,10 +1504,9 @@
         <h2>2. Redditività e solidità finanziaria</h2>
 
         <div class="question">
-            <label>Fatturato annuo</label>
+            <label>Fatturato annuo (in base a dati disponibili e contabilità)</label>
 
             <select name="fatturato">
-                <option>Meno di €500.000</option>
                 <option>€500.000 – €800.000</option>
                 <option>€800.000 – €1.500.000</option>
                 <option>€1.500.000 – €3.000.000</option>
@@ -1550,6 +1563,11 @@
             </select>
         </div>
 
+        <div class="question" id="ricavi-altro-wrapper" style="display: none;">
+            <label>Specificare altre principali fonti di ricavo</label>
+            <input type="text" name="ricavi_altro" placeholder="Es. telemedicina, prevenzione, servizi premium, ecc.">
+        </div>
+
 
         <!-- STAFF -->
 
@@ -1574,7 +1592,7 @@
                 </div>
 
                 <div class="question">
-                    <label>Cococo</label>
+                    <label>Co.co.co</label>
                     <input type="number" name="veterinari_cococo" min="0">
                 </div>
 
@@ -1653,8 +1671,8 @@
         </div>
 
         <div class="question">
-            <label>Se hai scelto "Altro", specifica quali servizi diagnostici sono disponibili</label>
-            <input type="text" name="diagnostica_altro" placeholder="Es. endoscopia, diagnostica avanzata, ecc.">
+            <label>Scrivi: specifica quali servizi fra quelli sopra indicati sono forniti. Se più di uno, indicali separati da una virgola.</label>
+            <input type="text" name="diagnostica_altro" placeholder="Es. ecografia, TC, RMN">
         </div>
 
         <div class="question">
@@ -1698,7 +1716,7 @@
         </div>
 
         <div class="question">
-            <label>Percentuale indicativa di nuovi pazienti</label>
+            <label>Percentuale indicativa di nuovi pazienti all'anno</label>
 
             <select name="nuovi_pazienti">
                 <option>Meno del 10%</option>
@@ -1732,7 +1750,7 @@
             <label>Vuoi vendere la struttura?</label>
 
             <select name="interesse">
-                <option>Sì, 100%</option>
+                <option>Sì</option>
                 <option>Sì, mantengo una percentuale di minoranza</option>
                 <option>No</option>
             </select>
@@ -1863,6 +1881,12 @@
     const sections = document.querySelectorAll('.content-section');
     const homeEmptyState = document.getElementById('homeEmptyState');
     const revealItems = document.querySelectorAll('[data-reveal]');
+    const tipologiaSelect = document.querySelector('select[name="tipologia"]');
+    const tipologiaAltroWrapper = document.getElementById('tipologia-altro-wrapper');
+    const tipologiaAltroInput = document.querySelector('input[name="tipologia_altro"]');
+    const ricaviSelect = document.querySelector('select[name="ricavi"]');
+    const ricaviAltroWrapper = document.getElementById('ricavi-altro-wrapper');
+    const ricaviAltroInput = document.querySelector('input[name="ricavi_altro"]');
 
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -1894,6 +1918,42 @@
         item.style.transitionDelay = `${index * 90}ms`;
         revealObserver.observe(item);
     });
+
+    const toggleTipologiaAltro = () => {
+        if (!tipologiaSelect || !tipologiaAltroWrapper || !tipologiaAltroInput) {
+            return;
+        }
+
+        const showAltro = tipologiaSelect.value === 'Altro';
+        tipologiaAltroWrapper.style.display = showAltro ? 'block' : 'none';
+
+        if (!showAltro) {
+            tipologiaAltroInput.value = '';
+        }
+    };
+
+    if (tipologiaSelect) {
+        tipologiaSelect.addEventListener('change', toggleTipologiaAltro);
+        toggleTipologiaAltro();
+    }
+
+    const toggleRicaviAltro = () => {
+        if (!ricaviSelect || !ricaviAltroWrapper || !ricaviAltroInput) {
+            return;
+        }
+
+        const showAltro = ricaviSelect.value === 'Altro';
+        ricaviAltroWrapper.style.display = showAltro ? 'block' : 'none';
+
+        if (!showAltro) {
+            ricaviAltroInput.value = '';
+        }
+    };
+
+    if (ricaviSelect) {
+        ricaviSelect.addEventListener('change', toggleRicaviAltro);
+        toggleRicaviAltro();
+    }
 
     showHome();
 
