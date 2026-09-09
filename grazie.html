@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grazie | Veterinary Target Platform</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --navy-950: #071c2b;
+            --navy-900: #0f355b;
+            --navy-800: #123a53;
+            --navy-700: #184d6d;
+            --gold-500: #1b4d6d;
+            --gold-400: #2a6488;
+            --gold-300: #3d7ca0;
+            --ivory: #f4efe7;
+            --text: #172b36;
+            --muted: #59666f;
+            --panel: rgba(255, 255, 255, 0.96);
+            --soft-border: rgba(13, 44, 61, 0.12);
+            --shadow: 0 32px 90px rgba(7, 20, 29, 0.32);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(180deg, rgba(244, 239, 232, 1), rgba(238, 230, 219, 0.96));
+            font-family: "Inter", "Segoe UI", sans-serif;
+            color: var(--text);
+        }
+
+        .page-shell {
+            width: min(900px, calc(100% - 32px));
+            background: linear-gradient(180deg, rgba(255,255,255,0.985), rgba(244,239,232,0.97));
+            border: 1px solid rgba(255,255,255,0.45);
+            border-radius: 30px;
+            box-shadow: 0 26px 70px rgba(7, 20, 29, 0.16);
+            padding: 48px 32px;
+            text-align: center;
+        }
+
+        .brand {
+            display: block;
+            width: min(100%, 420px);
+            height: auto;
+            margin: 0 auto 22px;
+        }
+
+        .eyebrow {
+            margin: 0 0 14px;
+            color: var(--navy-700);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(3rem, 5vw, 5rem);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+            color: var(--navy-900);
+        }
+
+        p {
+            margin: 18px auto 0;
+            max-width: 680px;
+            line-height: 1.8;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        a.button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        a.button.primary {
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700), var(--gold-500));
+            color: #edf4fb;
+            box-shadow: 0 18px 32px rgba(13, 44, 61, 0.2);
+        }
+
+        a.button.secondary {
+            color: var(--navy-900);
+            border: 1px solid rgba(13, 44, 61, 0.18);
+            background: rgba(255,255,255,0.7);
+        }
+
+        a.button:hover {
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <main class="page-shell">
+        <img class="brand" src="logo/logo.png" alt="Veterinary Target Platform logo">
+        <p class="eyebrow">Candidatura ricevuta</p>
+        <h1>Grazie per esserti candidato.</h1>
+        <p>
+            Abbiamo ricevuto la tua richiesta e la nostra team la prenderà in esame con la massima attenzione.
+            Ti contatteremo al più presto per i prossimi passi.
+        </p>
+        <div class="actions">
+            <a class="button primary" href="/home.html">Torna alla home</a>
+            <a class="button secondary" href="mailto:cirodicarluccio1@gmail.com">Contatta AETOS</a>
+        </div>
+    </main>
+</body>
+</html>

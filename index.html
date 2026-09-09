@@ -1,11 +1,9 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Candidatura | Veterinary Target Platform</title>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -23,13 +21,13 @@
             --panel: rgba(255, 255, 255, 0.96);
             --soft-border: rgba(13, 44, 61, 0.12);
             --shadow: 0 32px 90px rgba(7, 20, 29, 0.32);
+            --shadow-soft: 0 18px 36px rgba(7, 20, 29, 0.10);
+            --white-soft: rgba(255,255,255,0.72);
             --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
             --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        * {
-            box-sizing: border-box;
-        }
+        * { box-sizing: border-box; }
 
         html {
             scroll-behavior: smooth;
@@ -38,7 +36,9 @@
         body {
             margin: 0;
             font-family: "Inter", "Segoe UI", sans-serif;
-            background: linear-gradient(180deg, rgba(244, 239, 232, 1), rgba(238, 230, 219, 0.96));
+            background:
+                radial-gradient(circle at top, rgba(255,255,255,0.7), transparent 38%),
+                linear-gradient(180deg, #f4efe7 0%, #efe8df 100%);
             color: var(--text);
             position: relative;
         }
@@ -51,175 +51,645 @@
                 linear-gradient(rgba(13,44,61,0.015) 1px, transparent 1px),
                 linear-gradient(90deg, rgba(13,44,61,0.015) 1px, transparent 1px);
             background-size: 36px 36px;
-            mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
             pointer-events: none;
         }
 
         ::selection {
-            background: rgba(216, 181, 98, 0.35);
+            background: rgba(216, 181, 98, 0.32);
         }
 
+        a { color: inherit; }
+
         .page-shell {
-            padding: 36px 22px 64px;
             position: relative;
             z-index: 1;
             min-height: 100vh;
+            padding: 32px 22px 64px;
         }
 
         .container {
-            max-width: 1180px;
+            max-width: 1240px;
             margin: 0 auto;
             background: linear-gradient(180deg, rgba(255,255,255,0.985), rgba(244,239,232,0.97));
             border: 1px solid rgba(255,255,255,0.45);
             border-radius: 30px;
-            box-shadow: 0 26px 70px rgba(7, 20, 29, 0.16);
             overflow: hidden;
-            position: relative;
+            box-shadow: 0 28px 96px rgba(7, 20, 29, 0.16);
+            backdrop-filter: blur(14px);
         }
 
-        .brand-header {
+        .topbar {
             display: flex;
-            justify-content: center;
-            padding: 18px 24px 20px;
-            border-bottom: 1px solid rgba(15, 53, 91, 0.22);
-            background: linear-gradient(180deg, #0f355b 0%, #0f355b 100%);
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 22px 36px;
+            border-bottom: 1px solid var(--soft-border);
+            background: linear-gradient(180deg, rgba(15,53,91,0.98), rgba(15,53,91,0.95));
         }
 
-        .brand-header img {
+        .brand-wrap {
+            display: flex;
+            align-items: center;
+            min-width: 0;
+        }
+
+        .brand-wrap img {
             display: block;
-            width: min(100%, 540px);
+            width: min(100%, 280px);
             height: auto;
-            filter: none;
+            filter: brightness(0) invert(1);
             opacity: 1;
-            padding: 18px 24px;
         }
 
-        .page-hero {
-            padding: 34px 30px 0;
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .nav a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-decoration: none;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .nav a:hover {
+            background: rgba(255,255,255,0.08);
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        main {
+            padding: 32px 36px 42px;
+        }
+
+        .section-shell {
+            position: relative;
+            padding: 0 0 18px;
+            margin-bottom: 28px;
+        }
+
+        .section-shell + .section-shell {
+            padding-top: 26px;
+            border-top: 1px solid var(--soft-border);
         }
 
         .eyebrow {
-            margin: 0 0 10px;
+            margin: 0 0 12px;
             color: var(--navy-700);
-            font-size: 0.72rem;
+            font-size: 0.74rem;
             font-weight: 800;
-            letter-spacing: 0.18em;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 22px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+            font-size: clamp(2.4rem, 3vw, 3.5rem);
+            line-height: 0.96;
+            letter-spacing: -0.035em;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            color: var(--navy-900);
+            max-width: 760px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            max-width: 520px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(340px, 0.85fr);
+            gap: 28px;
+            align-items: center;
+            padding: 12px 0 24px;
+        }
+
+        .hero-copy {
+            padding: 20px 0;
         }
 
         h1 {
             margin: 0;
             font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: clamp(3.1rem, 4vw, 5.35rem);
-            line-height: 0.93;
-            letter-spacing: -0.05em;
+            font-size: clamp(3.3rem, 5vw, 6rem);
+            line-height: 0.9;
+            letter-spacing: -0.06em;
             color: var(--navy-900);
-            font-weight: 700;
-        }
-
-        .intro {
-            color: var(--muted);
-            margin: 18px 0 0;
-            line-height: 1.8;
-            font-size: 1.09rem;
             max-width: 760px;
         }
 
-        form {
-            padding: 0 30px 30px;
+        .lead {
+            max-width: 760px;
+            margin: 18px 0 0;
+            line-height: 1.8;
+            color: var(--muted);
+            font-size: 1.06rem;
         }
 
-        h2 {
-            margin: 42px 0 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid rgba(13, 44, 61, 0.12);
-            font-family: "Cormorant Garamond", Georgia, serif;
-            font-size: clamp(2.5rem, 2.9vw, 3.5rem);
-            line-height: 1;
-            color: var(--navy-900);
-            letter-spacing: -0.03em;
+        .hero-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 42px;
+            padding: 10px 16px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.62));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
+            color: var(--navy-800);
+            font-size: 0.76rem;
             font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .hero-visual {
+            position: relative;
+            min-height: 420px;
+            padding: 20px;
+            border-radius: 28px;
+            background:
+                linear-gradient(140deg, rgba(15,53,91,0.97), rgba(18,58,83,0.88)),
+                linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero-visual::before {
+            content: "";
+            position: absolute;
+            inset: 20px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 20px;
+        }
+
+        .hero-visual::after {
+            content: "";
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            right: -40px;
+            bottom: -60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(132,178,204,0.28), transparent 60%);
+        }
+
+        .metric-stack {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .metric-card {
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            padding: 18px 18px 16px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.14);
+        }
+
+        .metric-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 10px;
+            color: rgba(255,255,255,0.72);
+            font-size: 0.68rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .metric-value {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            color: white;
+            font-weight: 800;
+            font-size: clamp(1.8rem, 2vw, 2.4rem);
+            line-height: 1;
+        }
+
+        .metric-value small {
+            font-size: 0.66rem;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.7);
+            text-transform: uppercase;
+        }
+
+        .metric-note {
+            margin-top: 10px;
+            color: rgba(255,255,255,0.78);
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .bento-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.74));
+            border: 1px solid var(--soft-border);
+            border-radius: 24px;
+            padding: 22px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+            transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth), border-color 0.3s var(--ease-smooth);
+        }
+
+        .bento-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(140deg, rgba(33,73,102,0.06), transparent 38%);
+            pointer-events: none;
+        }
+
+        .bento-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 50px rgba(7, 20, 29, 0.12);
+            border-color: rgba(15,53,91,0.2);
+        }
+
+        .bento-card.one { grid-column: span 4; min-height: 210px; }
+        .bento-card.two { grid-column: span 4; min-height: 210px; }
+        .bento-card.three { grid-column: span 4; min-height: 210px; }
+
+        .card-kicker {
+            margin: 0;
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--navy-700);
+            font-weight: 800;
+        }
+
+        .card-title {
+            margin: 14px 0 10px;
+            font-size: clamp(1.5rem, 2vw, 2.2rem);
+            line-height: 1;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            letter-spacing: -0.04em;
+            color: var(--navy-900);
+        }
+
+        .card-body {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .mini-stat {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 70px;
+            height: 38px;
+            padding: 8px 10px;
+            margin-top: 18px;
+            border-radius: 999px;
+            background: rgba(15,53,91,0.06);
+            color: var(--navy-900);
+            font-weight: 800;
+            font-size: 0.82rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .step-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(245,239,232,0.92));
+            border: 1px solid var(--soft-border);
+            border-radius: 24px;
+            padding: 22px 20px 18px;
+            box-shadow: var(--shadow-soft);
+            min-height: 265px;
+            transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth), border-color 0.3s var(--ease-smooth);
+        }
+
+        .step-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 24px 50px rgba(7, 20, 29, 0.12);
+            border-color: rgba(15,53,91,0.18);
+        }
+
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(15,53,91,0.12), rgba(15,53,91,0.02));
+            color: var(--navy-900);
+            font-weight: 800;
+            font-size: 0.82rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            border: 1px solid rgba(15,53,91,0.12);
+            margin-bottom: 18px;
+        }
+
+        .step-card h3 {
+            margin: 0 0 10px;
+            font-size: clamp(1.6rem, 1.8vw, 2rem);
+            line-height: 1;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            letter-spacing: -0.04em;
+            color: var(--navy-900);
+        }
+
+        .step-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.72;
+        }
+
+        .step-card ul {
+            margin: 14px 0 0;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+
+        .form-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.5fr);
+            gap: 22px;
+            align-items: start;
+        }
+
+        .form-side {
+            position: sticky;
+            top: 24px;
+            background: linear-gradient(180deg, rgba(15,53,91,0.97), rgba(18,58,83,0.94));
+            border: 1px solid rgba(255,255,255,0.16);
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+            overflow: hidden;
+        }
+
+        .form-side::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at top right, rgba(255,255,255,0.18), transparent 30%);
+            pointer-events: none;
+        }
+
+        .side-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .side-kicker {
+            margin: 0;
+            font-size: 0.7rem;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+            font-weight: 800;
+        }
+
+        .side-title {
+            margin: 14px 0 10px;
+            font-size: clamp(2rem, 2.4vw, 3rem);
+            color: white;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+        }
+
+        .side-copy {
+            margin: 0;
+            color: rgba(255,255,255,0.76);
+            line-height: 1.75;
+        }
+
+        .side-checks {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .side-checks li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: rgba(255,255,255,0.82);
+            line-height: 1.5;
+        }
+
+        .side-checks li::before {
+            content: "✓";
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.12);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 800;
+        }
+
+        .form-card {
+            background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(249,245,240,0.92));
+            border: 1px solid var(--soft-border);
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: var(--shadow-soft);
+        }
+
+        form {
+            display: grid;
+            gap: 28px;
+        }
+
+        .form-section {
+            padding-top: 8px;
+        }
+
+        .form-section h3 {
+            margin: 0 0 18px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--soft-border);
+            font-size: clamp(1.4rem, 1.8vw, 1.8rem);
+            line-height: 1;
+            letter-spacing: -0.04em;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+        }
+
+        .field-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
         }
 
         .question {
-            margin: 0 0 22px;
+            margin: 0;
         }
 
         label {
             display: block;
-            font-family: "Cormorant Garamond", Georgia, serif;
-            font-weight: 700;
             margin-bottom: 10px;
-            color: var(--navy-900);
-            font-size: 1.36rem;
-            letter-spacing: 0.01em;
-            text-transform: none;
+            font-size: 0.86rem;
+            color: var(--navy-800);
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: 0.03em;
         }
 
-        input, select {
+        input,
+        select {
             width: 100%;
+            height: 52px;
             padding: 14px 16px;
-            border: 1px solid rgba(13, 44, 61, 0.18);
             border-radius: 14px;
+            border: 1px solid rgba(13, 44, 61, 0.18);
             background: linear-gradient(180deg, rgba(255,255,255,0.99), rgba(245,239,232,0.96));
-            box-sizing: border-box;
-            font-size: 0.98rem;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
             color: var(--text);
+            font-size: 0.97rem;
+            font-family: inherit;
             transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 5px rgba(13,44,61,0.02);
         }
 
-        input:hover, select:hover {
+        input:hover,
+        select:hover {
             border-color: rgba(13, 44, 61, 0.28);
         }
 
-        input:focus, select:focus {
+        input:focus,
+        select:focus {
             outline: none;
-            border-color: var(--gold-500);
-            box-shadow: 0 0 0 4px rgba(216, 181, 98, 0.16), inset 0 1px 0 rgba(255,255,255,0.7);
+            border-color: rgba(15,53,91,0.5);
+            box-shadow: 0 0 0 4px rgba(15,53,91,0.08);
             background: linear-gradient(180deg, rgba(255,255,255,1), rgba(249,244,238,1));
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 22px;
-        }
-
         .note {
-            margin-top: 8px;
+            margin: 0;
             color: var(--muted);
-            font-size: 0.87rem;
-            line-height: 1.6;
+            font-size: 0.88rem;
+            line-height: 1.7;
         }
 
-        button {
-            margin-top: 28px;
-            width: 100%;
-            padding: 18px 20px;
+        .submit-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding-top: 8px;
+            flex-wrap: wrap;
+        }
+
+        .submit-row p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.84rem;
+            line-height: 1.6;
+            max-width: 520px;
+        }
+
+        .submit-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 240px;
+            min-height: 56px;
             border: none;
             border-radius: 16px;
             background: linear-gradient(135deg, var(--navy-900), var(--navy-700), var(--gold-500));
-            color: #edf4fb;
-            font-size: 0.95rem;
+            color: white;
+            font-size: 0.82rem;
             font-weight: 800;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.12em;
             text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 18px 32px rgba(13, 44, 61, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            box-shadow: 0 18px 32px rgba(13, 44, 61, 0.18);
+            transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s var(--ease-smooth), filter 0.3s var(--ease-smooth);
+            position: relative;
+            overflow: hidden;
         }
 
-        button:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 24px 38px rgba(13, 44, 61, 0.28);
-            filter: brightness(1.04);
+        .submit-button::after {
+            content: "→";
+            margin-left: 10px;
+            transform: translateX(0);
+            transition: transform 0.3s var(--ease-smooth);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 24px 38px rgba(13, 44, 61, 0.24);
+            filter: brightness(1.03);
+        }
+
+        .submit-button:hover::after {
+            transform: translateX(4px);
         }
 
         [data-reveal] {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+            transform: translateY(24px);
+            transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth);
         }
 
         [data-reveal].is-visible {
@@ -227,407 +697,545 @@
             transform: translateY(0);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 980px) {
+            .hero,
+            .form-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .form-side {
+                position: static;
+            }
+
+            .bento-card.one,
+            .bento-card.two,
+            .bento-card.three {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 720px) {
             .page-shell {
-                padding: 22px 14px 40px;
+                padding-left: 14px;
+                padding-right: 14px;
             }
 
-            .container {
-                border-radius: 22px;
-            }
-
-            form,
-            .page-hero {
+            main,
+            .topbar {
                 padding-left: 20px;
                 padding-right: 20px;
             }
 
-            .brand-header img {
-                width: min(100%, 380px);
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
-            .grid {
+            .nav {
+                width: 100%;
+            }
+
+            .nav a {
+                flex: 1 1 auto;
+            }
+
+            .field-grid,
+            .process-grid,
+            .bento-card.one,
+            .bento-card.two,
+            .bento-card.three {
                 grid-template-columns: 1fr;
+                grid-column: span 12;
+            }
+
+            .section-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .submit-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .submit-button {
+                width: 100%;
             }
         }
     </style>
 </head>
-
 <body>
+    <div class="page-shell">
+        <div class="container">
+            <header class="topbar">
+                <div class="brand-wrap">
+                    <img src="logo/logo.png" alt="Veterinary Target Platform logo" />
+                </div>
+                <nav class="nav">
+                    <a href="/home.html">Home</a>
+                    <a href="/home.html#progetto-section">Il Progetto</a>
+                    <a href="/home.html#candidati-section">Candidati</a>
+                    <a href="/home.html#contatti-section">Contatti</a>
+                </nav>
+            </header>
 
-<div class="page-shell">
+            <main>
+                <section class="hero section-shell" data-reveal>
+                    <div class="hero-copy">
+                        <p class="eyebrow">Candidatura</p>
+                        <h1>Porta la tua clinica nel network AETOS.</h1>
+                        <p class="lead">
+                            Condividi i principali dati della tua struttura per iniziare una valutazione riservata,
+                            costruire una roadmap di crescita e scoprire se il tuo percorso è compatibile con un'operazione strategica.
+                        </p>
+                        <div class="hero-pills">
+                            <span class="pill">5% Success Fee</span>
+                            <span class="pill">Zero Retention</span>
+                            <span class="pill">Processo riservato</span>
+                        </div>
+                    </div>
 
-<div class="container">
+                    <div class="hero-visual" data-reveal>
+                        <div class="metric-stack">
+                            <div class="metric-card">
+                                <div class="metric-top">
+                                    <span>Coorte</span>
+                                    <span>01</span>
+                                </div>
+                                <div class="metric-value">
+                                    150+ <small>target</small>
+                                </div>
+                                <div class="metric-note">Cliniche selezionate per raggiungere una massa critica di qualità e capital efficiency.</div>
+                            </div>
 
-    <header class="brand-header" data-reveal>
-        <img src="logo/logo.png" alt="Veterinary Target Platform logo">
-    </header>
+                            <div class="metric-card">
+                                <div class="metric-top">
+                                    <span>Valutazione</span>
+                                    <span>02</span>
+                                </div>
+                                <div class="metric-value">
+                                    5% <small>fee</small>
+                                </div>
+                                <div class="metric-note">Una struttura semplice, chiara e allineata al valore creato in fase di chiusura.</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-    <div class="page-hero" data-reveal>
-        <p class="eyebrow">Candidatura</p>
-        <h1>Candidatura della struttura</h1>
+                <section class="section-shell" data-reveal>
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Perché candidarsi</p>
+                            <h2>Una piattaforma pensata per la qualità del percorso.</h2>
+                        </div>
+                    </div>
 
-        <p class="intro">
-            Compila le informazioni relative alla tua struttura veterinaria.
-            I dati saranno utilizzati per una prima valutazione riservata
-            della struttura e per eventuali future opportunità.
-        </p>
+                    <div class="bento-grid">
+                        <article class="bento-card one" data-reveal>
+                            <p class="card-kicker">Valutazione</p>
+                            <h3 class="card-title">Mappatura del caso</h3>
+                            <p class="card-body">
+                                Raccogliamo i dati essenziali della tua struttura e li trasformiamo in un quadro operativo chiaro e utilizzabile.
+                            </p>
+                            <span class="mini-stat">01</span>
+                        </article>
+
+                        <article class="bento-card two" data-reveal>
+                            <p class="card-kicker">Network</p>
+                            <h3 class="card-title">Accesso a un mercato rilevante</h3>
+                            <p class="card-body">
+                                Connettiamo la tua attività a un ecosistema di investitori, operatori e potenziali partner strategici.
+                            </p>
+                            <span class="mini-stat">02</span>
+                        </article>
+
+                        <article class="bento-card three" data-reveal>
+                            <p class="card-kicker">Riservatezza</p>
+                            <h3 class="card-title">Decisioni con supporto lungo il percorso</h3>
+                            <p class="card-body">
+                                Tu mantieni il controllo del processo e ricevi orientamento professionale, rapido e concreto per ogni passo.
+                            </p>
+                            <span class="mini-stat">03</span>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="section-shell" data-reveal>
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Processo</p>
+                            <h2>Una coorte costruita per dare slancio all'operazione.</h2>
+                        </div>
+                        <p>
+                            La nostra metodologia combina la ricerca proattiva, il network di riferimento e l'analisi di mercato in un percorso strutturato e disciplinato.
+                        </p>
+                    </div>
+
+                    <div class="process-grid">
+                        <article class="step-card" data-reveal>
+                            <div class="step-number">01</div>
+                            <h3>Qualificazione</h3>
+                            <p>
+                                Analizziamo lo stato dell'azienda, la sua struttura, il profilo di crescita e il livello di interesse strategico.
+                            </p>
+                            <ul>
+                                <li>Profilo clinico e commerciale</li>
+                                <li>Valutazione preliminare</li>
+                                <li>Riservatezza</li>
+                            </ul>
+                        </article>
+
+                        <article class="step-card" data-reveal>
+                            <div class="step-number">02</div>
+                            <h3>Match</h3>
+                            <p>
+                                Identifichiamo il contesto e il tipo di partnership più coerente con gli obiettivi della tua struttura.
+                            </p>
+                            <ul>
+                                <li>Network e opportunità</li>
+                                <li>Coorte strategica</li>
+                                <li>Approccio su misura</li>
+                            </ul>
+                        </article>
+
+                        <article class="step-card" data-reveal>
+                            <div class="step-number">03</div>
+                            <h3>Chiusura</h3>
+                            <p>
+                                Strutturiamo il negoziato, supportiamo il processo e guidiamo le decisioni fino alla definizione finale.
+                            </p>
+                            <ul>
+                                <li>Negoziazione</li>
+                                <li>Due diligence</li>
+                                <li>Roadmap decisionale</li>
+                            </ul>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="section-shell" data-reveal>
+                    <div class="section-heading">
+                        <div>
+                            <p class="eyebrow">Sei pronto?</p>
+                            <h2>Compila il modulo e avvia il confronto riservato.</h2>
+                        </div>
+                    </div>
+
+                    <div class="form-layout">
+                        <aside class="form-side" data-reveal>
+                            <div class="side-inner">
+                                <p class="side-kicker">Candidatura</p>
+                                <h3 class="side-title">Uno spazio pensato per le strutture di qualità.</h3>
+                                <p class="side-copy">
+                                    Ti chiediamo alcune informazioni utili a capire la tua situazione, la tua ambizione e il percorso che potrebbe essere più adatto alla tua realtà.
+                                </p>
+
+                                <ul class="side-checks">
+                                    <li>Valutazione iniziale confidenziale</li>
+                                    <li>Supporto specialistico da parte di AETOS</li>
+                                    <li>Processo strutturato senza inutili passaggi</li>
+                                </ul>
+                            </div>
+                        </aside>
+
+                        <div class="form-card" data-reveal>
+                            <form method="POST" action="/">
+                                <div class="form-section">
+                                    <h3>1. Dati della struttura</h3>
+                                    <div class="field-grid">
+                                        <div class="question">
+                                            <label>Nome struttura</label>
+                                            <input type="text" name="nome_struttura" required />
+                                        </div>
+                                        <div class="question">
+                                            <label>Anno di apertura</label>
+                                            <input type="number" name="anno_apertura" />
+                                        </div>
+                                        <div class="question">
+                                            <label>Regione</label>
+                                            <input type="text" name="regione" required />
+                                        </div>
+                                        <div class="question">
+                                            <label>Provincia</label>
+                                            <input type="text" name="provincia" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3>2. Redditività e solidità finanziaria</h3>
+                                    <div class="field-grid">
+                                        <div class="question">
+                                            <label>Fatturato annuo</label>
+                                            <select name="fatturato">
+                                                <option>Meno di €500.000</option>
+                                                <option>€500.000 – €800.000</option>
+                                                <option>€800.000 – €1.500.000</option>
+                                                <option>€1.500.000 – €3.000.000</option>
+                                                <option>€3.000.000 – €5.000.000</option>
+                                                <option>€5.000.000 – €10.000.000</option>
+                                                <option>Oltre €10.000.000</option>
+                                                <option>Preferisco discuterne riservatamente</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>EBITDA margin normalizzato indicativo</label>
+                                            <select name="ebitda_margin">
+                                                <option>Meno del 5%</option>
+                                                <option>5% – 10%</option>
+                                                <option>10% – 15%</option>
+                                                <option>15% – 20%</option>
+                                                <option>20% – 25%</option>
+                                                <option>25% – 30%</option>
+                                                <option>Oltre 30%</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Investimenti / CapEx negli ultimi 3 anni</label>
+                                            <select name="capex">
+                                                <option>Bassi</option>
+                                                <option>Moderati</option>
+                                                <option>Elevati</option>
+                                                <option>Molto elevati</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Principali fonti di ricavo</label>
+                                            <select name="ricavi">
+                                                <option>Visite e medicina di base</option>
+                                                <option>Chirurgia</option>
+                                                <option>Diagnostica</option>
+                                                <option>Mix bilanciato di servizi</option>
+                                                <option>Specialistica / referral</option>
+                                                <option>Altro</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3>3. Indipendenza clinica e personale</h3>
+                                    <div class="field-grid">
+                                        <div class="question">
+                                            <label>Quanti veterinari operano nella struttura?</label>
+                                            <input type="number" name="numero_veterinari" min="0" />
+                                        </div>
+                                        <div class="question">
+                                            <label>Percentuale dei ricavi generata dal titolare/fondatore</label>
+                                            <select name="ricavi_fondatore">
+                                                <option>Meno del 20%</option>
+                                                <option>20% – 30%</option>
+                                                <option>30% – 40%</option>
+                                                <option>40% – 50%</option>
+                                                <option>Oltre 50%</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Turnover del personale negli ultimi 12 mesi</label>
+                                            <select name="turnover">
+                                                <option>Basso</option>
+                                                <option>Moderato</option>
+                                                <option>Elevato</option>
+                                                <option>Molto elevato</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Costo totale del personale / fatturato</label>
+                                            <select name="staff_cost">
+                                                <option>Meno del 40%</option>
+                                                <option>40% – 45%</option>
+                                                <option>45% – 50%</option>
+                                                <option>50% – 60%</option>
+                                                <option>Oltre 60%</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3>4. Infrastruttura e servizi</h3>
+                                    <div class="field-grid">
+                                        <div class="question">
+                                            <label>La struttura offre servizio H24 / pronto soccorso?</label>
+                                            <select name="h24">
+                                                <option>Sì</option>
+                                                <option>No</option>
+                                                <option>Parzialmente</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Quali servizi diagnostici sono disponibili internamente?</label>
+                                            <select name="diagnostica">
+                                                <option>Diagnostica di base</option>
+                                                <option>Laboratorio analisi interno</option>
+                                                <option>Radiologia digitale</option>
+                                                <option>Ecografia avanzata</option>
+                                                <option>TC</option>
+                                                <option>RMN</option>
+                                                <option>Più servizi avanzati</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Superficie della struttura</label>
+                                            <select name="superficie">
+                                                <option>Meno di 100 mq</option>
+                                                <option>100 – 250 mq</option>
+                                                <option>250 – 500 mq</option>
+                                                <option>500 – 1.000 mq</option>
+                                                <option>Oltre 1.000 mq</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Immobile</label>
+                                            <select name="immobile">
+                                                <option>In affitto</option>
+                                                <option>Di proprietà</option>
+                                                <option>In parte di proprietà</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3>5. Pazienti e attività</h3>
+                                    <div class="field-grid">
+                                        <div class="question">
+                                            <label>Numero di pazienti unici nell'ultimo anno</label>
+                                            <select name="pazienti_annui">
+                                                <option>Meno di 1.000</option>
+                                                <option>1.000 – 3.000</option>
+                                                <option>3.000 – 5.000</option>
+                                                <option>5.000 – 10.000</option>
+                                                <option>Oltre 10.000</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Percentuale indicativa di nuovi pazienti</label>
+                                            <select name="nuovi_pazienti">
+                                                <option>Meno del 10%</option>
+                                                <option>10% – 15%</option>
+                                                <option>15% – 20%</option>
+                                                <option>20% – 30%</option>
+                                                <option>Oltre 30%</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Percentuale indicativa di pazienti inviati da altri veterinari / strutture</label>
+                                            <select name="referral">
+                                                <option>Meno del 10%</option>
+                                                <option>10% – 20%</option>
+                                                <option>20% – 30%</option>
+                                                <option>30% – 50%</option>
+                                                <option>Oltre 50%</option>
+                                                <option>Non disponibile</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Numero di sedi</label>
+                                            <select name="numero_sedi">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5+</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3>6. Interesse a un'operazione</h3>
+                                    <div class="field-grid">
+                                        <div class="question">
+                                            <label>Quale situazione descrive meglio il tuo interesse?</label>
+                                            <select name="interesse">
+                                                <option>Sto valutando una vendita</option>
+                                                <option>Valuterei una vendita se emergesse l'opportunità giusta</option>
+                                                <option>Interessato all'ingresso di un partner</option>
+                                                <option>Interessato a un'operazione di maggioranza</option>
+                                                <option>Interessato a un'operazione di minoranza</option>
+                                                <option>Interessato alla crescita tramite aggregazione</option>
+                                                <option>Non sto valutando attualmente un'operazione</option>
+                                            </select>
+                                        </div>
+                                        <div class="question">
+                                            <label>Saresti disponibile a rimanere coinvolto nella gestione dopo un'eventuale operazione?</label>
+                                            <select name="permanenza">
+                                                <option>Sì</option>
+                                                <option>Probabilmente sì</option>
+                                                <option>Da valutare</option>
+                                                <option>No</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section">
+                                    <h3>7. Contatti</h3>
+                                    <div class="field-grid">
+                                        <div class="question">
+                                            <label>Nome</label>
+                                            <input type="text" name="nome" required />
+                                        </div>
+                                        <div class="question">
+                                            <label>Cognome</label>
+                                            <input type="text" name="cognome" required />
+                                        </div>
+                                        <div class="question">
+                                            <label>Email</label>
+                                            <input type="email" name="email" required />
+                                        </div>
+                                        <div class="question">
+                                            <label>Telefono</label>
+                                            <input type="tel" name="telefono" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="submit-row">
+                                    <p>
+                                        Inviando la tua candidatura, autorizzi Aetos Corporate Finance al trattamento dei tuoi dati personali ai fini della valutazione della richiesta e della gestione delle eventuali successive comunicazioni relative al progetto, nel rispetto della normativa applicabile.
+                                    </p>
+                                    <button type="submit" class="submit-button">Invia candidatura</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
     </div>
 
-    <form method="POST" action="/">
-
-        <!-- DATI STRUTTURA -->
-
-        <h2>1. Dati della struttura</h2>
-
-        <div class="grid">
-
-            <div class="question">
-                <label>Nome struttura</label>
-                <input type="text" name="nome_struttura" required>
-            </div>
-
-            <div class="question">
-                <label>Anno di apertura</label>
-                <input type="number" name="anno_apertura">
-            </div>
-
-            <div class="question">
-                <label>Regione</label>
-                <input type="text" name="regione" required>
-            </div>
-
-            <div class="question">
-                <label>Provincia</label>
-                <input type="text" name="provincia" required>
-            </div>
-
-        </div>
-
-        <div class="question">
-            <label>Tipologia di struttura</label>
-
-            <select name="tipologia">
-                <option>Ambulatorio</option>
-                <option>Clinica veterinaria</option>
-                <option>Ospedale veterinario</option>
-                <option>Centro specialistico</option>
-                <option>Gruppo con più sedi</option>
-                <option>Altro</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Numero di sedi</label>
-
-            <select name="numero_sedi">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5+</option>
-            </select>
-        </div>
-
-
-        <!-- FINANZA -->
-
-        <h2>2. Redditività e solidità finanziaria</h2>
-
-        <div class="question">
-            <label>Fatturato annuo</label>
-
-            <select name="fatturato">
-                <option>Meno di €500.000</option>
-                <option>€500.000 – €800.000</option>
-                <option>€800.000 – €1.500.000</option>
-                <option>€1.500.000 – €3.000.000</option>
-                <option>€3.000.000 – €5.000.000</option>
-                <option>€5.000.000 – €10.000.000</option>
-                <option>Oltre €10.000.000</option>
-                <option>Preferisco discuterne riservatamente</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>EBITDA margin normalizzato indicativo</label>
-            <div class="note">
-                Considerando, ove applicabile, normalizzazione di compensi soci,
-                spese personali e affitti non a valore di mercato.
-            </div>
-
-            <select name="ebitda_margin">
-                <option>Meno del 5%</option>
-                <option>5% – 10%</option>
-                <option>10% – 15%</option>
-                <option>15% – 20%</option>
-                <option>20% – 25%</option>
-                <option>25% – 30%</option>
-                <option>Oltre 30%</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Investimenti / CapEx negli ultimi 3 anni</label>
-
-            <select name="capex">
-                <option>Bassi</option>
-                <option>Moderati</option>
-                <option>Elevati</option>
-                <option>Molto elevati</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Principali fonti di ricavo</label>
-
-            <select name="ricavi">
-                <option>Visite e medicina di base</option>
-                <option>Chirurgia</option>
-                <option>Diagnostica</option>
-                <option>Mix bilanciato di servizi</option>
-                <option>Specialistica / referral</option>
-                <option>Altro</option>
-            </select>
-        </div>
-
-
-        <!-- STAFF -->
-
-        <h2>3. Indipendenza clinica e personale</h2>
-
-        <div class="question">
-            <label>Quanti veterinari operano nella struttura?</label>
-            <input type="number" name="numero_veterinari" min="0">
-        </div>
-
-        <div class="question">
-            <label>Quale percentuale dei ricavi è generata direttamente dal titolare/fondatore?</label>
-
-            <select name="ricavi_fondatore">
-                <option>Meno del 20%</option>
-                <option>20% – 30%</option>
-                <option>30% – 40%</option>
-                <option>40% – 50%</option>
-                <option>Oltre 50%</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Turnover del personale negli ultimi 12 mesi</label>
-
-            <select name="turnover">
-                <option>Basso</option>
-                <option>Moderato</option>
-                <option>Elevato</option>
-                <option>Molto elevato</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Costo totale del personale / fatturato</label>
-
-            <select name="staff_cost">
-                <option>Meno del 40%</option>
-                <option>40% – 45%</option>
-                <option>45% – 50%</option>
-                <option>50% – 60%</option>
-                <option>Oltre 60%</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-
-        <!-- SERVIZI -->
-
-        <h2>4. Infrastruttura e servizi</h2>
-
-        <div class="question">
-            <label>La struttura offre servizio H24 / pronto soccorso?</label>
-
-            <select name="h24">
-                <option>Sì</option>
-                <option>No</option>
-                <option>Parzialmente</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Quali servizi diagnostici sono disponibili internamente?</label>
-
-            <select name="diagnostica">
-                <option>Diagnostica di base</option>
-                <option>Laboratorio analisi interno</option>
-                <option>Radiologia digitale</option>
-                <option>Ecografia avanzata</option>
-                <option>TC</option>
-                <option>RMN</option>
-                <option>Più servizi avanzati</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Superficie della struttura</label>
-
-            <select name="superficie">
-                <option>Meno di 100 mq</option>
-                <option>100 – 250 mq</option>
-                <option>250 – 500 mq</option>
-                <option>500 – 1.000 mq</option>
-                <option>Oltre 1.000 mq</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Immobile</label>
-
-            <select name="immobile">
-                <option>In affitto</option>
-                <option>Di proprietà</option>
-                <option>In parte di proprietà</option>
-            </select>
-        </div>
-
-
-        <!-- PAZIENTI -->
-
-        <h2>5. Pazienti e attività</h2>
-
-        <div class="question">
-            <label>Numero di pazienti unici nell'ultimo anno</label>
-
-            <select name="pazienti_annui">
-                <option>Meno di 1.000</option>
-                <option>1.000 – 3.000</option>
-                <option>3.000 – 5.000</option>
-                <option>5.000 – 10.000</option>
-                <option>Oltre 10.000</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Percentuale indicativa di nuovi pazienti</label>
-
-            <select name="nuovi_pazienti">
-                <option>Meno del 10%</option>
-                <option>10% – 15%</option>
-                <option>15% – 20%</option>
-                <option>20% – 30%</option>
-                <option>Oltre 30%</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Percentuale indicativa di pazienti inviati da altri veterinari / strutture</label>
-
-            <select name="referral">
-                <option>Meno del 10%</option>
-                <option>10% – 20%</option>
-                <option>20% – 30%</option>
-                <option>30% – 50%</option>
-                <option>Oltre 50%</option>
-                <option>Non disponibile</option>
-            </select>
-        </div>
-
-
-        <!-- M&A -->
-
-        <h2>6. Interesse a un'operazione</h2>
-
-        <div class="question">
-            <label>Quale situazione descrive meglio il tuo interesse?</label>
-
-            <select name="interesse">
-                <option>Sto valutando una vendita</option>
-                <option>Valuterei una vendita se emergesse l'opportunità giusta</option>
-                <option>Interessato all'ingresso di un partner</option>
-                <option>Interessato a un'operazione di maggioranza</option>
-                <option>Interessato a un'operazione di minoranza</option>
-                <option>Interessato alla crescita tramite aggregazione</option>
-                <option>Non sto valutando attualmente un'operazione</option>
-            </select>
-        </div>
-
-        <div class="question">
-            <label>Saresti disponibile a rimanere coinvolto nella gestione dopo un'eventuale operazione?</label>
-
-            <select name="permanenza">
-                <option>Sì</option>
-                <option>Probabilmente sì</option>
-                <option>Da valutare</option>
-                <option>No</option>
-            </select>
-        </div>
-
-
-        <!-- CONTATTI -->
-
-        <h2>7. Contatti</h2>
-
-        <div class="grid">
-
-            <div class="question">
-                <label>Nome</label>
-                <input type="text" name="nome" required>
-            </div>
-
-            <div class="question">
-                <label>Cognome</label>
-                <input type="text" name="cognome" required>
-            </div>
-
-        </div>
-
-        <div class="grid">
-
-            <div class="question">
-                <label>Email</label>
-                <input type="email" name="email" required>
-            </div>
-
-            <div class="question">
-                <label>Telefono</label>
-                <input type="tel" name="telefono" required>
-            </div>
-
-        </div>
-
-        <button type="submit">
-            Invia candidatura
-        </button>
-
-    </form>
-
-</div>
-
-<script>
-    const revealTargets = document.querySelectorAll('h2, .question, .grid, button, .intro, .brand-header img, .page-hero');
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.16,
-        rootMargin: '0px 0px -30px 0px'
-    });
-
-    revealTargets.forEach((item, index) => {
-        item.setAttribute('data-reveal', 'true');
-        item.style.transitionDelay = `${index * 70}ms`;
-        revealObserver.observe(item);
-    });
-</script>
-
+    <script>
+        const revealItems = document.querySelectorAll('[data-reveal]');
+
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            revealItems.forEach((item, index) => {
+                item.style.transitionDelay = `${index * 80}ms`;
+                revealObserver.observe(item);
+            });
+        } else {
+            revealItems.forEach((item) => item.classList.add('is-visible'));
+        }
+    </script>
 </body>
 </html>

@@ -298,6 +298,322 @@
             letter-spacing: -0.04em;
         }
 
+        .home-main-content {
+            width: min(100%, 1040px);
+            margin: 0 auto;
+            padding: 8px 0 18px;
+        }
+
+        .section-shell {
+            width: min(100%, 1000px);
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);
+            gap: 28px;
+            align-items: center;
+            padding: 10px 0 8px;
+        }
+
+        .section-kicker {
+            margin: 0 0 14px;
+            color: var(--navy-700);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .hero-copy h1 {
+            margin: 0;
+            font-size: clamp(3rem, 4vw, 5rem);
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+        }
+
+        .lead {
+            margin: 22px 0 0;
+            color: var(--muted);
+            font-size: 1.08rem;
+            line-height: 1.8;
+            max-width: 720px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .mini-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            line-height: 1.2;
+        }
+
+        .hero-actions {
+            margin-top: 28px;
+        }
+
+        .primary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700), var(--gold-500));
+            color: #edf4fb;
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 18px 30px rgba(13, 44, 61, 0.18);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 24px 38px rgba(13, 44, 61, 0.24);
+            filter: brightness(1.04);
+        }
+
+        .hero-panel {
+            background: linear-gradient(180deg, rgba(15, 53, 91, 0.06), rgba(15, 53, 91, 0.02));
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            border-radius: 24px;
+            padding: 22px 20px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(13, 44, 61, 0.08);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .metric-value {
+            font-size: clamp(1.8rem, 2vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            letter-spacing: -0.04em;
+        }
+
+        .metric-label {
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.6;
+        }
+
+        .section-heading {
+            margin-bottom: 24px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+        }
+
+        .comparison-grid,
+        .conditions-grid,
+        .process-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .comparison-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .comparison-card,
+        .condition-card,
+        .process-step,
+        .compact-form {
+            background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(244,239,232,0.7));
+            border: 1px solid rgba(13, 44, 61, 0.08);
+            border-radius: 24px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
+        .comparison-card {
+            padding: 24px 22px;
+            transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+        }
+
+        .comparison-card--featured {
+            background: linear-gradient(180deg, rgba(15, 53, 91, 0.05), rgba(15, 53, 91, 0.02));
+            border-color: rgba(15, 53, 91, 0.18);
+            box-shadow: 0 22px 34px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
+        .comparison-card:hover,
+        .condition-card:hover,
+        .process-step:hover {
+            transform: translateY(-2px);
+            border-color: rgba(13, 44, 61, 0.18);
+            box-shadow: 0 18px 28px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .card-tag {
+            display: inline-flex;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            color: var(--navy-700);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .comparison-card h3,
+        .condition-card h3,
+        .process-step h3 {
+            margin: 18px 0 10px;
+            color: var(--navy-900);
+            font-size: 1.4rem;
+            line-height: 1.2;
+            font-family: "Cormorant Garamond", Georgia, serif;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .comparison-card li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.96rem;
+        }
+
+        .comparison-card li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--navy-700);
+        }
+
+        .process-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .process-step {
+            padding: 22px 18px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            min-width: 48px;
+            justify-content: center;
+            padding: 7px 10px;
+            border-radius: 10px;
+            background: rgba(15, 53, 91, 0.06);
+            color: var(--navy-900);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .process-step p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.94rem;
+        }
+
+        .conditions-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .condition-card {
+            padding: 22px 20px;
+        }
+
+        .condition-tag {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 9px 10px;
+            border-radius: 10px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            color: var(--navy-900);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .condition-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.96rem;
+        }
+
+        .application-section {
+            padding-top: 6px;
+        }
+
+        .compact-form {
+            padding: 22px;
+        }
+
+        .compact-form .grid {
+            gap: 18px;
+        }
+
+        .checkbox-row {
+            margin-top: 18px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .checkbox-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--navy-900);
+            margin: 0;
+        }
+
+        .home-section-spacer {
+            padding-top: 6px;
+        }
+
         @keyframes originationFadeUp {
             0% {
                 opacity: 0;
@@ -981,6 +1297,131 @@
             </div>
 
             <section id="progetto-section" class="content-section" data-reveal>
+                <div class="home-main-content">
+                    <section class="hero-section section-shell" data-reveal>
+                        <div class="hero-copy">
+                            <p class="section-kicker">AETOS | Origination &amp; M&amp;A</p>
+                            <h1>Valorizza la tua clinica veterinaria con la forza di un network.</h1>
+                            <p class="lead">
+                                Uniamo strutture selezionate in coorti strategiche per negoziare le migliori condizioni con investitori istituzionali. Massima forza contrattuale, zero vincoli sul prezzo finale.
+                            </p>
+
+                            <div class="hero-badges">
+                                <span class="mini-badge">Success Fee: 5% a chiusura operazione</span>
+                                <span class="mini-badge">Nessun costo iniziale</span>
+                            </div>
+
+                            <div class="hero-actions">
+                                <a class="primary-button" href="mailto:cirodicarluccio1@gmail.com">Richiedi una valutazione riservata</a>
+                            </div>
+                        </div>
+
+                        <aside class="hero-panel" aria-label="Dati principali del modello">
+                            <div class="metric">
+                                <span class="metric-value">più</span>
+                                <span class="metric-label">cliniche selezionate per coorte</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">libertà di accettare o rifiutare una proposta</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5%</span>
+                                <span class="metric-label">success fee solo a chiusura</span>
+                            </div>
+                        </aside>
+                    </section>
+
+                    <section class="section-shell home-section-spacer" data-reveal>
+                        <div class="section-heading">
+                            <p class="section-kicker">Value proposition</p>
+                            <h2>La forza della coorte</h2>
+                        </div>
+
+                        <div class="comparison-grid">
+                            <article class="comparison-card">
+                                <div class="card-tag">Trattativa singola</div>
+                                <h3>Potenziale negoziale limitato</h3>
+                                <ul>
+                                    <li>Asimmetria informativa con gli investitori istituzionali.</li>
+                                    <li>Tempi più lunghi e gestione meno efficace della domanda.</li>
+                                    <li>Valutazione spesso inferiore rispetto a una proposta aggregata.</li>
+                                </ul>
+                            </article>
+
+                            <article class="comparison-card comparison-card--featured">
+                                <div class="card-tag">Trattativa in coorte</div>
+                                <h3>Forza di gruppo, valore superiore</h3>
+                                <ul>
+                                    <li>Aggregazione di 15–20 strutture con interesse prioritario dei grandi fondi.</li>
+                                    <li>Multipli di valutazione più elevati e maggiore capacità di negoziazione.</li>
+                                    <li>Tutela della continuità clinica, del territorio e della qualità delle cure.</li>
+                                </ul>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="section-shell home-section-spacer" data-reveal>
+                        <div class="section-heading">
+                            <p class="section-kicker">Origination &amp; deal engine</p>
+                            <h2>Come funziona il processo</h2>
+                        </div>
+
+                        <div class="process-grid">
+                            <article class="process-step">
+                                <span class="step-number">01</span>
+                                <h3>Selezione &amp; Mandato</h3>
+                                <p>Mappiamo la clinica, raccogliamo i dati in forma confidenziale e conferiamo il mandato di advisory per negoziare all'interno della coorte.</p>
+                            </article>
+
+                            <article class="process-step">
+                                <span class="step-number">02</span>
+                                <h3>Strutturazione del Gruppo</h3>
+                                <p>Raggruppiamo le cliniche per geografie e specializzazioni, presentando un'opportunità industriale solida e coerente ai fondi.</p>
+                            </article>
+
+                            <article class="process-step">
+                                <span class="step-number">03</span>
+                                <h3>Negoziazione Istituzionale</h3>
+                                <p>Conduciamo le trattative con i partner istituzionali per massimizzare la valutazione complessiva e definire i parametri d'offerta per ogni singola clinica.</p>
+                            </article>
+
+                            <article class="process-step">
+                                <span class="step-number">04</span>
+                                <h3>Decisione Finale Autonoma</h3>
+                                <p>Ricevuta la proposta economica vincolante, il titolare resta libero al 100% di accettare la cessione o rifiutarla. Nessun obbligo di vendita forzata.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="section-shell home-section-spacer" data-reveal>
+                        <div class="section-heading">
+                            <p class="section-kicker">Condizioni &amp; trasparenza</p>
+                            <h2>I pilastri dell'accordo</h2>
+                        </div>
+
+                        <div class="conditions-grid">
+                            <article class="condition-card">
+                                <span class="condition-tag">Success Fee 5%</span>
+                                <h3>Compenso solo a chiusura</h3>
+                                <p>Il compenso matura esclusivamente a rogito concluso, calcolato sul valore della transazione, senza anticipi o costi fissi in fase iniziale.</p>
+                            </article>
+
+                            <article class="condition-card">
+                                <span class="condition-tag">Zero Retention</span>
+                                <h3>Nessun costo iniziale</h3>
+                                <p>Entrare nella coorte e sostenere lo screening iniziale non comporta anticipo, trattenuta né costi fissi da parte del titolare.</p>
+                            </article>
+
+                            <article class="condition-card">
+                                <span class="condition-tag">Libertà decisionale</span>
+                                <h3>Sei tu a decidere</h3>
+                                <p>Il mandato ci autorizza a negoziare per tuo conto, ma la firma finale sulla vendita spetta unicamente a te. Se il prezzo non convince, mantieni la tua proprietà senza penali.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                </div>
             </section>
 
             <section id="candidati-section" class="content-section" data-reveal>
@@ -1365,6 +1806,9 @@
                             <p class="contact-label">Email</p>
                             <p class="contact-value">
                                 <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>
+                            </p>
+                            <p class="contact-value" style="margin-top: 10px;">
+                                <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a>
                             </p>
                         </div>
 
