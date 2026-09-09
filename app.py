@@ -26,11 +26,16 @@ CSV_FIELDNAMES = [
     "capex",
     "ricavi",
     "numero_veterinari",
+    "veterinari_dipendenti",
+    "veterinari_partita_iva",
+    "veterinari_cococo",
+    "veterinari_altro",
     "ricavi_fondatore",
     "turnover",
     "staff_cost",
     "h24",
     "diagnostica",
+    "diagnostica_altro",
     "superficie",
     "immobile",
     "pazienti_annui",
@@ -56,7 +61,10 @@ class MyHandler(http.server.SimpleHTTPRequestHandler):
         raw_data = self.rfile.read(content_length) if content_length else b""
 
         form_values = parse_qs(raw_data.decode("utf-8"), keep_blank_values=True)
-        payload = {key: values[0] if values else "" for key, values in form_values.items()}
+        payload = {
+            key: ", ".join(values) if len(values) > 1 else values[0] if values else ""
+            for key, values in form_values.items()
+        }
 
         save_candidature(payload)
         send_candidate_email(payload)
