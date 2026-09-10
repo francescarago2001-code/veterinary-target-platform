@@ -772,6 +772,78 @@
             font-size: 1rem;
         }
 
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 26px;
+        }
+
+        .profile-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(244,239,232,0.82));
+            border: 1px solid rgba(13, 44, 61, 0.12);
+            border-radius: 26px;
+            padding: 26px 24px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 18px 34px rgba(13, 44, 61, 0.06);
+            overflow: hidden;
+            transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy-900), var(--gold-500), transparent);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(13, 44, 61, 0.18);
+            box-shadow: 0 24px 44px rgba(13, 44, 61, 0.09), inset 0 1px 0 rgba(255,255,255,0.85);
+        }
+
+        .profile-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.1);
+            color: var(--navy-900);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .profile-name {
+            margin: 20px 0 8px;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(2rem, 2.2vw, 2.8rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .profile-role {
+            margin: 0 0 14px;
+            color: var(--navy-700);
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .profile-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.98rem;
+        }
+
         .contact-layout {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1812,29 +1884,40 @@
             <section id="chi-siamo-section" class="content-section" data-reveal>
                 <div class="simple-page">
                     <h1>Chi siamo</h1>
-                    <p>
-                        Aetos è una società di consulenza specializzata nell’aiutare imprenditori e aziende a prendere
-                        le decisioni finanziarie più importanti. Conosciamo a fondo il territorio in cui operiamo, ma
-                        lavoriamo con una visione aperta e internazionale.
+                    <p class="lead">
+                        Aetos nasce per supportare imprenditori e aziende nelle decisioni più importanti, unendo
+                        esperienza finanziaria, governance e consulenza strategica a un approccio concreto, attento e
+                        orientato ai risultati.
                     </p>
-                    <p>
-                        In concreto, guidiamo le imprese quando devono vendere o acquistare altre attività, quando
-                        cercano nuovi investitori per crescere o quando hanno bisogno di rinegoziare i prestiti con le
-                        banche. Siamo presenti anche nei momenti più delicati, supportando le realtà in difficoltà a
-                        riorganizzare i debiti e ripartire. Seguiamo ogni fase passo dopo passo, dalla prima valutazione
-                        dei conti fino alla firma finale e ai risultati dei mesi successivi.
-                    </p>
-                    <p>
-                        Nel nostro lavoro usiamo tecnologie moderne e analisi dei dati per prendere decisioni rapide,
-                        chiare e sicure. Tuttavia, crediamo che i numeri e gli strumenti digitali da soli non bastino:
-                        contano soprattutto l’esperienza, l’ascolto e la comprensione dei bisogni di chi fa impresa. Per
-                        questo costruiamo ogni soluzione su misura, lavorando a stretto contatto con i nostri clienti.
-                    </p>
-                    <p>
-                        Più che semplici consulenti, vogliamo essere compagni di viaggio fidati nel lungo periodo,
-                        aiutando le aziende a crescere, superare le sfide e trasformare i propri obiettivi in risultati
-                        solidi e duraturi.
-                    </p>
+
+                    <div class="profile-grid">
+                        <article class="profile-card" data-reveal>
+                            <span class="profile-badge">Senior Advisor</span>
+                            <h2 class="profile-name">Ciro Di Carluccio</h2>
+                            <p class="profile-role">Senior Advisor &amp; Corporate Governance Specialist</p>
+                            <p>
+                                Dottore Commercialista e Revisore Legale con una consolidata carriera ai vertici della
+                                consulenza e revisione internazionale (già Senior Partner e CEO di linea in Deloitte).
+                                Ricopre incarichi di primo piano negli organi di controllo e di amministrazione di
+                                primarie società quotate e corporate, tra cui Presidente del Collegio Sindacale di Reply
+                                S.p.A. Esperto in governance, audit, compliance e controllo strategico d'impresa.
+                            </p>
+                        </article>
+
+                        <article class="profile-card" data-reveal>
+                            <span class="profile-badge">Senior Advisor</span>
+                            <h2 class="profile-name">Riccardo Losi</h2>
+                            <p class="profile-role">Senior Advisor &amp; Financial Consultant</p>
+                            <p>
+                                Dottore Commercialista, Revisore Legale e docente universitario a contratto presso la
+                                LUISS Guido Carli. Vanta una pluriennale esperienza nella consulenza gestionale,
+                                tributaria e finanziaria per imprese e gruppi industriali, oltre a un'attività di rilievo
+                                nella corporate governance e negli organi di controllo di società quotate e vigilate
+                                (già Presidente del Collegio Sindacale di realtà di rilievo e referente in commissioni
+                                CNDCEC).
+                            </p>
+                        </article>
+                    </div>
                 </div>
             </section>
 
