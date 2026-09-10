@@ -7,7 +7,7 @@ from email.message import EmailMessage
 from pathlib import Path
 from urllib.parse import parse_qs
 
-PORT = int(os.environ.get("PORT", 8000))
+PORT = int(os.environ.get("PORT", 10000))
 CANDIDATE_TO_EMAIL = os.environ.get("MAIL_RECIPIENT") or os.environ.get("CANDIDATE_TO_EMAIL", "aetoscorporatefinance@gmail.com")
 SMTP_SERVER = os.environ.get("MAIL_SERVER") or os.environ.get("SMTP_SERVER", "smtp.gmail.com")
 SMTP_PORT = int(os.environ.get("MAIL_PORT") or os.environ.get("SMTP_PORT", 587))
@@ -120,6 +120,8 @@ def send_candidate_email(payload):
 
 
 if __name__ == "__main__":
+    socketserver.TCPServer.allow_reuse_address = True
+
     with socketserver.TCPServer(("0.0.0.0", PORT), MyHandler) as server:
-        print(f"Sito attivo su http://localhost:{PORT}")
+        print(f"Sito attivo sulla porta {PORT}")
         server.serve_forever()
