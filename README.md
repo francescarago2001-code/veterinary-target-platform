@@ -6,7 +6,7 @@ Sito statico pubblicato con GitHub Pages.
 
 - il sito è composto da file statici (`index.html`, `home.html`, `grazie.html`, CSS inline e risorse in `logo/`)
 - il deploy è gestito automaticamente da GitHub Actions tramite `.github/workflows/deploy-pages.yml`
-- il form usa Formspree per l’invio (`https://formspree.io/f/xkjnkeea`)
+- il form usa Formspree per l’invio (`https://formspree.io/f/xbgjqeoe`)
 
 ## Note
 
