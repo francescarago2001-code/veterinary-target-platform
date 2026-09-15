@@ -1,7 +1,3 @@
-
-
-
-
 <<!DOCTYPE html>
 <html lang="it">
 <head>
@@ -1341,7 +1337,48 @@
             font-weight: 700;
         }
 
-        
+        @media (max-width: 768px) {
+            .side-rail {
+                position: static;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .side-rail.is-expanded {
+                width: 100%;
+            }
+
+            .content-panel {
+                margin-left: 0;
+                margin-top: 18px;
+            }
+
+            .container {
+                padding: 22px 18px 12px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid,
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-header img {
+                width: min(100%, 380px);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .legal-footer {
+                margin: 22px 18px 0;
+                padding: 18px 20px;
+            }
+        }
     </style>
 </head>
 
@@ -1634,15 +1671,15 @@
         <div class="question">
             <label>Struttura della cap table</label>
 
-            <select id="cap-table-control-home" name="cap_table_control" required>
+            <select id="cap-table-control-index" name="cap_table_control" required>
                 <option value="Controllo">Controllo</option>
                 <option value="Controllo congiunto">Controllo congiunto</option>
             </select>
         </div>
 
-        <div class="question" id="cap-table-partners-home" style="display: none;">
-            <label for="cap-table-partner-count-home">Numero di soci in caso di controllo congiunto</label>
-            <input id="cap-table-partner-count-home" type="number" name="cap_table_partner_count" min="2">
+        <div class="question" id="cap-table-partners-index" style="display: none;">
+            <label for="cap-table-partner-count-index">Numero di soci in caso di controllo congiunto</label>
+            <input id="cap-table-partner-count-index" type="number" name="cap_table_partner_count" min="2">
         </div>
 
 
@@ -1934,15 +1971,15 @@
 
         <div class="question">
             <div class="checkbox-row">
-                <label class="checkbox-label" for="privacy-consent-home">
-                    <input id="privacy-consent-home" type="checkbox" name="privacy_consent" required>
+                <label class="checkbox-label" for="privacy-consent-index">
+                    <input id="privacy-consent-index" type="checkbox" name="privacy_consent" required>
                     <span>
                         Dichiaro di aver letto l'<a href="#informativa-privacy">Informativa Privacy</a> e acconsento al trattamento dei dati aziendali
                         forniti per lo screening preliminare della struttura e per la verifica anonima (blind)
                         dell'interesse da parte del network di investitori AETOS.
                     </span>
                 </label>
-                <p id="privacy-error-home" class="privacy-error" role="alert" aria-live="polite">
+                <p id="privacy-error-index" class="privacy-error" role="alert" aria-live="polite">
                     Devi confermare di aver letto l'Informativa Privacy per proseguire.
                 </p>
             </div>
@@ -2085,11 +2122,11 @@
     const ricaviSelect = document.querySelector('select[name="ricavi"]');
     const ricaviAltroWrapper = document.getElementById('ricavi-altro-wrapper');
     const ricaviAltroInput = document.querySelector('input[name="ricavi_altro"]');
-    const capTableControl = document.getElementById('cap-table-control-home');
-    const capTablePartnersWrapper = document.getElementById('cap-table-partners-home');
-    const capTablePartnerCount = document.getElementById('cap-table-partner-count-home');
-    const privacyConsent = document.getElementById('privacy-consent-home');
-    const privacyError = document.getElementById('privacy-error-home');
+    const capTableControl = document.getElementById('cap-table-control-index');
+    const capTablePartnersWrapper = document.getElementById('cap-table-partners-index');
+    const capTablePartnerCount = document.getElementById('cap-table-partner-count-index');
+    const privacyConsent = document.getElementById('privacy-consent-index');
+    const privacyError = document.getElementById('privacy-error-index');
 
     if (privacyConsent && privacyError) {
         privacyConsent.addEventListener('invalid', () => {
