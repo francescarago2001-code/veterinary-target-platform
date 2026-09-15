@@ -1668,6 +1668,20 @@
             </select>
         </div>
 
+        <div class="question">
+            <label>Struttura della cap table</label>
+
+            <select id="cap-table-control-home" name="cap_table_control" required>
+                <option value="Controllo">Controllo</option>
+                <option value="Controllo congiunto">Controllo congiunto</option>
+            </select>
+        </div>
+
+        <div class="question" id="cap-table-partners-home" style="display: none;">
+            <label for="cap-table-partner-count-home">Numero di soci in caso di controllo congiunto</label>
+            <input id="cap-table-partner-count-home" type="number" name="cap_table_partner_count" min="2">
+        </div>
+
 
         <!-- FINANZA -->
 
@@ -2108,6 +2122,9 @@
     const ricaviSelect = document.querySelector('select[name="ricavi"]');
     const ricaviAltroWrapper = document.getElementById('ricavi-altro-wrapper');
     const ricaviAltroInput = document.querySelector('input[name="ricavi_altro"]');
+    const capTableControl = document.getElementById('cap-table-control-home');
+    const capTablePartnersWrapper = document.getElementById('cap-table-partners-home');
+    const capTablePartnerCount = document.getElementById('cap-table-partner-count-home');
     const privacyConsent = document.getElementById('privacy-consent-home');
     const privacyError = document.getElementById('privacy-error-home');
 
@@ -2188,6 +2205,25 @@
     if (ricaviSelect) {
         ricaviSelect.addEventListener('change', toggleRicaviAltro);
         toggleRicaviAltro();
+    }
+
+    const toggleCapTablePartners = () => {
+        if (!capTableControl || !capTablePartnersWrapper || !capTablePartnerCount) {
+            return;
+        }
+
+        const isJointControl = capTableControl.value === 'Controllo congiunto';
+        capTablePartnersWrapper.style.display = isJointControl ? 'block' : 'none';
+        capTablePartnerCount.required = isJointControl;
+
+        if (!isJointControl) {
+            capTablePartnerCount.value = '';
+        }
+    };
+
+    if (capTableControl) {
+        capTableControl.addEventListener('change', toggleCapTablePartners);
+        toggleCapTablePartners();
     }
 
     showHome();
