@@ -49,3 +49,10 @@ textarea {
   width: 100% !important;
   box-sizing: border-box !important;
 }
+
+/* A capo automatico del testo per evitare scroll laterale */
+p, h1, h2, h3, h4, span, a {
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  hyphens: auto;
+}
