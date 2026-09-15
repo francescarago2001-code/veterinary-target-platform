@@ -1,58 +1,65 @@
-@media (max-width: 820px) {
+/* ===================================================
+   REGOLE VALIDE ESCLUSIVAMENTE PER SMARTPHONE (<= 850px)
+   Su Desktop (schermi grandi) queste regole non esistono.
+   =================================================== */
+
+@media screen and (max-width: 850px) {
+  /* 1. Reset ingombri e sblocco scroll orizzontale */
+  *, *::before, *::after {
+    box-sizing: border-box !important;
+  }
+
+  html, body {
+    overflow-x: hidden !important;
+    width: 100% !important;
+  }
+
+  /* 2. La sezione Hero passa da griglia fissa a colonna singola fluida */
   .hero-section,
   .hero {
     display: flex !important;
     flex-direction: column !important;
+    grid-template-columns: 1fr !important;
     width: 100% !important;
+    max-width: 100% !important;
+    padding: 16px 12px !important;
+    gap: 20px !important;
   }
+
+  /* 3. Il testo, il kicker e i titoli occupano tutta la larghezza */
   .hero-copy,
-  .hero-copy h1,
-  .hero-copy p {
+  .hero-copy *,
+  .hero-content,
+  h1, h2, h3, p {
     width: 100% !important;
     max-width: 100% !important;
     white-space: normal !important;
-    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
   }
+
+  h1 {
+    font-size: 1.85rem !important;
+    line-height: 1.25 !important;
+  }
+
+  /* 4. Il box laterale con le metriche scende sotto a larghezza piena */
   .hero-card,
   .hero-aside {
     width: 100% !important;
     max-width: 100% !important;
-    margin-top: 24px !important;
+    margin: 0 !important;
   }
-}
 
-/* Adattamento contenitori e form per smartphone */
-.container,
-.form-container,
-#candidati-section,
-#candidati-section form,
-.candidati-section {
-  width: 100% !important;
-  max-width: 600px !important;
-  margin: 0 auto !important;
-  padding: 20px 16px !important;
-  box-sizing: border-box !important;
-}
-
-input, select, textarea, button {
-  max-width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* Campi form al 100% senza uscire dai bordi */
-input[type="text"], 
-input[type="email"], 
-input[type="tel"], 
-input[type="number"],
-select, 
-textarea {
-  width: 100% !important;
-  box-sizing: border-box !important;
-}
-
-/* A capo automatico del testo per evitare scroll laterale */
-p, h1, h2, h3, h4, span, a {
-  overflow-wrap: break-word !important;
-  word-wrap: break-word !important;
-  hyphens: auto;
+  /* 5. Input e form al 100% senza uscire dai margini dello schermo */
+  input[type="text"],
+  input[type="email"],
+  input[type="tel"],
+  input[type="number"],
+  select,
+  textarea {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }
