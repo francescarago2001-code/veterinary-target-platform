@@ -59,3 +59,19 @@
   .condition-card { width: 100% !important; max-width: 100% !important; min-width: 0 !important; display: block !important; box-sizing: border-box !important; }
   .condition-card * { word-break: normal !important; white-space: normal !important; hyphens: none !important; -webkit-hyphens: none !important; }
 }
+
+@media screen and (max-width: 900px) {
+  .process-grid, .steps-grid, .timeline-grid, .about-grid, .team-grid, .benefits-grid, .advantages-grid, [class*="process"], [class*="benefit"], [class*="advantage"], [class*="step"], [class*="value"] {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 20px !important;
+  }
+  .process-grid > *, .about-grid > *, .benefits-grid > *, [class*="step-card"], [class*="benefit-card"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
