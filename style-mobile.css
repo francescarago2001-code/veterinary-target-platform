@@ -1,0 +1,22 @@
+@media (max-width: 820px) {
+  .hero-section,
+  .hero {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-copy,
+  .hero-copy h1,
+  .hero-copy p {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    word-break: normal !important;
+  }
+  .hero-card,
+  .hero-aside {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 24px !important;
+  }
+}
