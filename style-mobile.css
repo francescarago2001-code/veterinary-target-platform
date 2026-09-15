@@ -1,10 +1,4 @@
-/* ===================================================
-   REGOLE VALIDE ESCLUSIVAMENTE PER SMARTPHONE (<= 850px)
-   Su Desktop (schermi grandi) queste regole non esistono.
-   =================================================== */
-
 @media screen and (max-width: 850px) {
-  /* 1. Reset ingombri e sblocco scroll orizzontale */
   *, *::before, *::after {
     box-sizing: border-box !important;
   }
@@ -14,7 +8,6 @@
     width: 100% !important;
   }
 
-  /* 2. La sezione Hero passa da griglia fissa a colonna singola fluida */
   .hero-section,
   .hero {
     display: flex !important;
@@ -26,7 +19,6 @@
     gap: 20px !important;
   }
 
-  /* 3. Il testo, il kicker e i titoli occupano tutta la larghezza */
   .hero-copy,
   .hero-copy *,
   .hero-content,
@@ -43,7 +35,6 @@
     line-height: 1.25 !important;
   }
 
-  /* 4. Il box laterale con le metriche scende sotto a larghezza piena */
   .hero-card,
   .hero-aside {
     width: 100% !important;
@@ -51,7 +42,6 @@
     margin: 0 !important;
   }
 
-  /* 5. Input e form al 100% senza uscire dai margini dello schermo */
   input[type="text"],
   input[type="email"],
   input[type="tel"],
