@@ -127,3 +127,26 @@
     max-width: 100% !important;
   }
 }
+@media screen and (max-width: 900px) {
+  .profile-grid,
+  .comparison-grid,
+  .conditions-grid,
+  .origination-grid,
+  div:has(> .origination-step) {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 20px !important;
+  }
+
+  .profile-card,
+  .comparison-card,
+  .condition-card,
+  .origination-step {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    display: block !important;
+    box-sizing: border-box !important;
+  }
