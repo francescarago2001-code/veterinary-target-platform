@@ -1,0 +1,19 @@
+@media screen and (max-width: 900px) {
+  .hero, .hero-section {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+  }
+  .hero-copy, .hero-copy *, .hero-content, p, h1, h2 {
+    width: 100% !important;
+    max-width: 100% !important;
+    white-space: normal !important;
+    word-break: normal !important;
+  }
+  .hero-aside, .hero-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-top: 20px !important;
+  }
+}
