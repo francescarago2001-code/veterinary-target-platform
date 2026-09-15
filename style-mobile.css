@@ -53,3 +53,9 @@
     box-sizing: border-box !important;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .conditions-grid { display: flex !important; flex-direction: column !important; width: 100% !important; gap: 20px !important; }
+  .condition-card { width: 100% !important; max-width: 100% !important; min-width: 0 !important; display: block !important; box-sizing: border-box !important; }
+  .condition-card * { word-break: normal !important; white-space: normal !important; hyphens: none !important; -webkit-hyphens: none !important; }
+}
