@@ -610,6 +610,19 @@
             margin: 0;
         }
 
+        .privacy-error {
+            display: none;
+            margin: 10px 0 0 28px;
+            color: #b42318;
+            font-size: 0.9rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .privacy-error.is-visible {
+            display: block;
+        }
+
         .home-section-spacer {
             padding-top: 6px;
         }
@@ -770,6 +783,52 @@
             margin: 0 0 22px;
             color: var(--muted);
             font-size: 1rem;
+        }
+
+        .privacy-page {
+            max-width: 860px;
+        }
+
+        .privacy-page h1 {
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(2.2rem, 3.2vw, 3.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+
+        .privacy-page h2 {
+            margin: 34px 0 10px;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(1.55rem, 2vw, 2.1rem);
+            line-height: 1.1;
+        }
+
+        .privacy-page p,
+        .privacy-page li {
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.8;
+        }
+
+        .privacy-page ul {
+            margin: 0 0 22px;
+            padding-left: 22px;
+        }
+
+        .privacy-page li {
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .privacy-page a {
+            color: var(--navy-900);
+            font-weight: 700;
+        }
+
+        .privacy-page strong {
+            color: var(--text);
         }
 
         .profile-grid {
@@ -1248,6 +1307,36 @@
             line-height: 1.6;
         }
 
+        .legal-footer {
+            margin: 28px 28px 0;
+            padding: 22px 26px;
+            border: 1px solid rgba(13, 44, 61, 0.12);
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(244,239,232,0.84));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.7;
+        }
+
+        .legal-footer strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.35rem;
+            line-height: 1.1;
+        }
+
+        .legal-footer p {
+            margin: 4px 0;
+        }
+
+        .legal-footer a {
+            color: var(--navy-900);
+            font-weight: 700;
+        }
+
         @media (max-width: 768px) {
             .side-rail {
                 position: static;
@@ -1283,6 +1372,11 @@
 
             .footer-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .legal-footer {
+                margin: 22px 18px 0;
+                padding: 18px 20px;
             }
         }
     </style>
@@ -1862,14 +1956,64 @@
         </div>
 
         <div class="question">
-            <p class="note" style="margin-top: 0; line-height: 1.6;">
-                Inviando la tua candidatura, autorizzi Aetos Corporate Finance al trattamento dei tuoi dati
-                personali ai fini della valutazione della richiesta, nel rispetto della normativa applicabile.
+            <div class="checkbox-row">
+                <label class="checkbox-label" for="privacy-consent-home">
+                    <input id="privacy-consent-home" type="checkbox" name="privacy_consent" required>
+                    <span>
+                        Dichiaro di aver letto l'<a href="#informativa-privacy">Informativa Privacy</a> e acconsento al trattamento dei dati aziendali
+                        forniti per lo screening preliminare della struttura e per la verifica anonima (blind)
+                        dell'interesse da parte del network di investitori AETOS.
+                    </span>
+                </label>
+                <p id="privacy-error-home" class="privacy-error" role="alert" aria-live="polite">
+                    Devi confermare di aver letto l'Informativa Privacy per proseguire.
+                </p>
+            </div>
         <button type="submit">
             Invia candidatura
         </button>
+        </div>
 
                 </form>
+            </section>
+
+            <section id="informativa-privacy-section" class="content-section" data-reveal>
+                <div class="simple-page privacy-page">
+                    <h1 id="informativa-privacy">Informativa sul Trattamento dei Dati Personali (Privacy Policy)</h1>
+                    <p class="lead"><em>Ai sensi dell'art. 13 del Regolamento (UE) 2016/679 ("GDPR")</em></p>
+
+                    <p>La presente informativa descrive le modalita di gestione, raccolta e trattamento dei dati personali e delle informazioni aziendali fornite dagli utenti e dai titolari, soci o legali rappresentanti di strutture e cliniche veterinarie che interagiscono con la nostra piattaforma web, richiedono informazioni sui servizi di advisory o trasmettono il questionario informativo per la valutazione preliminare finalizzata a percorsi di aggregazione, espansione o apertura del capitale.</p>
+
+                    <h2>1. Titolare del Trattamento</h2>
+                    <p>Il Titolare del trattamento dei dati e ONEtoONE Corporate Finance Group, con sede in Via Ercolano Salvi 12, 00143 Roma, Italia, telefono +39 335 5697097, sito web <a href="https://www.onetoonecf.com" target="_blank" rel="noopener noreferrer">www.onetoonecf.com</a>. Per qualsiasi richiesta di chiarimento, informazione o esercizio dei diritti in materia di protezione dei dati personali, e possibile contattare direttamente i referenti del progetto all'indirizzo email <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a> oppure <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>.</p>
+
+                    <h2>2. Dati Raccolti e Oggetto del Trattamento</h2>
+                    <p>Nel contesto delle interazioni con la piattaforma e dello svolgimento delle attivita preliminari di analisi, vengono raccolte esclusivamente le informazioni strettamente necessarie allo svolgimento delle finalita richieste. Tali dati comprendono: informazioni anagrafiche e recapiti di contatto (nome, cognome, indirizzo email, recapito telefonico e ruolo ricoperto all'interno della struttura sanitaria); informazioni economico-gestionali ed operative relative alla clinica veterinaria fornite tramite il questionario o comunicate successivamente (regione o area geografica, dimensioni dell'organico e numero di medici veterinari, fatturato e marginalita indicativi, specializzazioni mediche offerte e dotazioni diagnostiche o strumentali); dati tecnici di navigazione raccolti in via automatizzata dai sistemi informatici per il corretto funzionamento del sito web (indirizzi IP, orari di connessione e parametri del browser).</p>
+
+                    <h2>3. Finalita e Basi Giuridiche del Trattamento</h2>
+                    <p>I dati conferiti vengono trattati per scopi determinati e sempre supportati da un'idonea base giuridica ai sensi dell'art. 6 del GDPR:</p>
+                    <ul>
+                        <li><strong>Riscontro alle richieste di contatto:</strong> per rispondere ai quesiti, richieste di chiarimento o manifestazioni di interesse inviate dall'interessato. La base giuridica risiede nell'esecuzione di misure precontrattuali adottate su richiesta del titolare della clinica.</li>
+                        <li><strong>Screening preliminare della clinica veterinaria:</strong> per analizzare i dati trasmessi tramite questionario, verificare i requisiti di adesione al progetto e comunicare al titolare l'esito della valutazione di idoneita. La base giuridica e costituita dall'esecuzione di misure precontrattuali.</li>
+                        <li><strong>Verifica preliminare dell'interesse di mercato in forma cieca (Blind Profile):</strong> per consentire a ONEtoONE Corporate Finance Group di sondare l'eventuale interesse di fondi, gruppi sanitari o investitori prima dell'eventuale conferimento del mandato formale. Il trattamento e effettuato sulla base del legittimo interesse e delle misure precontrattuali richieste dall'interessato, operando unicamente tramite profili aggregati e totalmente anonimizzati.</li>
+                        <li><strong>Esecuzione del mandato di advisory:</strong> qualora, all'esito positivo dello screening, le parti decidano di formalizzare un mandato professionale di rappresentanza e assistenza nella negoziazione. La base giuridica e l'esecuzione di un contratto formale.</li>
+                        <li><strong>Adempimento di obblighi legali e tutela dei diritti:</strong> per adempiere a prescrizioni civilistiche, tributarie e antiriciclaggio applicabili all'attivita di consulenza aziendale, nonche per la difesa degli interessi legittimi del Titolare in caso di contenziosi.</li>
+                    </ul>
+
+                    <h2>4. Protocollo di Riservatezza e Gestione "Blind" (Fase Pre-Mandato)</h2>
+                    <p>La tutela della confidenzialita dell'identita della struttura veterinaria costituisce un principio cardine del nostro operato. La compilazione e l'invio del questionario conoscitivo non vincolano in alcun modo il titolare alla vendita della propria attivita, ne comportano mandati preventivi o costi fissi. L'eventuale confronto preliminare con investitori o operatori del settore sanitario finalizzato a verificare manifestazioni di interesse si svolge unicamente attraverso dati aggregati, indicatori dimensionali generici e macro-aree geografiche, senza mai consentire l'identificazione della clinica. Il nome della struttura, l'indirizzo esatto, l'identita dei soci o del personale non saranno in alcun caso comunicati, ceduti o rivelati a potenziali investitori o soggetti terzi senza il previo conferimento del mandato formale e l'espressa autorizzazione scritta del titolare. Anche successivamente al mandato, ogni informazione analitica sara condivisa esclusivamente con soggetti terzi vincolati da un preventivo accordo di riservatezza (Non-Disclosure Agreement - NDA).</p>
+
+                    <h2>5. Destinatari e Modalita del Trattamento</h2>
+                    <p>I dati personali e aziendali sono trattati mediante strumenti elettronici, informatici e telematici dotati di misure di sicurezza tecniche e organizzative adeguate a prevenire perdite, accessi non autorizzati o usi impropri. I dati non vengono ceduti a terzi per finalita promozionali. Possono averne accesso unicamente i professionisti, consulenti e collaboratori interni autorizzati e soggetti a doveri di segreto professionale, nonche fornitori tecnici esterni (quali hosting provider e piattaforme cloud) nominati Responsabili del Trattamento ai sensi dell'art. 28 del GDPR. I dati non sono diffusi pubblicamente e non vengono trasferiti al di fuori dello Spazio Economico Europeo, fatto salvo il ricorso a strumenti informatici conformi agli standard e alle garanzie approvate dalla Commissione Europea.</p>
+
+                    <h2>6. Tempi di Conservazione dei Dati</h2>
+                    <p>Le informazioni fornite tramite questionario che non dovessero risultare idonee o che non diano seguito all'accordo di advisory saranno cancellate o trasformate in forma totalmente anonima entro 60 giorni dalla comunicazione dell'esito, o tempestivamente su semplice richiesta dell'interessato. Per le strutture che abbiano superato lo screening e per le quali si concordi di valutare congiuntamente il percorso nei mesi successivi, le informazioni saranno conservate per un periodo compreso tra i 12 e i 24 mesi, corrispondente all'orizzonte temporale del ciclo di aggregazione e negoziazione. I dati relativi a mandati conferiti e conclusi formalmente saranno conservati per 10 anni in adempimento degli obblighi civilistici e fiscali di legge.</p>
+
+                    <h2>7. Diritti dell'Interessato</h2>
+                    <p>In qualsiasi momento, l'interessato ha il diritto di richiedere l'accesso ai propri dati personali, la verifica della loro esattezza, l'aggiornamento, la rettifica o l'integrazione, nonche la cancellazione totale dei dati trattati (diritto all'oblio). E altresi possibile richiedere la limitazione del trattamento, opporsi all'elaborazione dei dati per motivi legittimi o chiedere la portabilita dei dati in formato strutturato e leggibile da dispositivo automatico. Tali richieste possono essere inviate liberamente e senza formalita agli indirizzi email <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a> oppure <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>. Qualora ritenga che il trattamento sia avvenuto in violazione delle vigenti norme sulla tutela dei dati personali, l'interessato ha inoltre il diritto di proporre reclamo all'Autorita Garante per la Protezione dei Dati Personali (Piazza Venezia 11, 00187 Roma - <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>).</p>
+
+                    <p><em>Data ultimo aggiornamento: Settembre 2026</em></p>
+                </div>
             </section>
 
             <section id="chi-siamo-section" class="content-section" data-reveal>
@@ -1941,6 +2085,13 @@
                 </div>
             </section>
         </main>
+
+        <footer class="legal-footer" aria-label="Informazioni societarie">
+            <strong>ONE TO ONE CORPORATE FINANCE ADVISORY ITALY S.R.L.</strong>
+            <p>Sede: Via Ercolano Salvi 12, 00143 Roma (RM)</p>
+            <p>P.IVA e C.F.: 17551751005 | PEC: onetoonecfaitaly@legalmail.it</p>
+            <p><a href="#informativa-privacy">Privacy Policy</a></p>
+        </footer>
     </div>
 </div>
 
@@ -1957,6 +2108,20 @@
     const ricaviSelect = document.querySelector('select[name="ricavi"]');
     const ricaviAltroWrapper = document.getElementById('ricavi-altro-wrapper');
     const ricaviAltroInput = document.querySelector('input[name="ricavi_altro"]');
+    const privacyConsent = document.getElementById('privacy-consent-home');
+    const privacyError = document.getElementById('privacy-error-home');
+
+    if (privacyConsent && privacyError) {
+        privacyConsent.addEventListener('invalid', () => {
+            privacyError.classList.add('is-visible');
+            privacyConsent.setCustomValidity('Devi confermare di aver letto l\'Informativa Privacy per proseguire.');
+        });
+
+        privacyConsent.addEventListener('change', () => {
+            privacyConsent.setCustomValidity('');
+            privacyError.classList.toggle('is-visible', !privacyConsent.checked);
+        });
+    }
 
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
@@ -2041,6 +2206,14 @@
             }
 
             showSection(button.dataset.section);
+        });
+    });
+
+    document.querySelectorAll('a[href="#informativa-privacy"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            showSection('informativa-privacy-section');
+            document.getElementById('informativa-privacy').scrollIntoView({ behavior: 'smooth' });
         });
     });
 </script>
