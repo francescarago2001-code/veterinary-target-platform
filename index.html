@@ -1,4 +1,2273 @@
 
-  
 
-!DOCTYPE html><html lang="it"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Candidatura | Veterinary Target Platform</title>    <style>        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');:root {            --navy-950: #071c2b;            --navy-900: #0f355b;            --navy-800: #123a53;            --navy-700: #184d6d;            --gold-500: #1b4d6d;            --gold-400: #2a6488;            --gold-300: #3d7ca0;            --ivory: #f4efe7;            --text: #172b36;            --muted: #59666f;            --panel: rgba(255, 255, 255, 0.96);            --soft-border: rgba(13, 44, 61, 0.12);            --shadow: 0 32px 90px rgba(7, 20, 29, 0.32);            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);        }        * {            box-sizing: border-box;        }        html {            scroll-behavior: smooth;        }        body {            margin: 0;            font-family: "Inter", "Segoe UI", sans-serif;            background: linear-gradient(180deg, rgba(244, 239, 232, 1), rgba(238, 230, 219, 0.96));            color: var(--text);            position: relative;        }        body::before {            content: "";            position: fixed;            inset: 0;            background-image:                linear-gradient(rgba(13,44,61,0.015) 1px, transparent 1px),                linear-gradient(90deg, rgba(13,44,61,0.015) 1px, transparent 1px);            background-size: 36px 36px;            mask-image: radial-gradient(circle at center, black 35%, transparent 100%);            pointer-events: none;        }        ::selection {            background: rgba(216, 181, 98, 0.35);        }        .page-shell {            padding: 36px 22px 64px;            position: relative;            z-index: 1;            min-height: 100vh;        }        .home-layout {            max-width: 1180px;            margin: 0 auto;            min-height: 100%;            position: relative;        }        .side-rail {            position: fixed;            top: 24px;            left: 24px;            width: 88px;            min-height: calc(100vh - 48px);            background: rgba(255, 255, 255, 0.82);            border: 1px solid rgba(13, 44, 61, 0.14);            border-radius: 22px;            padding: 12px 10px;            box-shadow: 0 16px 36px rgba(13, 44, 61, 0.08);            backdrop-filter: blur(10px);            transition: width 0.25s ease, padding 0.25s ease;            overflow: hidden;            z-index: 20;            display: flex;            flex-direction: column;        }        .side-rail.is-expanded {            width: 230px;            padding: 14px 12px;        }        .side-brand {            display: flex;            justify-content: flex-start;            align-items: center;            width: 100%;            padding: 6px 0 12px 10px;            border: none;            background: transparent;            cursor: pointer;            border-bottom: 1px solid rgba(13, 44, 61, 0.12);            margin-bottom: 14px;            color: var(--navy-900);            font-size: 1.1rem;            line-height: 1;        }        .side-menu {            display: none;            flex-direction: column;            gap: 10px;            width: 100%;            margin-top: 4px;        }        .side-rail.is-expanded .side-menu {            display: flex;        }        .side-menu-button {            width: 100%;            display: flex;            align-items: center;            justify-content: center;            gap: 10px;            padding: 12px 14px;            border: 1px solid rgba(13, 44, 61, 0.12);            border-radius: 14px;            background: rgba(255,255,255,0.9);            color: var(--navy-900);            font-size: 0.78rem;            font-weight: 800;            letter-spacing: 0.1em;            text-transform: uppercase;            cursor: pointer;            transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.25s var(--ease-out);            text-align: center;            position: relative;            overflow: hidden;        }        .side-menu-button::after {            content: "";            position: absolute;            left: 12px;            right: 12px;            bottom: 7px;            height: 1px;            background: rgba(13, 44, 61, 0.7);            transform: scaleX(0);            transform-origin: left center;            transition: transform 0.3s var(--ease-out);        }        .side-menu-button:hover::after {            transform: scaleX(1);        }        .side-menu-button:hover {            transform: translateY(-1px);            border-color: rgba(13, 44, 61, 0.26);            box-shadow: 0 8px 18px rgba(13, 44, 61, 0.06);            background: rgba(255,255,255,1);        }        .menu-icon {            font-size: 1rem;            line-height: 1;        }        .content-panel {            min-height: 520px;            background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(244,239,232,0.99));            border: 1px solid rgba(13, 44, 61, 0.08);            border-radius: 28px;            box-shadow: 0 22px 48px rgba(13, 44, 61, 0.08);            overflow: hidden;            position: relative;            margin-left: 124px;        }        .content-panel::before {            display: none;        }        .home-empty-state {            min-height: 420px;            display: flex;            align-items: center;            justify-content: center;            background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(216, 181, 98, 0.02));            border-radius: 0 0 28px 28px;            padding: 36px 18px 44px;        }        .origination-shell {            width: min(100%, 860px);            margin: 0 auto;            padding: 12px 0 6px;        }        .origination-header {            text-align: center;            margin-bottom: 32px;        }        .origination-kicker {            margin: 0;            color: var(--navy-700);            font-size: 0.76rem;            font-weight: 800;            letter-spacing: 0.18em;            text-transform: uppercase;        }        .origination-flow {            display: flex;            flex-direction: column;            align-items: center;            gap: 22px;        }        .origination-step {            width: min(100%, 760px);            display: flex;            align-items: center;            gap: 20px;            padding: 24px 0;            background: transparent;            border: none;            border-bottom: 1px solid rgba(13, 44, 61, 0.08);            border-radius: 0;            box-shadow: none;            opacity: 0;            transform: translateY(24px);            animation: originationFadeUp 0.7s ease forwards;        }        .origination-step-result {            border-bottom: 1px solid rgba(13, 44, 61, 0.12);            background: transparent;            box-shadow: none;        }        .step-01 {            animation-delay: 0.15s;        }        .step-02 {            animation-delay: 0.9s;        }        .step-03 {            animation-delay: 1.65s;        }        .step-copy {            display: flex;            flex-direction: column;            gap: 10px;            width: 100%;        }        .step-description {            margin: 0;            color: var(--muted);            font-size: 1.02rem;            line-height: 1.8;        }        .origination-slogan-wrap {            width: min(100%, 760px);            margin: 28px auto 0;            text-align: center;            opacity: 0;            transform: translateY(24px);            animation: originationFadeUp 0.8s ease forwards;            animation-delay: 2.45s;            padding-top: 18px;            border-top: 1px solid rgba(13, 44, 61, 0.12);        }        .origination-slogan {            margin: 0;            color: var(--navy-900);            font-family: "Cormorant Garamond", Georgia, serif;            font-weight: 700;            font-size: clamp(2.5rem, 3.8vw, 4.2rem);            line-height: 0.96;            letter-spacing: -0.04em;        }        .home-main-content {            width: min(100%, 1040px);            margin: 0 auto;            padding: 8px 0 18px;        }        .section-shell {            width: min(100%, 1000px);            margin: 0 auto;        }        .hero-section {            display: grid;            grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);            gap: 28px;            align-items: center;            padding: 10px 0 8px;        }        .section-kicker {            margin: 0 0 14px;            color: var(--navy-700);            font-size: 0.74rem;            font-weight: 800;            letter-spacing: 0.18em;            text-transform: uppercase;        }        .hero-copy h1 {            margin: 0;            font-size: clamp(3rem, 4vw, 5rem);            line-height: 0.96;            letter-spacing: -0.05em;        }        .lead {            margin: 22px 0 0;            color: var(--muted);            font-size: 1.08rem;            line-height: 1.8;            max-width: 720px;        }        .hero-badges {            display: flex;            flex-wrap: wrap;            gap: 12px;            margin-top: 22px;        }        .mini-badge {            display: inline-flex;            align-items: center;            padding: 10px 14px;            border-radius: 999px;            background: rgba(15, 53, 91, 0.06);            border: 1px solid rgba(15, 53, 91, 0.12);            font-size: 0.82rem;            font-weight: 700;            color: var(--navy-900);            line-height: 1.2;        }        .hero-actions {            margin-top: 28px;        }        .primary-button {            display: inline-flex;            align-items: center;            justify-content: center;            padding: 16px 24px;            border-radius: 16px;            background: linear-gradient(135deg, var(--navy-900), var(--navy-700), var(--gold-500));            color: #edf4fb;            font-size: 0.88rem;            font-weight: 800;            letter-spacing: 0.08em;            text-transform: uppercase;            text-decoration: none;            box-shadow: 0 18px 30px rgba(13, 44, 61, 0.18);            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;        }        .primary-button:hover {            transform: translateY(-1px);            box-shadow: 0 24px 38px rgba(13, 44, 61, 0.24);            filter: brightness(1.04);        }        .hero-panel {            background: linear-gradient(180deg, rgba(15, 53, 91, 0.06), rgba(15, 53, 91, 0.02));            border: 1px solid rgba(15, 53, 91, 0.12);            border-radius: 24px;            padding: 22px 20px;            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);        }        .metric {            display: flex;            flex-direction: column;            gap: 4px;            padding: 14px 0;            border-bottom: 1px solid rgba(13, 44, 61, 0.08);        }        .metric:last-child {            border-bottom: none;            padding-bottom: 0;        }        .metric-value {            font-size: clamp(1.8rem, 2vw, 2.6rem);            font-weight: 800;            line-height: 1;            color: var(--navy-900);            font-family: "Cormorant Garamond", Georgia, serif;            letter-spacing: -0.04em;        }        .metric-label {            color: var(--muted);            font-size: 0.86rem;            line-height: 1.6;        }        .section-heading {            margin-bottom: 24px;        }        .section-heading h2 {            margin: 0;        }        .comparison-grid,        .conditions-grid,        .process-grid {            display: grid;            gap: 20px;        }        .comparison-grid {            grid-template-columns: repeat(2, minmax(0, 1fr));        }        .comparison-card,        .condition-card,        .process-step,        .compact-form {            background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(244,239,232,0.7));            border: 1px solid rgba(13, 44, 61, 0.08);            border-radius: 24px;            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);        }        .comparison-card {            padding: 24px 22px;            transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);        }        .comparison-card--featured {            background: linear-gradient(180deg, rgba(15, 53, 91, 0.05), rgba(15, 53, 91, 0.02));            border-color: rgba(15, 53, 91, 0.18);            box-shadow: 0 22px 34px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.7);        }        .comparison-card:hover,        .condition-card:hover,        .process-step:hover {            transform: translateY(-2px);            border-color: rgba(13, 44, 61, 0.18);            box-shadow: 0 18px 28px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);        }        .card-tag {            display: inline-flex;            padding: 8px 10px;            border-radius: 999px;            background: rgba(15, 53, 91, 0.06);            border: 1px solid rgba(15, 53, 91, 0.12);            color: var(--navy-700);            font-size: 0.72rem;            font-weight: 800;            letter-spacing: 0.12em;            text-transform: uppercase;        }        .comparison-card h3,        .condition-card h3,        .process-step h3 {            margin: 18px 0 10px;            color: var(--navy-900);            font-size: 1.4rem;            line-height: 1.2;            font-family: "Cormorant Garamond", Georgia, serif;        }        .comparison-card ul {            list-style: none;            padding: 0;            margin: 0;            display: grid;            gap: 10px;        }        .comparison-card li {            position: relative;            padding-left: 18px;            color: var(--muted);            line-height: 1.6;            font-size: 0.96rem;        }        .comparison-card li::before {            content: "✦";            position: absolute;            left: 0;            top: 0;            color: var(--navy-700);        }        .process-grid {            grid-template-columns: repeat(4, minmax(0, 1fr));        }        .process-step {            padding: 22px 18px;        }        .step-number {            display: inline-flex;            min-width: 48px;            justify-content: center;            padding: 7px 10px;            border-radius: 10px;            background: rgba(15, 53, 91, 0.06);            color: var(--navy-900);            font-size: 0.82rem;            font-weight: 800;            letter-spacing: 0.12em;            text-transform: uppercase;        }        .process-step p {            margin: 0;            color: var(--muted);            line-height: 1.7;            font-size: 0.94rem;        }        .conditions-grid {            grid-template-columns: repeat(3, minmax(0, 1fr));        }        .condition-card {            padding: 22px 20px;        }        .condition-tag {            display: inline-flex;            margin-bottom: 10px;            padding: 9px 10px;            border-radius: 10px;            background: rgba(15, 53, 91, 0.06);            border: 1px solid rgba(15, 53, 91, 0.12);            color: var(--navy-900);            font-size: 0.76rem;            font-weight: 800;            letter-spacing: 0.12em;            text-transform: uppercase;        }        .condition-card p {            margin: 0;            color: var(--muted);            line-height: 1.7;            font-size: 0.96rem;        }        .application-section {            padding-top: 6px;        }        .compact-form {            padding: 22px;        }        .compact-form .grid {            gap: 18px;        }        .checkbox-row {            margin-top: 18px;        }        .checkbox-label {            display: flex;            align-items: center;            gap: 10px;            font-family: "Inter", "Segoe UI", sans-serif;            font-size: 0.95rem;            font-weight: 600;            color: var(--muted);        }        .checkbox-label input {            width: 18px;            height: 18px;            accent-color: var(--navy-900);            margin: 0;        }        .privacy-error {            display: none;            margin: 10px 0 0 28px;            color: #b42318;            font-size: 0.9rem;            font-weight: 700;            line-height: 1.5;        }        .privacy-error.is-visible {            display: block;        }        .home-section-spacer {            padding-top: 6px;        }        @keyframes originationFadeUp {            0% {                opacity: 0;                transform: translateY(24px);            }            100% {                opacity: 1;                transform: translateY(0);            }        }        .content-section {            display: none;            padding: 30px 28px 40px;        }        .content-section.is-visible {            display: block;        }        #progetto-section {            min-height: 420px;            padding: 0;            background: transparent;        }        #candidati-section {            padding-top: 18px;        }        #candidati-section form {            padding: 8px 8px 6px;        }        #candidati-section form h2 {            margin-top: 56px;            margin-bottom: 20px;        }        #candidati-section form h2:first-of-type {            margin-top: 18px;        }        #candidati-section .grid {            gap: 28px;            margin-bottom: 10px;        }        #candidati-section .question {            margin: 0 0 22px;            padding: 18px 18px 16px;            border: 1px solid rgba(13, 44, 61, 0.08);            border-radius: 22px;            background: linear-gradient(180deg, rgba(255,255,255,0.52), rgba(244,239,232,0.65));            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);            transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), background 0.3s var(--ease-out);        }        #candidati-section .question:hover {            transform: translateY(-2px);            border-color: rgba(13, 44, 61, 0.16);            box-shadow: 0 16px 30px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);            background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(244,239,232,0.8));        }        #candidati-section .question + .question {            margin-top: 8px;        }        #candidati-section .question > label {            margin-bottom: 12px;        }        #candidati-section .question .note {            margin-bottom: 12px;        }        #candidati-section .grid .question {            margin-bottom: 0;        }        #candidati-section form button {            margin-top: 32px;        }        #candidati-section.is-visible h2,        #candidati-section.is-visible .question,        #candidati-section.is-visible .grid,        #candidati-section.is-visible button {            opacity: 0;            transform: translateY(22px);            animation: candidateSectionReveal 0.75s var(--ease-smooth) forwards;        }        #candidati-section.is-visible h2 {            animation-delay: 0.06s;        }        #candidati-section.is-visible .grid {            animation-delay: 0.12s;        }        #candidati-section.is-visible .question {            animation-delay: 0.18s;        }        #candidati-section.is-visible button {            animation-delay: 0.32s;        }        @keyframes candidateSectionReveal {            0% {                opacity: 0;                transform: translateY(22px);            }            100% {                opacity: 1;                transform: translateY(0);            }        }        [data-reveal] {            opacity: 0;            transform: translateY(20px);            transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);        }        [data-reveal].is-visible {            opacity: 1;            transform: translateY(0);        }        .simple-page {            max-width: 760px;            margin: 0 auto;            padding: 34px 36px 18px;        }        .content-section.is-visible {            display: block;        }        .simple-page h1 {            margin-bottom: 12px;        }        .simple-page p {            color: var(--muted);            line-height: 1.8;            font-size: 1.02rem;        }        .simple-page .lead {            margin: 0 0 22px;            color: var(--muted);            font-size: 1rem;        }        .privacy-page {            max-width: 860px;        }        .privacy-page h1 {            color: var(--navy-900);            font-family: "Cormorant Garamond", Georgia, serif;            font-size: clamp(2.2rem, 3.2vw, 3.5rem);            line-height: 1.05;            letter-spacing: -0.03em;        }        .privacy-page h2 {            margin: 34px 0 10px;            color: var(--navy-900);            font-family: "Cormorant Garamond", Georgia, serif;            font-size: clamp(1.55rem, 2vw, 2.1rem);            line-height: 1.1;        }        .privacy-page p,        .privacy-page li {            color: var(--muted);            font-size: 0.98rem;            line-height: 1.8;        }        .privacy-page ul {            margin: 0 0 22px;            padding-left: 22px;        }        .privacy-page li {            margin-bottom: 12px;            padding-left: 4px;        }        .privacy-page a {            color: var(--navy-900);            font-weight: 700;        }        .privacy-page strong {            color: var(--text);        }        .profile-grid {            display: grid;            grid-template-columns: repeat(2, minmax(0, 1fr));            gap: 22px;            margin-top: 26px;        }        .profile-card {            position: relative;            background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(244,239,232,0.82));            border: 1px solid rgba(13, 44, 61, 0.12);            border-radius: 26px;            padding: 26px 24px;            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 18px 34px rgba(13, 44, 61, 0.06);            overflow: hidden;            transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);        }        .profile-card::before {            content: "";            position: absolute;            inset: 0 auto auto 0;            width: 100%;            height: 4px;            background: linear-gradient(90deg, var(--navy-900), var(--gold-500), transparent);        }        .profile-card:hover {            transform: translateY(-3px);            border-color: rgba(13, 44, 61, 0.18);            box-shadow: 0 24px 44px rgba(13, 44, 61, 0.09), inset 0 1px 0 rgba(255,255,255,0.85);        }        .profile-badge {            display: inline-flex;            align-items: center;            padding: 7px 10px;            border-radius: 999px;            background: rgba(15, 53, 91, 0.06);            border: 1px solid rgba(15, 53, 91, 0.1);            color: var(--navy-900);            font-size: 0.7rem;            font-weight: 800;            letter-spacing: 0.12em;            text-transform: uppercase;        }        .profile-name {            margin: 20px 0 8px;            color: var(--navy-900);            font-family: "Cormorant Garamond", Georgia, serif;            font-size: clamp(2rem, 2.2vw, 2.8rem);            line-height: 1;            letter-spacing: -0.03em;        }        .profile-role {            margin: 0 0 14px;            color: var(--navy-700);            font-size: 0.85rem;            font-weight: 800;            letter-spacing: 0.08em;            text-transform: uppercase;        }        .profile-card p {            margin: 0;            color: var(--muted);            line-height: 1.8;            font-size: 0.98rem;        }        .contact-layout {            display: grid;            grid-template-columns: repeat(2, minmax(0, 1fr));            gap: 20px;            margin-top: 18px;        }        .contact-card {            background: linear-gradient(180deg, rgba(15, 53, 91, 0.03), rgba(15, 53, 91, 0.01));            border: 1px solid rgba(15, 53, 91, 0.10);            border-radius: 20px;            padding: 24px 22px;            box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);            transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);        }        .contact-card:hover {            transform: translateY(-2px);            border-color: rgba(13, 44, 61, 0.2);            box-shadow: 0 18px 34px rgba(13, 44, 61, 0.08), inset 0 1px 0 rgba(255,255,255,0.6);        }        .contact-label {            margin: 0 0 10px;            color: var(--navy-900);            font-size: 0.7rem;            font-weight: 800;            letter-spacing: 0.14em;            text-transform: uppercase;        }        .contact-value {            margin: 0;            color: var(--text);            font-size: 1rem;            line-height: 1.7;        }        .contact-value a {            color: var(--navy-900);            text-decoration: none;            font-weight: 600;            position: relative;        }        .contact-value a::after {            content: "";            position: absolute;            left: 0;            bottom: -2px;            width: 100%;            height: 1px;            background: rgba(13, 44, 61, 0.72);            transform: scaleX(0);            transform-origin: left;            transition: transform 0.3s var(--ease-out);        }        .contact-value a:hover::after {            transform: scaleX(1);        }        .contact-value a:hover {            text-decoration: none;        }        .container {            max-width: 1180px;            margin: 0 auto;            background: linear-gradient(180deg, rgba(255,255,255,0.985), rgba(244,239,232,0.97));            border: 1px solid rgba(255,255,255,0.45);            border-radius: 30px;            box-shadow: 0 26px 70px rgba(7, 20, 29, 0.16);            padding: 26px 30px 20px;            overflow: hidden;            position: relative;        }        .container::before {            display: none;        }        .brand-header {            display: flex;            justify-content: center;            padding: 10px 0 22px;            border-bottom: 1px solid rgba(15, 53, 91, 0.22);            margin-bottom: 22px;            background: linear-gradient(180deg, #0f355b 0%, #0f355b 100%);            border-radius: 22px 22px 0 0;        }        .brand-header img {            display: block;            width: min(100%, 540px);            height: auto;            filter: none;            opacity: 1;            padding: 18px 24px;        }        .hero {            display: grid;            grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.9fr);            gap: 24px;            align-items: center;            padding: 16px 0 10px;        }        .eyebrow {            margin: 0 0 10px;            color: var(--navy-700);            font-size: 0.72rem;            font-weight: 800;            letter-spacing: 0.18em;            text-transform: uppercase;        }        h1 {            margin: 0;            font-family: "Cormorant Garamond", Georgia, serif;            font-size: clamp(3.1rem, 4vw, 5.35rem);            line-height: 0.93;            letter-spacing: -0.05em;            color: var(--navy-900);            font-weight: 700;        }        .intro {            color: var(--muted);            margin: 18px 0 0;            line-height: 1.8;            font-size: 1.09rem;            max-width: 780px;        }        .hero-aside {            background: linear-gradient(155deg, var(--navy-900), var(--navy-700));            color: #edf4fb;            border-radius: 20px;            padding: 22px 22px 18px;            box-shadow: 0 18px 40px rgba(12, 28, 42, 0.22);        }        .card-label {            margin: 0 0 14px;            color: var(--gold-300);            font-size: 0.72rem;            font-weight: 700;            letter-spacing: 0.16em;            text-transform: uppercase;        }        .hero-aside ul {            list-style: none;            margin: 0;            padding: 0;            display: grid;            gap: 12px;        }        .hero-aside li {            display: flex;            align-items: flex-start;            gap: 10px;            line-height: 1.45;            color: #edf4fb;        }        .hero-aside li::before {            content: "✦";            color: var(--gold-500);            font-size: 1rem;            margin-top: 1px;        }        .stats-grid {            display: grid;            grid-template-columns: repeat(3, minmax(0, 1fr));            gap: 16px;            margin: 24px 0 14px;        }        .stat-card {            background: rgba(18, 58, 83, 0.04);            border: 1px solid var(--soft-border);            border-radius: 18px;            padding: 18px 18px 16px;            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;        }        .stat-card:hover {            transform: translateY(-2px);            box-shadow: 0 16px 28px rgba(13, 44, 61, 0.08);            border-color: rgba(216, 181, 98, 0.5);        }        .stat-number {            margin: 0;            color: var(--navy-900);            font-size: clamp(1.35rem, 2vw, 1.8rem);            font-weight: 800;        }        .stat-label {            margin-top: 6px;            color: var(--muted);            font-size: 0.76rem;            letter-spacing: 0.12em;            text-transform: uppercase;        }        h2 {            margin: 42px 0 18px;            padding-bottom: 12px;            border-bottom: 1px solid rgba(13, 44, 61, 0.12);            font-family: "Cormorant Garamond", Georgia, serif;            font-size: clamp(2.5rem, 2.9vw, 3.5rem);            line-height: 1;            color: var(--navy-900);            letter-spacing: -0.03em;            font-weight: 700;        }        .question {            margin: 0 0 22px;            padding: 0;            background: transparent;            border: none;            border-radius: 0;            backdrop-filter: none;        }        .question + .question {            padding-top: 0;            border-top: none;        }        label {            display: block;            font-family: "Cormorant Garamond", Georgia, serif;            font-weight: 700;            margin-bottom: 10px;            color: var(--navy-900);            font-size: 1.36rem;            letter-spacing: 0.01em;            text-transform: none;        }        input, select {            width: 100%;            padding: 14px 16px;            border: 1px solid rgba(13, 44, 61, 0.18);            border-radius: 14px;            background: linear-gradient(180deg, rgba(255,255,255,0.99), rgba(245,239,232,0.96));            box-sizing: border-box;            font-size: 0.98rem;            color: var(--text);            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 5px rgba(13,44,61,0.02);        }        input:hover, select:hover {            border-color: rgba(13, 44, 61, 0.28);        }        input:focus, select:focus {            outline: none;            border-color: var(--gold-500);            box-shadow: 0 0 0 4px rgba(216, 181, 98, 0.16), inset 0 1px 0 rgba(255,255,255,0.7);            background: linear-gradient(180deg, rgba(255,255,255,1), rgba(249,244,238,1));        }        .grid {            display: grid;            grid-template-columns: repeat(2, minmax(0, 1fr));            gap: 22px;        }        .note {            margin-top: 8px;            color: var(--muted);            font-size: 0.87rem;            line-height: 1.6;        }        button {            margin-top: 28px;            width: 100%;            padding: 18px 20px;            border: none;            border-radius: 16px;            background: linear-gradient(135deg, var(--navy-900), var(--navy-700), var(--gold-500));            color: #edf4fb;            font-size: 0.95rem;            font-weight: 800;            letter-spacing: 0.08em;            text-transform: uppercase;            cursor: pointer;            box-shadow: 0 18px 32px rgba(13, 44, 61, 0.2);            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;        }        button:hover {            transform: translateY(-1px);            box-shadow: 0 24px 38px rgba(13, 44, 61, 0.28);            filter: brightness(1.04);        }        .page-footer {            margin-top: 30px;            padding: 22px 18px 6px;            border-top: 1px solid rgba(13, 44, 61, 0.12);            color: var(--muted);            font-size: 0.72rem;            letter-spacing: 0.12em;            text-transform: uppercase;            font-weight: 700;        }        .footer-grid {            display: grid;            grid-template-columns: 1.1fr 1.4fr 1fr;            gap: 22px;            align-items: start;            margin-bottom: 18px;        }        .footer-brand {            display: flex;            align-items: center;        }        .footer-brand img {            width: min(100%, 220px);            height: auto;            filter: drop-shadow(0 10px 18px rgba(13, 44, 61, 0.12));        }        .footer-title {            margin: 0 0 8px;            color: var(--navy-900);            font-size: 0.72rem;            letter-spacing: 0.12em;            text-transform: uppercase;            font-weight: 800;        }        .footer-copy {            margin: 0;            line-height: 1.7;            color: var(--muted);            font-size: 0.78rem;            letter-spacing: normal;            text-transform: none;        }        .footer-links {            display: grid;            gap: 8px;        }        .footer-links a {            color: var(--navy-700);            text-decoration: none;            font-size: 0.78rem;            transition: color 0.2s ease;            letter-spacing: normal;            text-transform: none;            position: relative;        }        .footer-links a::after {            content: "";            position: absolute;            left: 0;            bottom: -2px;            width: 100%;            height: 1px;            background: rgba(13, 44, 61, 0.72);            transform: scaleX(0);            transform-origin: left;            transition: transform 0.3s var(--ease-out);        }        .footer-links a:hover::after {            transform: scaleX(1);        }        .footer-links a:hover {            color: var(--navy-900);        }        .footer-note {            text-align: center;            padding-top: 12px;            border-top: 1px solid rgba(13, 44, 61, 0.08);            color: var(--muted);            font-size: 0.7rem;            letter-spacing: 0.1em;            text-transform: uppercase;            line-height: 1.6;        }        .legal-footer {            margin: 28px 28px 0;            padding: 22px 26px;            border: 1px solid rgba(13, 44, 61, 0.12);            border-radius: 18px;            background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(244,239,232,0.84));            box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);            color: var(--muted);            font-size: 0.82rem;            line-height: 1.7;        }        .legal-footer strong {            display: block;            margin-bottom: 8px;            color: var(--navy-900);            font-family: "Cormorant Garamond", Georgia, serif;            font-size: 1.35rem;            line-height: 1.1;        }        .legal-footer p {            margin: 4px 0;        }        .legal-footer a {            color: var(--navy-900);            font-weight: 700;        }        @media (max-width: 768px) {            .side-rail {                position: static;                width: 100%;                min-height: auto;            }            .side-rail.is-expanded {                width: 100%;            }            .content-panel {                margin-left: 0;                margin-top: 18px;            }            .container {                padding: 22px 18px 12px;            }            .hero {                grid-template-columns: 1fr;            }            .stats-grid,            .grid {                grid-template-columns: 1fr;            }            .brand-header img {                width: min(100%, 380px);            }            .footer-grid {                grid-template-columns: 1fr;            }            .legal-footer {                margin: 22px 18px 0;                padding: 18px 20px;            }        }    </style></head><body><div class="page-shell"><div class="container">    <div class="home-layout">        <aside class="side-rail" id="sideRail">            <button class="side-brand" type="button" aria-label="Apri menu" id="menuToggle">                ☰            </button>            <div class="side-menu">                <button class="side-menu-button" type="button" data-home="true">                    Home                </button>                <button class="side-menu-button" type="button" data-section="progetto-section">                    Il Progetto                </button>                <button class="side-menu-button" type="button" data-section="candidati-section">                    Candidati                </button>                <button class="side-menu-button" type="button" data-section="chi-siamo-section">                    Chi siamo                </button>                <button class="side-menu-button" type="button" data-section="contatti-section">                    Contatti                </button>            </div>        </aside>        <main class="content-panel">            <header class="brand-header">                <img src="logo/logo.png" alt="Veterinary Target Platform logo">            </header>            <div class="home-empty-state" id="homeEmptyState">                <div class="origination-shell">                    <div class="origination-header">                        <p class="origination-kicker">AETOS</p>                    </div>                    <div class="origination-flow">                        <div class="origination-step step-01">                            <div class="step-copy">                                <p class="step-description">                                    AETOS organizza un’iniziativa su scala nazionale rivolta ai titolari di strutture veterinarie per aprire un canale diretto di confronto con primari investitori del settore sanitario.                                </p>                                <p class="step-description">                                    L'obiettivo è unire realtà selezionate per dialogare da una posizione contrattuale forte, affrontando temi strategici come l'ingresso di nuovi capitali, l'espansione della struttura o il passaggio generazionale.                                </p>                            </div>                        </div>                        <div class="origination-step step-02">                            <div class="step-copy">                                <p class="step-description">                                    Il percorso si svolge in un ambiente riservato, dove si possono valutare le possibilità di crescita senza esporre la struttura pubblicamente e senza alcun impegno preventivo di vendita. AETOS accompagna l'intero processo, raccogliendo le informazioni, coordinando il confronto con gli operatori interessati e definendo le condizioni più adatte.                                </p>                            </div>                        </div>                        <div class="origination-step origination-step-result step-03">                            <div class="step-copy">                                <p class="step-description">                                    La titolarità della decisione finale resta interamente al medico veterinario: la ricezione di un'offerta non vincola alla cessione, e l'eventuale accordo viene finalizzato solo se risponde agli obiettivi e alla valutazione desiderata dal titolare.                                </p>                            </div>                        </div>                    </div>                    <div class="origination-slogan-wrap">                        <p class="origination-slogan">                            <strong>Fai crescere il valore della tua clinica, preservando identità medica, territorio e qualità delle cure.</strong>                        </p>                    </div>                </div>            </div>            <section id="progetto-section" class="content-section" data-reveal>                <div class="home-main-content">                    <section class="hero-section section-shell" data-reveal>                        <div class="hero-copy">                            <p class="section-kicker">AETOS | Iniziativa nazionale</p>                            <h1>Valorizza la tua clinica veterinaria con la forza di un network.</h1>                            <p class="lead">                                Uniamo cliniche selezionate in gruppi omogenei per ottenere condizioni più favorevoli e confrontarsi con maggiore forza, senza vincoli sul prezzo finale.                            </p>                            <div class="hero-badges">                                <span class="mini-badge">Valutazione riservata</span>                                <span class="mini-badge">Valore aziendale da verificare</span>                                <span class="mini-badge">Nessun impegno preventivo</span>                            </div>                            <p class="lead" style="margin-top: 18px; margin-bottom: 0;">                                La candidatura non comporta alcun mandato, costo o impegno a vendere. Qualora la struttura                                venga selezionata e il titolare decida di partecipare al progetto, potrà conferire ad AETOS                                un mandato esclusivo per la gestione del processo. Il titolare sarà in ogni caso libero di                                accettare o rifiutare qualsiasi proposta.                            </p>                            <div class="hero-actions">                                <a class="primary-button" href="mailto:cirodicarluccio1@gmail.com">Richiedi il preventivo per una valutazione</a>                            </div>                        </div>                        <aside class="hero-panel" aria-label="Dati principali del modello">                            <div class="metric">                                <span class="metric-value">più</span>                                <span class="metric-label">cliniche selezionate per coorte</span>                            </div>                            <div class="metric">                                <span class="metric-value">100%</span>                                <span class="metric-label">libertà di accettare o rifiutare una proposta</span>                            </div>                            <div class="metric">                                <span class="metric-value">5%</span>                                <span class="metric-label">success fee solo a chiusura</span>                            </div>                        </aside>                    </section>                    <section class="section-shell home-section-spacer" data-reveal>                        <div class="section-heading">                            <p class="section-kicker">Vantaggio del gruppo</p>                            <h2>Il vantaggio di lavorare insieme</h2>                        </div>                        <div class="comparison-grid">                            <article class="comparison-card">                                <div class="card-tag">Trattativa singola</div>                                <h3>Un’interlocuzione gestita individualmente</h3>                                <ul>                                    <li>Contatto diretto con uno o più potenziali acquirenti.</li>                                    <li>Gestione autonoma delle informazioni e delle richieste ricevute.</li>                                    <li>Valutazione delle proposte sulla base delle interlocuzioni attivate dalla singola struttura.</li>                                </ul>                            </article>                            <article class="comparison-card comparison-card--featured">                                <div class="card-tag">Trattativa in rete</div>                                <h3>Processo coordinato da AETOS</h3>                                <p><strong>Accesso strutturato al mercato degli investitori</strong></p>                                <ul>                                    <li>Presentazione della clinica nell’ambito di un progetto rivolto a più investitori finanziari e industriali.</li>                                    <li>Gestione coordinata delle informazioni, dei contatti e della negoziazione, mantenendo distinta la valutazione di ogni struttura.</li>                                    <li>Piena autonomia del titolare nell’accettare o rifiutare qualsiasi proposta relativa alla propria clinica.</li>                                </ul>                            </article>                        </div>                    </section>                    <section class="section-shell home-section-spacer" data-reveal>                        <div class="section-heading">                            <p class="section-kicker">Come funziona il processo</p>                            <h2>Come funziona il processo</h2>                        </div>                        <div class="process-grid">                            <article class="process-step">                                <span class="step-number">01</span>                                <h3>Compila il questionario</h3>                                <p>Compili il questionario e raccogliamo le informazioni in forma riservata. Qualora ti selezionassimo, ti chiederemo di conferire il mandato per avviare il percorso di valutazione e negoziazione.</p>                            </article>                            <article class="process-step">                                <span class="step-number">02</span>                                <h3>Organizzazione del gruppo</h3>                                <p>Raggruppiamo le cliniche per area e specializzazione, in modo da presentare una proposta più concreta e coordinata a chi è interessato al progetto.</p>                            </article>                            <article class="process-step">                                <span class="step-number">03</span>                                <h3>Confronto con operatori interessati</h3>                                <p>Conduciamo il confronto con gli operatori interessati per definire le condizioni più favorevoli per ogni singola clinica.</p>                            </article>                            <article class="process-step">                                <span class="step-number">04</span>                                <h3>Decisione Finale Autonoma</h3>                                <p>Il titolare resta libero di valutare ogni proposta in piena autonomia: può decidere di non vendere il 100% della struttura e di mantenere una quota minoritaria, oppure scegliere un diverso percorso di partecipazione. Il personale verrà preservato in base alla qualifica, alle competenze e alla continuità dell’attività. AETOS non comunica il nome della struttura senza autorizzazione, salvo che il destinatario abbia già firmato un patto di riservatezza con i veterinari. Il percorso di valutazione e negoziazione può svilupparsi nei successivi 12–24 mesi.</p>                            </article>                        </div>                    </section>                    <section class="section-shell home-section-spacer" data-reveal>                        <div class="section-heading">                            <p class="section-kicker">Condizioni &amp; trasparenza</p>                            <h2>I pilastri dell'accordo</h2>                        </div>                        <div class="conditions-grid">                            <article class="condition-card">                                <span class="condition-tag">Success Fee 5%</span>                                <h3>Compenso solo a chiusura</h3>                                <p>Il compenso matura esclusivamente a rogito concluso, calcolato sul valore della transazione, senza anticipi o costi fissi in fase iniziale.</p>                            </article>                            <article class="condition-card">                                <span class="condition-tag">Zero Retention</span>                                <h3>Nessun costo iniziale</h3>                                <p>Entrare nella coorte e sostenere lo screening iniziale non comporta anticipo, trattenuta né costi fissi da parte del titolare.</p>                            </article>                            <article class="condition-card">                                <span class="condition-tag">Mandato &amp; riservatezza</span>                                <h3>Durata e confidentialità</h3>                                <p>Il mandato ha durata di 12 mesi, rinnovabile ad altri 6 mesi se concordato, e garantisce la massima riservatezza delle informazioni e dei nomi condivisi nel percorso.</p>                            </article>                        </div>                    </section>                </div>            </section>            <section id="candidati-section" class="content-section" data-reveal>                <form method="POST" action="https://formspree.io/f/xbgjqeoe">        <!-- DATI STRUTTURA -->        <h2>1. Dati della struttura</h2>        <div class="grid">            <div class="question">                <label>Nome struttura</label>                <input type="text" name="nome_struttura" required>            </div>            <div class="question">                <label>Anno di apertura</label>                <input type="number" name="anno_apertura">            </div>            <div class="question">                <label>Regione</label>                <input type="text" name="regione" required>            </div>            <div class="question">                <label>Provincia</label>                <input type="text" name="provincia" required>            </div>            <div class="question">                <label>Comune</label>                <input type="text" name="comune" required>            </div>        </div>        <div class="question">            <label>Tipologia di struttura</label>            <select name="tipologia">                <option>Ambulatorio</option>                <option>Clinica veterinaria</option>                <option>Ospedale veterinario</option>                <option>Centro specialistico</option>                <option>Gruppo con più sedi</option>                <option value="Altro">Altro / più delle opzioni indicate</option>            </select>        </div>        <div class="question" id="tipologia-altro-wrapper" style="display: none;">            <label>Specificare la tipologia di struttura</label>            <input type="text" name="tipologia_altro" placeholder="Es. struttura ibrida, centro di riabilitazione, ecc.">        </div>        <div class="question">            <label>Numero di sedi</label>            <select name="numero_sedi">                <option>1</option>                <option>2</option>                <option>3</option>                <option>4</option>                <option>5+</option>            </select>        </div>        <div class="question">            <label>Struttura della cap table</label>            <select id="cap-table-control-index" name="cap_table_control" required>                <option value="Controllo">Controllo</option>                <option value="Controllo congiunto">Controllo congiunto</option>            </select>        </div>        <div class="question" id="cap-table-partners-index" style="display: none;">            <label for="cap-table-partner-count-index">Numero di soci in caso di controllo congiunto</label>            <input id="cap-table-partner-count-index" type="number" name="cap_table_partner_count" min="2">        </div>        <!-- FINANZA -->        <h2>2. Redditività e solidità finanziaria</h2>        <div class="question">            <label>Fatturato annuo (in base a dati disponibili e contabilità)</label>            <select name="fatturato">                <option>€500.000 – €800.000</option>                <option>€800.000 – €1.500.000</option>                <option>€1.500.000 – €3.000.000</option>                <option>€3.000.000 – €5.000.000</option>                <option>€5.000.000 – €10.000.000</option>                <option>Oltre €10.000.000</option>            </select>        </div>        <div class="question">            <label>EBITDA: utile prima delle imposte, degli interessi, dell'ammortamento e delle svalutazioni</label>            <div class="note">                È utile per capire la redditività operativa della struttura, senza considerare compensi soci, spese personali e affitti non a valore di mercato. Indicare il valore percentuale rispetto al fatturato.            </div>            <select name="ebitda_margin">                <option>Meno del 5%</option>                <option>5% – 10%</option>                <option>10% – 15%</option>                <option>15% – 20%</option>                <option>20% – 25%</option>                <option>25% – 30%</option>                <option>Oltre 30%</option>            </select>        </div>        <div class="question">            <label>Investimenti / CapEx negli ultimi 3 anni</label>            <select name="capex">                <option>Bassi</option>                <option>Moderati</option>                <option>Elevati</option>                <option>Molto elevati</option>            </select>        </div>        <div class="question">            <label>Principali fonti di ricavo (stime orientative, se non disponibili contabilità)</label>            <div class="note">                Indicare le principali fonti di ricavo e, dove necessario, utilizzare stime orientative.            </div>            <select name="ricavi">                <option>Visite e medicina di base</option>                <option>Chirurgia</option>                <option>Diagnostica</option>                <option>Mix bilanciato di servizi</option>                <option>Specialistica / referral</option>                <option value="Altro">Altro / più delle opzioni indicate</option>            </select>        </div>        <div class="question" id="ricavi-altro-wrapper" style="display: none;">            <label>Specificare altre principali fonti di ricavo</label>            <input type="text" name="ricavi_altro" placeholder="Es. telemedicina, prevenzione, servizi premium, ecc.">        </div>        <!-- STAFF -->        <h2>3. Indipendenza clinica e personale</h2>        <div class="question">            <label>Quanti veterinari operano nella struttura?</label>            <div class="grid">                <div class="question">                    <label>Totale veterinari</label>                    <input type="number" name="numero_veterinari" min="0">                </div>                <div class="question">                    <label>Dipendenti</label>                    <input type="number" name="veterinari_dipendenti" min="0">                </div>                <div class="question">                    <label>Partita IVA</label>                    <input type="number" name="veterinari_partita_iva" min="0">                </div>                <div class="question">                    <label>Co.co.co</label>                    <input type="number" name="veterinari_cococo" min="0">                </div>                <div class="question">                    <label>Altro</label>                    <input type="number" name="veterinari_altro" min="0">                </div>            </div>        </div>        <div class="question">            <label>Che percentuale dei ricavi dipende dalla presenza del titolare/fondatore?</label>            <select name="ricavi_fondatore">                <option>Meno del 20%</option>                <option>20% – 30%</option>                <option>30% – 40%</option>                <option>40% – 50%</option>                <option>Oltre 50%</option>            </select>        </div>        <div class="question">            <label>Turnover del personale negli ultimi 12 mesi</label>            <select name="turnover">                <option>Basso</option>                <option>Moderato</option>                <option>Elevato</option>            </select>        </div>        <div class="question">            <label>Costo totale del personale / fatturato (inclusi dipendenti, partita IVA, ecc.)</label>            <select name="staff_cost">                <option>Meno del 40%</option>                <option>40% – 45%</option>                <option>45% – 50%</option>                <option>50% – 60%</option>                <option>Oltre 60%</option>            </select>        </div>        <!-- SERVIZI -->        <h2>4. Infrastruttura e servizi</h2>        <div class="question">            <label>La struttura offre servizio H24 / pronto soccorso?</label>            <select name="h24">                <option>Sì</option>                <option>No</option>                <option>Parzialmente</option>            </select>        </div>        <div class="question">            <label>Quali servizi diagnostici sono disponibili internamente?</label>            <select name="diagnostica">                <option>Diagnostica di base</option>                <option>Laboratorio analisi interno</option>                <option>Radiologia digitale</option>                <option>Ecografia</option>                <option>TC</option>                <option>RMN</option>                <option value="Altro">Altro / più delle opzioni indicate</option>            </select>        </div>        <div class="question">            <label>Specifica quali servizi fra quelli sopra indicati sono forniti. Se più di uno, indicali separati da una virgola.</label>            <input type="text" name="diagnostica_altro" placeholder="Es. ecografia, TC, RMN">        </div>        <div class="question">            <label>Superficie della struttura</label>            <select name="superficie">                <option>Meno di 100 mq</option>                <option>100 – 250 mq</option>                <option>250 – 500 mq</option>                <option>500 – 1.000 mq</option>                <option>Oltre 1.000 mq</option>            </select>        </div>        <div class="question">            <label>Immobile</label>            <select name="immobile">                <option>In affitto</option>                <option>Di proprietà</option>                <option>In parte di proprietà</option>            </select>        </div>        <!-- PAZIENTI -->        <h2>5. Pazienti e attività</h2>        <div class="question">            <label>Numero di pazienti nell'ultimo anno</label>            <select name="pazienti_annui">                <option>Meno di 1.000</option>                <option>1.000 – 3.000</option>                <option>3.000 – 5.000</option>                <option>5.000 – 10.000</option>                <option>Oltre 10.000</option>            </select>        </div>        <div class="question">            <label>Percentuale indicativa di nuovi pazienti all'anno</label>            <select name="nuovi_pazienti">                <option>Meno del 10%</option>                <option>10% – 15%</option>                <option>15% – 20%</option>                <option>20% – 30%</option>                <option>Oltre 30%</option>            </select>        </div>        <div class="question">            <label>Percentuale indicativa di pazienti inviati da altri veterinari / strutture</label>            <select name="referral">                <option>Meno del 10%</option>                <option>10% – 20%</option>                <option>20% – 30%</option>                <option>30% – 50%</option>                <option>Oltre 50%</option>            </select>        </div>        <!-- M&A -->        <h2>6. Interesse a un'operazione</h2>        <div class="question">            <label>Vuoi vendere la struttura?</label>            <select name="interesse">                <option>Sì</option>                <option>Sì, mantengo una percentuale di minoranza</option>            </select>        </div>        <div class="question">            <label>Saresti disponibile a rimanere coinvolto nella gestione?</label>            <select name="permanenza">                <option>Sì</option>                <option>No, l'azienda è in grado di sopravvivere da sola</option>            </select>        </div>        <!-- CONTATTI -->        <h2>7. Contatti</h2>        <div class="grid">            <div class="question">                <label>Nome</label>                <input type="text" name="nome" required>            </div>            <div class="question">                <label>Cognome</label>                <input type="text" name="cognome" required>            </div>        </div>        <div class="grid">            <div class="question">                <label>Email</label>                <input type="email" name="email" required>            </div>            <div class="question">                <label>Telefono</label>                <input type="tel" name="telefono" required>            </div>        </div>        <div class="question">            <div class="checkbox-row">                <label class="checkbox-label" for="privacy-consent-index">                    <input id="privacy-consent-index" type="checkbox" name="privacy_consent" required>                    <span>                        Dichiaro di aver letto l'<a href="#informativa-privacy">Informativa Privacy</a> e acconsento al trattamento dei dati aziendali                        forniti per lo screening preliminare della struttura e per la verifica anonima (blind)                        dell'interesse da parte del network di investitori AETOS.                    </span>                </label>                <p id="privacy-error-index" class="privacy-error" role="alert" aria-live="polite">                    Devi confermare di aver letto l'Informativa Privacy per proseguire.                </p>            </div>        <button type="submit">            Invia candidatura        </button>        </div>                </form>            </section>            <section id="informativa-privacy-section" class="content-section" data-reveal>                <div class="simple-page privacy-page">                    <h1 id="informativa-privacy">Informativa sul Trattamento dei Dati Personali (Privacy Policy)</h1>                    <p class="lead"><em>Ai sensi dell'art. 13 del Regolamento (UE) 2016/679 ("GDPR")</em></p>                    <p>La presente informativa descrive le modalita di gestione, raccolta e trattamento dei dati personali e delle informazioni aziendali fornite dagli utenti e dai titolari, soci o legali rappresentanti di strutture e cliniche veterinarie che interagiscono con la nostra piattaforma web, richiedono informazioni sui servizi di advisory o trasmettono il questionario informativo per la valutazione preliminare finalizzata a percorsi di aggregazione, espansione o apertura del capitale.</p>                    <h2>1. Titolare del Trattamento</h2>                    <p>Il Titolare del trattamento dei dati e ONEtoONE Corporate Finance Group, con sede in Via Ercolano Salvi 12, 00143 Roma, Italia, telefono +39 335 5697097, sito web <a href="https://www.onetoonecf.com" target="_blank" rel="noopener noreferrer">www.onetoonecf.com</a>. Per qualsiasi richiesta di chiarimento, informazione o esercizio dei diritti in materia di protezione dei dati personali, e possibile contattare direttamente i referenti del progetto all'indirizzo email <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a> oppure <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>.</p>                    <h2>2. Dati Raccolti e Oggetto del Trattamento</h2>                    <p>Nel contesto delle interazioni con la piattaforma e dello svolgimento delle attivita preliminari di analisi, vengono raccolte esclusivamente le informazioni strettamente necessarie allo svolgimento delle finalita richieste. Tali dati comprendono: informazioni anagrafiche e recapiti di contatto (nome, cognome, indirizzo email, recapito telefonico e ruolo ricoperto all'interno della struttura sanitaria); informazioni economico-gestionali ed operative relative alla clinica veterinaria fornite tramite il questionario o comunicate successivamente (regione o area geografica, dimensioni dell'organico e numero di medici veterinari, fatturato e marginalita indicativi, specializzazioni mediche offerte e dotazioni diagnostiche o strumentali); dati tecnici di navigazione raccolti in via automatizzata dai sistemi informatici per il corretto funzionamento del sito web (indirizzi IP, orari di connessione e parametri del browser).</p>                    <h2>3. Finalita e Basi Giuridiche del Trattamento</h2>                    <p>I dati conferiti vengono trattati per scopi determinati e sempre supportati da un'idonea base giuridica ai sensi dell'art. 6 del GDPR:</p>                    <ul>                        <li><strong>Riscontro alle richieste di contatto:</strong> per rispondere ai quesiti, richieste di chiarimento o manifestazioni di interesse inviate dall'interessato. La base giuridica risiede nell'esecuzione di misure precontrattuali adottate su richiesta del titolare della clinica.</li>                        <li><strong>Screening preliminare della clinica veterinaria:</strong> per analizzare i dati trasmessi tramite questionario, verificare i requisiti di adesione al progetto e comunicare al titolare l'esito della valutazione di idoneita. La base giuridica e costituita dall'esecuzione di misure precontrattuali.</li>                        <li><strong>Verifica preliminare dell'interesse di mercato in forma cieca (Blind Profile):</strong> per consentire a ONEtoONE Corporate Finance Group di sondare l'eventuale interesse di fondi, gruppi sanitari o investitori prima dell'eventuale conferimento del mandato formale. Il trattamento e effettuato sulla base del legittimo interesse e delle misure precontrattuali richieste dall'interessato, operando unicamente tramite profili aggregati e totalmente anonimizzati.</li>                        <li><strong>Esecuzione del mandato di advisory:</strong> qualora, all'esito positivo dello screening, le parti decidano di formalizzare un mandato professionale di rappresentanza e assistenza nella negoziazione. La base giuridica e l'esecuzione di un contratto formale.</li>                        <li><strong>Adempimento di obblighi legali e tutela dei diritti:</strong> per adempiere a prescrizioni civilistiche, tributarie e antiriciclaggio applicabili all'attivita di consulenza aziendale, nonche per la difesa degli interessi legittimi del Titolare in caso di contenziosi.</li>                    </ul>                    <h2>4. Protocollo di Riservatezza e Gestione "Blind" (Fase Pre-Mandato)</h2>                    <p>La tutela della confidenzialita dell'identita della struttura veterinaria costituisce un principio cardine del nostro operato. La compilazione e l'invio del questionario conoscitivo non vincolano in alcun modo il titolare alla vendita della propria attivita, ne comportano mandati preventivi o costi fissi. L'eventuale confronto preliminare con investitori o operatori del settore sanitario finalizzato a verificare manifestazioni di interesse si svolge unicamente attraverso dati aggregati, indicatori dimensionali generici e macro-aree geografiche, senza mai consentire l'identificazione della clinica. Il nome della struttura, l'indirizzo esatto, l'identita dei soci o del personale non saranno in alcun caso comunicati, ceduti o rivelati a potenziali investitori o soggetti terzi senza il previo conferimento del mandato formale e l'espressa autorizzazione scritta del titolare. Anche successivamente al mandato, ogni informazione analitica sara condivisa esclusivamente con soggetti terzi vincolati da un preventivo accordo di riservatezza (Non-Disclosure Agreement - NDA).</p>                    <h2>5. Destinatari e Modalita del Trattamento</h2>                    <p>I dati personali e aziendali sono trattati mediante strumenti elettronici, informatici e telematici dotati di misure di sicurezza tecniche e organizzative adeguate a prevenire perdite, accessi non autorizzati o usi impropri. I dati non vengono ceduti a terzi per finalita promozionali. Possono averne accesso unicamente i professionisti, consulenti e collaboratori interni autorizzati e soggetti a doveri di segreto professionale, nonche fornitori tecnici esterni (quali hosting provider e piattaforme cloud) nominati Responsabili del Trattamento ai sensi dell'art. 28 del GDPR. I dati non sono diffusi pubblicamente e non vengono trasferiti al di fuori dello Spazio Economico Europeo, fatto salvo il ricorso a strumenti informatici conformi agli standard e alle garanzie approvate dalla Commissione Europea.</p>                    <h2>6. Tempi di Conservazione dei Dati</h2>                    <p>Le informazioni fornite tramite questionario che non dovessero risultare idonee o che non diano seguito all'accordo di advisory saranno cancellate o trasformate in forma totalmente anonima entro 60 giorni dalla comunicazione dell'esito, o tempestivamente su semplice richiesta dell'interessato. Per le strutture che abbiano superato lo screening e per le quali si concordi di valutare congiuntamente il percorso nei mesi successivi, le informazioni saranno conservate per un periodo compreso tra i 12 e i 24 mesi, corrispondente all'orizzonte temporale del ciclo di aggregazione e negoziazione. I dati relativi a mandati conferiti e conclusi formalmente saranno conservati per 10 anni in adempimento degli obblighi civilistici e fiscali di legge.</p>                    <h2>7. Diritti dell'Interessato</h2>                    <p>In qualsiasi momento, l'interessato ha il diritto di richiedere l'accesso ai propri dati personali, la verifica della loro esattezza, l'aggiornamento, la rettifica o l'integrazione, nonche la cancellazione totale dei dati trattati (diritto all'oblio). E altresi possibile richiedere la limitazione del trattamento, opporsi all'elaborazione dei dati per motivi legittimi o chiedere la portabilita dei dati in formato strutturato e leggibile da dispositivo automatico. Tali richieste possono essere inviate liberamente e senza formalita agli indirizzi email <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a> oppure <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>. Qualora ritenga che il trattamento sia avvenuto in violazione delle vigenti norme sulla tutela dei dati personali, l'interessato ha inoltre il diritto di proporre reclamo all'Autorita Garante per la Protezione dei Dati Personali (Piazza Venezia 11, 00187 Roma - <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>).</p>                    <p><em>Data ultimo aggiornamento: Settembre 2026</em></p>                </div>            </section>            <section id="chi-siamo-section" class="content-section" data-reveal>                <div class="simple-page">                    <h1>Chi siamo</h1>                    <p class="lead">                        Aetos nasce per supportare imprenditori e aziende nelle decisioni più importanti, unendo                        esperienza finanziaria, governance e consulenza strategica a un approccio concreto, attento e                        orientato ai risultati.                    </p>                    <div class="profile-grid">                        <article class="profile-card" data-reveal>                            <span class="profile-badge">Senior Consultant</span>                            <h2 class="profile-name">Ciro Di Carluccio</h2>                            <p class="profile-role">Senior Consultant &amp; Corporate Governance Specialist</p>                            <p>                                Dottore Commercialista e Revisore Legale con una consolidata carriera ai vertici della                                consulenza e revisione internazionale (già Senior Partner e CEO di linea in Deloitte).                                Ricopre incarichi di primo piano negli organi di controllo e di amministrazione di                                primarie società quotate e corporate, tra cui Presidente del Collegio Sindacale di Reply                                S.p.A. Esperto in governance, audit, compliance e controllo strategico d'impresa.                            </p>                        </article>                        <article class="profile-card" data-reveal>                            <span class="profile-badge">Senior Consultant</span>                            <h2 class="profile-name">Riccardo Losi</h2>                            <p class="profile-role">Senior Consultant &amp; Financial Consultant</p>                            <p>                                Dottore Commercialista, Revisore Legale e docente universitario a contratto presso la                                LUISS Guido Carli. Vanta una pluriennale esperienza nella consulenza gestionale,                                tributaria e finanziaria per imprese e gruppi industriali, oltre a un'attività di rilievo                                nella corporate governance e negli organi di controllo di società quotate e vigilate                                (già Presidente del Collegio Sindacale di realtà di rilievo e referente in commissioni                                CNDCEC).                            </p>                        </article>                    </div>                </div>            </section>            <section id="contatti-section" class="content-section" data-reveal>                <div class="simple-page">                    <h1>Contatti</h1>                    <p class="lead">                        Per affrontare insieme le tue esigenze, valutare opportunità di crescita e capire le soluzioni più adeguate al tuo business, puoi contattarci in totale riservatezza per una prima conversazione senza impegno.                    </p>                    <div class="contact-layout">                        <div class="contact-card">                            <p class="contact-label">Email</p>                            <p class="contact-value">                                <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>                            </p>                            <p class="contact-value" style="margin-top: 10px;">                                <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a>                            </p>                        </div>                        <div class="contact-card">                            <p class="contact-label">Sede</p>                            <p class="contact-value">                                Viale Europa 55<br>                                00144 Roma RM                            </p>                        </div>                    </div>                </div>            </section>        </main>        <footer class="legal-footer" aria-label="Informazioni societarie">            <strong>ONE TO ONE CORPORATE FINANCE ADVISORY ITALY S.R.L.</strong>            <p>Sede: Via Ercolano Salvi 12, 00143 Roma (RM)</p>            <p>P.IVA e C.F.: 17551751005 | PEC: onetoonecfaitaly@legalmail.it</p>            <p><a href="#informativa-privacy">Privacy Policy</a></p>        </footer>    </div></div><script>    const sideRail = document.getElementById('sideRail');    const menuToggle = document.getElementById('menuToggle');    const menuButtons = document.querySelectorAll('.side-menu-button');    const sections = document.querySelectorAll('.content-section');    const homeEmptyState = document.getElementById('homeEmptyState');    const revealItems = document.querySelectorAll('[data-reveal]');    const tipologiaSelect = document.querySelector('select[name="tipologia"]');    const tipologiaAltroWrapper = document.getElementById('tipologia-altro-wrapper');    const tipologiaAltroInput = document.querySelector('input[name="tipologia_altro"]');    const ricaviSelect = document.querySelector('select[name="ricavi"]');    const ricaviAltroWrapper = document.getElementById('ricavi-altro-wrapper');    const ricaviAltroInput = document.querySelector('input[name="ricavi_altro"]');    const capTableControl = document.getElementById('cap-table-control-index');    const capTablePartnersWrapper = document.getElementById('cap-table-partners-index');    const capTablePartnerCount = document.getElementById('cap-table-partner-count-index');    const privacyConsent = document.getElementById('privacy-consent-index');    const privacyError = document.getElementById('privacy-error-index');    if (privacyConsent && privacyError) {        privacyConsent.addEventListener('invalid', () => {            privacyError.classList.add('is-visible');            privacyConsent.setCustomValidity('Devi confermare di aver letto l\'Informativa Privacy per proseguire.');        });        privacyConsent.addEventListener('change', () => {            privacyConsent.setCustomValidity('');            privacyError.classList.toggle('is-visible', !privacyConsent.checked);        });    }    const revealObserver = new IntersectionObserver((entries) => {        entries.forEach((entry) => {            if (entry.isIntersecting) {                entry.target.classList.add('is-visible');                revealObserver.unobserve(entry.target);            }        });    }, {        threshold: 0.16,        rootMargin: '0px 0px -30px 0px'    });    const showHome = () => {        sections.forEach((section) => {            section.classList.remove('is-visible');        });        homeEmptyState.style.display = 'flex';    };    const showSection = (sectionId) => {        sections.forEach((section) => {            section.classList.toggle('is-visible', section.id === sectionId);        });        homeEmptyState.style.display = 'none';    };    revealItems.forEach((item, index) => {        item.style.transitionDelay = `${index * 90}ms`;        revealObserver.observe(item);    });    const toggleTipologiaAltro = () => {        if (!tipologiaSelect || !tipologiaAltroWrapper || !tipologiaAltroInput) {            return;        }        const showAltro = tipologiaSelect.value === 'Altro';        tipologiaAltroWrapper.style.display = showAltro ? 'block' : 'none';        if (!showAltro) {            tipologiaAltroInput.value = '';        }    };    if (tipologiaSelect) {        tipologiaSelect.addEventListener('change', toggleTipologiaAltro);        toggleTipologiaAltro();    }    const toggleRicaviAltro = () => {        if (!ricaviSelect || !ricaviAltroWrapper || !ricaviAltroInput) {            return;        }        const showAltro = ricaviSelect.value === 'Altro';        ricaviAltroWrapper.style.display = showAltro ? 'block' : 'none';        if (!showAltro) {            ricaviAltroInput.value = '';        }    };    if (ricaviSelect) {        ricaviSelect.addEventListener('change', toggleRicaviAltro);        toggleRicaviAltro();    }    const toggleCapTablePartners = () => {        if (!capTableControl || !capTablePartnersWrapper || !capTablePartnerCount) {            return;        }        const isJointControl = capTableControl.value === 'Controllo congiunto';        capTablePartnersWrapper.style.display = isJointControl ? 'block' : 'none';        capTablePartnerCount.required = isJointControl;        if (!isJointControl) {            capTablePartnerCount.value = '';        }    };    if (capTableControl) {        capTableControl.addEventListener('change', toggleCapTablePartners);        toggleCapTablePartners();    }    showHome();    menuToggle.addEventListener('click', () => {        sideRail.classList.toggle('is-expanded');    });    menuButtons.forEach((button) => {        button.addEventListener('click', () => {            sideRail.classList.remove('is-expanded');            if (button.dataset.home === 'true') {                showHome();                return;            }            showSection(button.dataset.section);        });    });    document.querySelectorAll('a[href="#informativa-privacy"]').forEach((link) => {        link.addEventListener('click', (event) => {            event.preventDefault();            showSection('informativa-privacy-section');            document.getElementById('informativa-privacy').scrollIntoView({ behavior: 'smooth' });        });    });</script></body></html>
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+    width: 100% !important;
+    max-width: 100% !important;
+    word-break: normal !important;
+  }
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+  
+<<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Candidatura | Veterinary Target Platform</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+            --navy-950: #071c2b;
+            --navy-900: #0f355b;
+            --navy-800: #123a53;
+            --navy-700: #184d6d;
+            --gold-500: #1b4d6d;
+            --gold-400: #2a6488;
+            --gold-300: #3d7ca0;
+            --ivory: #f4efe7;
+            --text: #172b36;
+            --muted: #59666f;
+            --panel: rgba(255, 255, 255, 0.96);
+            --soft-border: rgba(13, 44, 61, 0.12);
+            --shadow: 0 32px 90px rgba(7, 20, 29, 0.32);
+            --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            background: linear-gradient(180deg, rgba(244, 239, 232, 1), rgba(238, 230, 219, 0.96));
+            color: var(--text);
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(13,44,61,0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(13,44,61,0.015) 1px, transparent 1px);
+            background-size: 36px 36px;
+            mask-image: radial-gradient(circle at center, black 35%, transparent 100%);
+            pointer-events: none;
+        }
+
+        ::selection {
+            background: rgba(216, 181, 98, 0.35);
+        }
+
+        .page-shell {
+            padding: 36px 22px 64px;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+        }
+
+        .home-layout {
+            max-width: 1180px;
+            margin: 0 auto;
+            min-height: 100%;
+            position: relative;
+        }
+
+        .side-rail {
+            position: fixed;
+            top: 24px;
+            left: 24px;
+            width: 88px;
+            min-height: calc(100vh - 48px);
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(13, 44, 61, 0.14);
+            border-radius: 22px;
+            padding: 12px 10px;
+            box-shadow: 0 16px 36px rgba(13, 44, 61, 0.08);
+            backdrop-filter: blur(10px);
+            transition: width 0.25s ease, padding 0.25s ease;
+            overflow: hidden;
+            z-index: 20;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .side-rail.is-expanded {
+            width: 230px;
+            padding: 14px 12px;
+        }
+
+        .side-brand {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+            padding: 6px 0 12px 10px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(13, 44, 61, 0.12);
+            margin-bottom: 14px;
+            color: var(--navy-900);
+            font-size: 1.1rem;
+            line-height: 1;
+        }
+
+        .side-menu {
+            display: none;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+            margin-top: 4px;
+        }
+
+        .side-rail.is-expanded .side-menu {
+            display: flex;
+        }
+
+        .side-menu-button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border: 1px solid rgba(13, 44, 61, 0.12);
+            border-radius: 14px;
+            background: rgba(255,255,255,0.9);
+            color: var(--navy-900);
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), background 0.25s var(--ease-out);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .side-menu-button::after {
+            content: "";
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 7px;
+            height: 1px;
+            background: rgba(13, 44, 61, 0.7);
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .side-menu-button:hover::after {
+            transform: scaleX(1);
+        }
+
+        .side-menu-button:hover {
+            transform: translateY(-1px);
+            border-color: rgba(13, 44, 61, 0.26);
+            box-shadow: 0 8px 18px rgba(13, 44, 61, 0.06);
+            background: rgba(255,255,255,1);
+        }
+
+        .menu-icon {
+            font-size: 1rem;
+            line-height: 1;
+        }
+
+        .content-panel {
+            min-height: 520px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.97), rgba(244,239,232,0.99));
+            border: 1px solid rgba(13, 44, 61, 0.08);
+            border-radius: 28px;
+            box-shadow: 0 22px 48px rgba(13, 44, 61, 0.08);
+            overflow: hidden;
+            position: relative;
+            margin-left: 124px;
+        }
+
+        .content-panel::before {
+            display: none;
+        }
+
+        .home-empty-state {
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(216, 181, 98, 0.02));
+            border-radius: 0 0 28px 28px;
+            padding: 36px 18px 44px;
+        }
+
+        .origination-shell {
+            width: min(100%, 860px);
+            margin: 0 auto;
+            padding: 12px 0 6px;
+        }
+
+        .origination-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .origination-kicker {
+            margin: 0;
+            color: var(--navy-700);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .origination-flow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .origination-step {
+            width: min(100%, 760px);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 24px 0;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(13, 44, 61, 0.08);
+            border-radius: 0;
+            box-shadow: none;
+            opacity: 0;
+            transform: translateY(24px);
+            animation: originationFadeUp 0.7s ease forwards;
+        }
+
+        .origination-step-result {
+            border-bottom: 1px solid rgba(13, 44, 61, 0.12);
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .step-01 {
+            animation-delay: 0.15s;
+        }
+
+        .step-02 {
+            animation-delay: 0.9s;
+        }
+
+        .step-03 {
+            animation-delay: 1.65s;
+        }
+
+        .step-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .step-description {
+            margin: 0;
+            color: var(--muted);
+            font-size: 1.02rem;
+            line-height: 1.8;
+        }
+
+        .origination-slogan-wrap {
+            width: min(100%, 760px);
+            margin: 28px auto 0;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(24px);
+            animation: originationFadeUp 0.8s ease forwards;
+            animation-delay: 2.45s;
+            padding-top: 18px;
+            border-top: 1px solid rgba(13, 44, 61, 0.12);
+        }
+
+        .origination-slogan {
+            margin: 0;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 3.8vw, 4.2rem);
+            line-height: 0.96;
+            letter-spacing: -0.04em;
+        }
+
+        .home-main-content {
+            width: min(100%, 1040px);
+            margin: 0 auto;
+            padding: 8px 0 18px;
+        }
+
+        .section-shell {
+            width: min(100%, 1000px);
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1.45fr) minmax(250px, 0.75fr);
+            gap: 28px;
+            align-items: center;
+            padding: 10px 0 8px;
+        }
+
+        .section-kicker {
+            margin: 0 0 14px;
+            color: var(--navy-700);
+            font-size: 0.74rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .hero-copy h1 {
+            margin: 0;
+            font-size: clamp(3rem, 4vw, 5rem);
+            line-height: 0.96;
+            letter-spacing: -0.05em;
+        }
+
+        .lead {
+            margin: 22px 0 0;
+            color: var(--muted);
+            font-size: 1.08rem;
+            line-height: 1.8;
+            max-width: 720px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .mini-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--navy-900);
+            line-height: 1.2;
+        }
+
+        .hero-actions {
+            margin-top: 28px;
+        }
+
+        .primary-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px 24px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700), var(--gold-500));
+            color: #edf4fb;
+            font-size: 0.88rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            box-shadow: 0 18px 30px rgba(13, 44, 61, 0.18);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        .primary-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 24px 38px rgba(13, 44, 61, 0.24);
+            filter: brightness(1.04);
+        }
+
+        .hero-panel {
+            background: linear-gradient(180deg, rgba(15, 53, 91, 0.06), rgba(15, 53, 91, 0.02));
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            border-radius: 24px;
+            padding: 22px 20px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
+        .metric {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(13, 44, 61, 0.08);
+        }
+
+        .metric:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .metric-value {
+            font-size: clamp(1.8rem, 2vw, 2.6rem);
+            font-weight: 800;
+            line-height: 1;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            letter-spacing: -0.04em;
+        }
+
+        .metric-label {
+            color: var(--muted);
+            font-size: 0.86rem;
+            line-height: 1.6;
+        }
+
+        .section-heading {
+            margin-bottom: 24px;
+        }
+
+        .section-heading h2 {
+            margin: 0;
+        }
+
+        .comparison-grid,
+        .conditions-grid,
+        .process-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .comparison-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .comparison-card,
+        .condition-card,
+        .process-step,
+        .compact-form {
+            background: linear-gradient(180deg, rgba(255,255,255,0.65), rgba(244,239,232,0.7));
+            border: 1px solid rgba(13, 44, 61, 0.08);
+            border-radius: 24px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
+        .comparison-card {
+            padding: 24px 22px;
+            transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+        }
+
+        .comparison-card--featured {
+            background: linear-gradient(180deg, rgba(15, 53, 91, 0.05), rgba(15, 53, 91, 0.02));
+            border-color: rgba(15, 53, 91, 0.18);
+            box-shadow: 0 22px 34px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.7);
+        }
+
+        .comparison-card:hover,
+        .condition-card:hover,
+        .process-step:hover {
+            transform: translateY(-2px);
+            border-color: rgba(13, 44, 61, 0.18);
+            box-shadow: 0 18px 28px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+
+        .card-tag {
+            display: inline-flex;
+            padding: 8px 10px;
+            border-radius: 999px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            color: var(--navy-700);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .comparison-card h3,
+        .condition-card h3,
+        .process-step h3 {
+            margin: 18px 0 10px;
+            color: var(--navy-900);
+            font-size: 1.4rem;
+            line-height: 1.2;
+            font-family: "Cormorant Garamond", Georgia, serif;
+        }
+
+        .comparison-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .comparison-card li {
+            position: relative;
+            padding-left: 18px;
+            color: var(--muted);
+            line-height: 1.6;
+            font-size: 0.96rem;
+        }
+
+        .comparison-card li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--navy-700);
+        }
+
+        .process-grid {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+        }
+
+        .process-step {
+            padding: 22px 18px;
+        }
+
+        .step-number {
+            display: inline-flex;
+            min-width: 48px;
+            justify-content: center;
+            padding: 7px 10px;
+            border-radius: 10px;
+            background: rgba(15, 53, 91, 0.06);
+            color: var(--navy-900);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .process-step p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.94rem;
+        }
+
+        .conditions-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+
+        .condition-card {
+            padding: 22px 20px;
+        }
+
+        .condition-tag {
+            display: inline-flex;
+            margin-bottom: 10px;
+            padding: 9px 10px;
+            border-radius: 10px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.12);
+            color: var(--navy-900);
+            font-size: 0.76rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .condition-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+            font-size: 0.96rem;
+        }
+
+        .application-section {
+            padding-top: 6px;
+        }
+
+        .compact-form {
+            padding: 22px;
+        }
+
+        .compact-form .grid {
+            gap: 18px;
+        }
+
+        .checkbox-row {
+            margin-top: 18px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: "Inter", "Segoe UI", sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--muted);
+        }
+
+        .checkbox-label input {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--navy-900);
+            margin: 0;
+        }
+
+        .privacy-error {
+            display: none;
+            margin: 10px 0 0 28px;
+            color: #b42318;
+            font-size: 0.9rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .privacy-error.is-visible {
+            display: block;
+        }
+
+        .home-section-spacer {
+            padding-top: 6px;
+        }
+
+        @keyframes originationFadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(24px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-section {
+            display: none;
+            padding: 30px 28px 40px;
+        }
+
+        .content-section.is-visible {
+            display: block;
+        }
+
+        #progetto-section {
+            min-height: 420px;
+            padding: 0;
+            background: transparent;
+        }
+
+        #candidati-section {
+            padding-top: 18px;
+        }
+
+        #candidati-section form {
+            padding: 8px 8px 6px;
+        }
+
+        #candidati-section form h2 {
+            margin-top: 56px;
+            margin-bottom: 20px;
+        }
+
+        #candidati-section form h2:first-of-type {
+            margin-top: 18px;
+        }
+
+        #candidati-section .grid {
+            gap: 28px;
+            margin-bottom: 10px;
+        }
+
+        #candidati-section .question {
+            margin: 0 0 22px;
+            padding: 18px 18px 16px;
+            border: 1px solid rgba(13, 44, 61, 0.08);
+            border-radius: 22px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.52), rgba(244,239,232,0.65));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+            transition: transform 0.3s var(--ease-out), border-color 0.3s var(--ease-out), box-shadow 0.3s var(--ease-out), background 0.3s var(--ease-out);
+        }
+
+        #candidati-section .question:hover {
+            transform: translateY(-2px);
+            border-color: rgba(13, 44, 61, 0.16);
+            box-shadow: 0 16px 30px rgba(13, 44, 61, 0.06), inset 0 1px 0 rgba(255,255,255,0.8);
+            background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(244,239,232,0.8));
+        }
+
+        #candidati-section .question + .question {
+            margin-top: 8px;
+        }
+
+        #candidati-section .question > label {
+            margin-bottom: 12px;
+        }
+
+        #candidati-section .question .note {
+            margin-bottom: 12px;
+        }
+
+        #candidati-section .grid .question {
+            margin-bottom: 0;
+        }
+
+        #candidati-section form button {
+            margin-top: 32px;
+        }
+
+        #candidati-section.is-visible h2,
+        #candidati-section.is-visible .question,
+        #candidati-section.is-visible .grid,
+        #candidati-section.is-visible button {
+            opacity: 0;
+            transform: translateY(22px);
+            animation: candidateSectionReveal 0.75s var(--ease-smooth) forwards;
+        }
+
+        #candidati-section.is-visible h2 {
+            animation-delay: 0.06s;
+        }
+
+        #candidati-section.is-visible .grid {
+            animation-delay: 0.12s;
+        }
+
+        #candidati-section.is-visible .question {
+            animation-delay: 0.18s;
+        }
+
+        #candidati-section.is-visible button {
+            animation-delay: 0.32s;
+        }
+
+        @keyframes candidateSectionReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(22px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        [data-reveal] {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s var(--ease-smooth), transform 0.7s var(--ease-smooth), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+        }
+
+        [data-reveal].is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .simple-page {
+            max-width: 760px;
+            margin: 0 auto;
+            padding: 34px 36px 18px;
+        }
+
+        .content-section.is-visible {
+            display: block;
+        }
+
+        .simple-page h1 {
+            margin-bottom: 12px;
+        }
+
+        .simple-page p {
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 1.02rem;
+        }
+
+        .simple-page .lead {
+            margin: 0 0 22px;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .privacy-page {
+            max-width: 860px;
+        }
+
+        .privacy-page h1 {
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(2.2rem, 3.2vw, 3.5rem);
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+        }
+
+        .privacy-page h2 {
+            margin: 34px 0 10px;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(1.55rem, 2vw, 2.1rem);
+            line-height: 1.1;
+        }
+
+        .privacy-page p,
+        .privacy-page li {
+            color: var(--muted);
+            font-size: 0.98rem;
+            line-height: 1.8;
+        }
+
+        .privacy-page ul {
+            margin: 0 0 22px;
+            padding-left: 22px;
+        }
+
+        .privacy-page li {
+            margin-bottom: 12px;
+            padding-left: 4px;
+        }
+
+        .privacy-page a {
+            color: var(--navy-900);
+            font-weight: 700;
+        }
+
+        .privacy-page strong {
+            color: var(--text);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 26px;
+        }
+
+        .profile-card {
+            position: relative;
+            background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(244,239,232,0.82));
+            border: 1px solid rgba(13, 44, 61, 0.12);
+            border-radius: 26px;
+            padding: 26px 24px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 18px 34px rgba(13, 44, 61, 0.06);
+            overflow: hidden;
+            transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+        }
+
+        .profile-card::before {
+            content: "";
+            position: absolute;
+            inset: 0 auto auto 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy-900), var(--gold-500), transparent);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(13, 44, 61, 0.18);
+            box-shadow: 0 24px 44px rgba(13, 44, 61, 0.09), inset 0 1px 0 rgba(255,255,255,0.85);
+        }
+
+        .profile-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 7px 10px;
+            border-radius: 999px;
+            background: rgba(15, 53, 91, 0.06);
+            border: 1px solid rgba(15, 53, 91, 0.1);
+            color: var(--navy-900);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .profile-name {
+            margin: 20px 0 8px;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(2rem, 2.2vw, 2.8rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .profile-role {
+            margin: 0 0 14px;
+            color: var(--navy-700);
+            font-size: 0.85rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .profile-card p {
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.8;
+            font-size: 0.98rem;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 20px;
+            margin-top: 18px;
+        }
+
+        .contact-card {
+            background: linear-gradient(180deg, rgba(15, 53, 91, 0.03), rgba(15, 53, 91, 0.01));
+            border: 1px solid rgba(15, 53, 91, 0.10);
+            border-radius: 20px;
+            padding: 24px 22px;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.45);
+            transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-2px);
+            border-color: rgba(13, 44, 61, 0.2);
+            box-shadow: 0 18px 34px rgba(13, 44, 61, 0.08), inset 0 1px 0 rgba(255,255,255,0.6);
+        }
+
+        .contact-label {
+            margin: 0 0 10px;
+            color: var(--navy-900);
+            font-size: 0.7rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .contact-value {
+            margin: 0;
+            color: var(--text);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .contact-value a {
+            color: var(--navy-900);
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .contact-value a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background: rgba(13, 44, 61, 0.72);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .contact-value a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .contact-value a:hover {
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, rgba(255,255,255,0.985), rgba(244,239,232,0.97));
+            border: 1px solid rgba(255,255,255,0.45);
+            border-radius: 30px;
+            box-shadow: 0 26px 70px rgba(7, 20, 29, 0.16);
+            padding: 26px 30px 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container::before {
+            display: none;
+        }
+
+        .brand-header {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0 22px;
+            border-bottom: 1px solid rgba(15, 53, 91, 0.22);
+            margin-bottom: 22px;
+            background: linear-gradient(180deg, #0f355b 0%, #0f355b 100%);
+            border-radius: 22px 22px 0 0;
+        }
+
+        .brand-header img {
+            display: block;
+            width: min(100%, 540px);
+            height: auto;
+            filter: none;
+            opacity: 1;
+            padding: 18px 24px;
+        }
+
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(260px, 0.9fr);
+            gap: 24px;
+            align-items: center;
+            padding: 16px 0 10px;
+        }
+
+        .eyebrow {
+            margin: 0 0 10px;
+            color: var(--navy-700);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            margin: 0;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(3.1rem, 4vw, 5.35rem);
+            line-height: 0.93;
+            letter-spacing: -0.05em;
+            color: var(--navy-900);
+            font-weight: 700;
+        }
+
+        .intro {
+            color: var(--muted);
+            margin: 18px 0 0;
+            line-height: 1.8;
+            font-size: 1.09rem;
+            max-width: 780px;
+        }
+
+        .hero-aside {
+            background: linear-gradient(155deg, var(--navy-900), var(--navy-700));
+            color: #edf4fb;
+            border-radius: 20px;
+            padding: 22px 22px 18px;
+            box-shadow: 0 18px 40px rgba(12, 28, 42, 0.22);
+        }
+
+        .card-label {
+            margin: 0 0 14px;
+            color: var(--gold-300);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+        }
+
+        .hero-aside ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .hero-aside li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            line-height: 1.45;
+            color: #edf4fb;
+        }
+
+        .hero-aside li::before {
+            content: "✦";
+            color: var(--gold-500);
+            font-size: 1rem;
+            margin-top: 1px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin: 24px 0 14px;
+        }
+
+        .stat-card {
+            background: rgba(18, 58, 83, 0.04);
+            border: 1px solid var(--soft-border);
+            border-radius: 18px;
+            padding: 18px 18px 16px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 28px rgba(13, 44, 61, 0.08);
+            border-color: rgba(216, 181, 98, 0.5);
+        }
+
+        .stat-number {
+            margin: 0;
+            color: var(--navy-900);
+            font-size: clamp(1.35rem, 2vw, 1.8rem);
+            font-weight: 800;
+        }
+
+        .stat-label {
+            margin-top: 6px;
+            color: var(--muted);
+            font-size: 0.76rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            margin: 42px 0 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(13, 44, 61, 0.12);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: clamp(2.5rem, 2.9vw, 3.5rem);
+            line-height: 1;
+            color: var(--navy-900);
+            letter-spacing: -0.03em;
+            font-weight: 700;
+        }
+
+        .question {
+            margin: 0 0 22px;
+            padding: 0;
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            backdrop-filter: none;
+        }
+
+        .question + .question {
+            padding-top: 0;
+            border-top: none;
+        }
+
+        label {
+            display: block;
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--navy-900);
+            font-size: 1.36rem;
+            letter-spacing: 0.01em;
+            text-transform: none;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(13, 44, 61, 0.18);
+            border-radius: 14px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.99), rgba(245,239,232,0.96));
+            box-sizing: border-box;
+            font-size: 0.98rem;
+            color: var(--text);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease, background 0.2s ease;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), 0 2px 5px rgba(13,44,61,0.02);
+        }
+
+        input:hover, select:hover {
+            border-color: rgba(13, 44, 61, 0.28);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--gold-500);
+            box-shadow: 0 0 0 4px rgba(216, 181, 98, 0.16), inset 0 1px 0 rgba(255,255,255,0.7);
+            background: linear-gradient(180deg, rgba(255,255,255,1), rgba(249,244,238,1));
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .note {
+            margin-top: 8px;
+            color: var(--muted);
+            font-size: 0.87rem;
+            line-height: 1.6;
+        }
+
+        button {
+            margin-top: 28px;
+            width: 100%;
+            padding: 18px 20px;
+            border: none;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--navy-900), var(--navy-700), var(--gold-500));
+            color: #edf4fb;
+            font-size: 0.95rem;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 18px 32px rgba(13, 44, 61, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 24px 38px rgba(13, 44, 61, 0.28);
+            filter: brightness(1.04);
+        }
+
+        .page-footer {
+            margin-top: 30px;
+            padding: 22px 18px 6px;
+            border-top: 1px solid rgba(13, 44, 61, 0.12);
+            color: var(--muted);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1.4fr 1fr;
+            gap: 22px;
+            align-items: start;
+            margin-bottom: 18px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-brand img {
+            width: min(100%, 220px);
+            height: auto;
+            filter: drop-shadow(0 10px 18px rgba(13, 44, 61, 0.12));
+        }
+
+        .footer-title {
+            margin: 0 0 8px;
+            color: var(--navy-900);
+            font-size: 0.72rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .footer-copy {
+            margin: 0;
+            line-height: 1.7;
+            color: var(--muted);
+            font-size: 0.78rem;
+            letter-spacing: normal;
+            text-transform: none;
+        }
+
+        .footer-links {
+            display: grid;
+            gap: 8px;
+        }
+
+        .footer-links a {
+            color: var(--navy-700);
+            text-decoration: none;
+            font-size: 0.78rem;
+            transition: color 0.2s ease;
+            letter-spacing: normal;
+            text-transform: none;
+            position: relative;
+        }
+
+        .footer-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 100%;
+            height: 1px;
+            background: rgba(13, 44, 61, 0.72);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s var(--ease-out);
+        }
+
+        .footer-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .footer-links a:hover {
+            color: var(--navy-900);
+        }
+
+        .footer-note {
+            text-align: center;
+            padding-top: 12px;
+            border-top: 1px solid rgba(13, 44, 61, 0.08);
+            color: var(--muted);
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            line-height: 1.6;
+        }
+
+        .legal-footer {
+            margin: 28px 28px 0;
+            padding: 22px 26px;
+            border: 1px solid rgba(13, 44, 61, 0.12);
+            border-radius: 18px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.78), rgba(244,239,232,0.84));
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.72);
+            color: var(--muted);
+            font-size: 0.82rem;
+            line-height: 1.7;
+        }
+
+        .legal-footer strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--navy-900);
+            font-family: "Cormorant Garamond", Georgia, serif;
+            font-size: 1.35rem;
+            line-height: 1.1;
+        }
+
+        .legal-footer p {
+            margin: 4px 0;
+        }
+
+        .legal-footer a {
+            color: var(--navy-900);
+            font-weight: 700;
+        }
+
+        @media (max-width: 768px) {
+            .side-rail {
+                position: static;
+                width: 100%;
+                min-height: auto;
+            }
+
+            .side-rail.is-expanded {
+                width: 100%;
+            }
+
+            .content-panel {
+                margin-left: 0;
+                margin-top: 18px;
+            }
+
+            .container {
+                padding: 22px 18px 12px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid,
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .brand-header img {
+                width: min(100%, 380px);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .legal-footer {
+                margin: 22px 18px 0;
+                padding: 18px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page-shell">
+
+<div class="container">
+
+    <div class="home-layout">
+        <aside class="side-rail" id="sideRail">
+            <button class="side-brand" type="button" aria-label="Apri menu" id="menuToggle">
+                ☰
+            </button>
+
+            <div class="side-menu">
+                <button class="side-menu-button" type="button" data-home="true">
+                    Home
+                </button>
+
+                <button class="side-menu-button" type="button" data-section="progetto-section">
+                    Il Progetto
+                </button>
+
+                <button class="side-menu-button" type="button" data-section="candidati-section">
+                    Candidati
+                </button>
+
+                <button class="side-menu-button" type="button" data-section="chi-siamo-section">
+                    Chi siamo
+                </button>
+
+                <button class="side-menu-button" type="button" data-section="contatti-section">
+                    Contatti
+                </button>
+            </div>
+        </aside>
+
+        <main class="content-panel">
+            <header class="brand-header">
+                <img src="logo/logo.png" alt="Veterinary Target Platform logo">
+            </header>
+
+            <div class="home-empty-state" id="homeEmptyState">
+                <div class="origination-shell">
+                    <div class="origination-header">
+                        <p class="origination-kicker">AETOS</p>
+                    </div>
+
+                    <div class="origination-flow">
+                        <div class="origination-step step-01">
+                            <div class="step-copy">
+                                <p class="step-description">
+                                    AETOS organizza un’iniziativa su scala nazionale rivolta ai titolari di strutture veterinarie per aprire un canale diretto di confronto con primari investitori del settore sanitario.
+                                </p>
+                                <p class="step-description">
+                                    L'obiettivo è unire realtà selezionate per dialogare da una posizione contrattuale forte, affrontando temi strategici come l'ingresso di nuovi capitali, l'espansione della struttura o il passaggio generazionale.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="origination-step step-02">
+                            <div class="step-copy">
+                                <p class="step-description">
+                                    Il percorso si svolge in un ambiente riservato, dove si possono valutare le possibilità di crescita senza esporre la struttura pubblicamente e senza alcun impegno preventivo di vendita. AETOS accompagna l'intero processo, raccogliendo le informazioni, coordinando il confronto con gli operatori interessati e definendo le condizioni più adatte.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="origination-step origination-step-result step-03">
+                            <div class="step-copy">
+                                <p class="step-description">
+                                    La titolarità della decisione finale resta interamente al medico veterinario: la ricezione di un'offerta non vincola alla cessione, e l'eventuale accordo viene finalizzato solo se risponde agli obiettivi e alla valutazione desiderata dal titolare.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="origination-slogan-wrap">
+                        <p class="origination-slogan">
+                            <strong>Fai crescere il valore della tua clinica, preservando identità medica, territorio e qualità delle cure.</strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <section id="progetto-section" class="content-section" data-reveal>
+                <div class="home-main-content">
+                    <section class="hero-section section-shell" data-reveal>
+                        <div class="hero-copy">
+                            <p class="section-kicker">AETOS | Iniziativa nazionale</p>
+                            <h1>Valorizza la tua clinica veterinaria con la forza di un network.</h1>
+                            <p class="lead">
+                                Uniamo cliniche selezionate in gruppi omogenei per ottenere condizioni più favorevoli e confrontarsi con maggiore forza, senza vincoli sul prezzo finale.
+                            </p>
+
+                            <div class="hero-badges">
+                                <span class="mini-badge">Valutazione riservata</span>
+                                <span class="mini-badge">Valore aziendale da verificare</span>
+                                <span class="mini-badge">Nessun impegno preventivo</span>
+                            </div>
+
+                            <p class="lead" style="margin-top: 18px; margin-bottom: 0;">
+                                La candidatura non comporta alcun mandato, costo o impegno a vendere. Qualora la struttura
+                                venga selezionata e il titolare decida di partecipare al progetto, potrà conferire ad AETOS
+                                un mandato esclusivo per la gestione del processo. Il titolare sarà in ogni caso libero di
+                                accettare o rifiutare qualsiasi proposta.
+                            </p>
+
+                            <div class="hero-actions">
+                                <a class="primary-button" href="mailto:cirodicarluccio1@gmail.com">Richiedi il preventivo per una valutazione</a>
+                            </div>
+                        </div>
+
+                        <aside class="hero-panel" aria-label="Dati principali del modello">
+                            <div class="metric">
+                                <span class="metric-value">più</span>
+                                <span class="metric-label">cliniche selezionate per coorte</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">100%</span>
+                                <span class="metric-label">libertà di accettare o rifiutare una proposta</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-value">5%</span>
+                                <span class="metric-label">success fee solo a chiusura</span>
+                            </div>
+                        </aside>
+                    </section>
+
+                    <section class="section-shell home-section-spacer" data-reveal>
+                        <div class="section-heading">
+                            <p class="section-kicker">Vantaggio del gruppo</p>
+                            <h2>Il vantaggio di lavorare insieme</h2>
+                        </div>
+
+                        <div class="comparison-grid">
+                            <article class="comparison-card">
+                                <div class="card-tag">Trattativa singola</div>
+                                <h3>Un’interlocuzione gestita individualmente</h3>
+                                <ul>
+                                    <li>Contatto diretto con uno o più potenziali acquirenti.</li>
+                                    <li>Gestione autonoma delle informazioni e delle richieste ricevute.</li>
+                                    <li>Valutazione delle proposte sulla base delle interlocuzioni attivate dalla singola struttura.</li>
+                                </ul>
+                            </article>
+
+                            <article class="comparison-card comparison-card--featured">
+                                <div class="card-tag">Trattativa in rete</div>
+                                <h3>Processo coordinato da AETOS</h3>
+                                <p><strong>Accesso strutturato al mercato degli investitori</strong></p>
+                                <ul>
+                                    <li>Presentazione della clinica nell’ambito di un progetto rivolto a più investitori finanziari e industriali.</li>
+                                    <li>Gestione coordinata delle informazioni, dei contatti e della negoziazione, mantenendo distinta la valutazione di ogni struttura.</li>
+                                    <li>Piena autonomia del titolare nell’accettare o rifiutare qualsiasi proposta relativa alla propria clinica.</li>
+                                </ul>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="section-shell home-section-spacer" data-reveal>
+                        <div class="section-heading">
+                            <p class="section-kicker">Come funziona il processo</p>
+                            <h2>Come funziona il processo</h2>
+                        </div>
+
+                        <div class="process-grid">
+                            <article class="process-step">
+                                <span class="step-number">01</span>
+                                <h3>Compila il questionario</h3>
+                                <p>Compili il questionario e raccogliamo le informazioni in forma riservata. Qualora ti selezionassimo, ti chiederemo di conferire il mandato per avviare il percorso di valutazione e negoziazione.</p>
+                            </article>
+
+                            <article class="process-step">
+                                <span class="step-number">02</span>
+                                <h3>Organizzazione del gruppo</h3>
+                                <p>Raggruppiamo le cliniche per area e specializzazione, in modo da presentare una proposta più concreta e coordinata a chi è interessato al progetto.</p>
+                            </article>
+
+                            <article class="process-step">
+                                <span class="step-number">03</span>
+                                <h3>Confronto con operatori interessati</h3>
+                                <p>Conduciamo il confronto con gli operatori interessati per definire le condizioni più favorevoli per ogni singola clinica.</p>
+                            </article>
+
+                            <article class="process-step">
+                                <span class="step-number">04</span>
+                                <h3>Decisione Finale Autonoma</h3>
+                                <p>Il titolare resta libero di valutare ogni proposta in piena autonomia: può decidere di non vendere il 100% della struttura e di mantenere una quota minoritaria, oppure scegliere un diverso percorso di partecipazione. Il personale verrà preservato in base alla qualifica, alle competenze e alla continuità dell’attività. AETOS non comunica il nome della struttura senza autorizzazione, salvo che il destinatario abbia già firmato un patto di riservatezza con i veterinari. Il percorso di valutazione e negoziazione può svilupparsi nei successivi 12–24 mesi.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                    <section class="section-shell home-section-spacer" data-reveal>
+                        <div class="section-heading">
+                            <p class="section-kicker">Condizioni &amp; trasparenza</p>
+                            <h2>I pilastri dell'accordo</h2>
+                        </div>
+
+                        <div class="conditions-grid">
+                            <article class="condition-card">
+                                <span class="condition-tag">Success Fee 5%</span>
+                                <h3>Compenso solo a chiusura</h3>
+                                <p>Il compenso matura esclusivamente a rogito concluso, calcolato sul valore della transazione, senza anticipi o costi fissi in fase iniziale.</p>
+                            </article>
+
+                            <article class="condition-card">
+                                <span class="condition-tag">Zero Retention</span>
+                                <h3>Nessun costo iniziale</h3>
+                                <p>Entrare nella coorte e sostenere lo screening iniziale non comporta anticipo, trattenuta né costi fissi da parte del titolare.</p>
+                            </article>
+
+                            <article class="condition-card">
+                                <span class="condition-tag">Mandato &amp; riservatezza</span>
+                                <h3>Durata e confidentialità</h3>
+                                <p>Il mandato ha durata di 12 mesi, rinnovabile ad altri 6 mesi se concordato, e garantisce la massima riservatezza delle informazioni e dei nomi condivisi nel percorso.</p>
+                            </article>
+                        </div>
+                    </section>
+
+                </div>
+            </section>
+
+            <section id="candidati-section" class="content-section" data-reveal>
+                <form method="POST" action="https://formspree.io/f/xbgjqeoe">
+
+        <!-- DATI STRUTTURA -->
+
+        <h2>1. Dati della struttura</h2>
+
+        <div class="grid">
+
+            <div class="question">
+                <label>Nome struttura</label>
+                <input type="text" name="nome_struttura" required>
+            </div>
+
+            <div class="question">
+                <label>Anno di apertura</label>
+                <input type="number" name="anno_apertura">
+            </div>
+
+            <div class="question">
+                <label>Regione</label>
+                <input type="text" name="regione" required>
+            </div>
+
+            <div class="question">
+                <label>Provincia</label>
+                <input type="text" name="provincia" required>
+            </div>
+
+            <div class="question">
+                <label>Comune</label>
+                <input type="text" name="comune" required>
+            </div>
+
+        </div>
+
+        <div class="question">
+            <label>Tipologia di struttura</label>
+
+            <select name="tipologia">
+                <option>Ambulatorio</option>
+                <option>Clinica veterinaria</option>
+                <option>Ospedale veterinario</option>
+                <option>Centro specialistico</option>
+                <option>Gruppo con più sedi</option>
+                <option value="Altro">Altro / più delle opzioni indicate</option>
+            </select>
+        </div>
+
+        <div class="question" id="tipologia-altro-wrapper" style="display: none;">
+            <label>Specificare la tipologia di struttura</label>
+            <input type="text" name="tipologia_altro" placeholder="Es. struttura ibrida, centro di riabilitazione, ecc.">
+        </div>
+
+        <div class="question">
+            <label>Numero di sedi</label>
+
+            <select name="numero_sedi">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5+</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Struttura della cap table</label>
+
+            <select id="cap-table-control-index" name="cap_table_control" required>
+                <option value="Controllo">Controllo</option>
+                <option value="Controllo congiunto">Controllo congiunto</option>
+            </select>
+        </div>
+
+        <div class="question" id="cap-table-partners-index" style="display: none;">
+            <label for="cap-table-partner-count-index">Numero di soci in caso di controllo congiunto</label>
+            <input id="cap-table-partner-count-index" type="number" name="cap_table_partner_count" min="2">
+        </div>
+
+
+        <!-- FINANZA -->
+
+        <h2>2. Redditività e solidità finanziaria</h2>
+
+        <div class="question">
+            <label>Fatturato annuo (in base a dati disponibili e contabilità)</label>
+
+            <select name="fatturato">
+                <option>€500.000 – €800.000</option>
+                <option>€800.000 – €1.500.000</option>
+                <option>€1.500.000 – €3.000.000</option>
+                <option>€3.000.000 – €5.000.000</option>
+                <option>€5.000.000 – €10.000.000</option>
+                <option>Oltre €10.000.000</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>EBITDA: utile prima delle imposte, degli interessi, dell'ammortamento e delle svalutazioni</label>
+            <div class="note">
+                È utile per capire la redditività operativa della struttura, senza considerare compensi soci, spese personali e affitti non a valore di mercato. Indicare il valore percentuale rispetto al fatturato.
+            </div>
+
+            <select name="ebitda_margin">
+                <option>Meno del 5%</option>
+                <option>5% – 10%</option>
+                <option>10% – 15%</option>
+                <option>15% – 20%</option>
+                <option>20% – 25%</option>
+                <option>25% – 30%</option>
+                <option>Oltre 30%</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Investimenti / CapEx negli ultimi 3 anni</label>
+
+            <select name="capex">
+                <option>Bassi</option>
+                <option>Moderati</option>
+                <option>Elevati</option>
+                <option>Molto elevati</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Principali fonti di ricavo (stime orientative, se non disponibili contabilità)</label>
+            <div class="note">
+                Indicare le principali fonti di ricavo e, dove necessario, utilizzare stime orientative.
+            </div>
+
+            <select name="ricavi">
+                <option>Visite e medicina di base</option>
+                <option>Chirurgia</option>
+                <option>Diagnostica</option>
+                <option>Mix bilanciato di servizi</option>
+                <option>Specialistica / referral</option>
+                <option value="Altro">Altro / più delle opzioni indicate</option>
+            </select>
+        </div>
+
+        <div class="question" id="ricavi-altro-wrapper" style="display: none;">
+            <label>Specificare altre principali fonti di ricavo</label>
+            <input type="text" name="ricavi_altro" placeholder="Es. telemedicina, prevenzione, servizi premium, ecc.">
+        </div>
+
+
+        <!-- STAFF -->
+
+        <h2>3. Indipendenza clinica e personale</h2>
+
+        <div class="question">
+            <label>Quanti veterinari operano nella struttura?</label>
+            <div class="grid">
+                <div class="question">
+                    <label>Totale veterinari</label>
+                    <input type="number" name="numero_veterinari" min="0">
+                </div>
+
+                <div class="question">
+                    <label>Dipendenti</label>
+                    <input type="number" name="veterinari_dipendenti" min="0">
+                </div>
+
+                <div class="question">
+                    <label>Partita IVA</label>
+                    <input type="number" name="veterinari_partita_iva" min="0">
+                </div>
+
+                <div class="question">
+                    <label>Co.co.co</label>
+                    <input type="number" name="veterinari_cococo" min="0">
+                </div>
+
+                <div class="question">
+                    <label>Altro</label>
+                    <input type="number" name="veterinari_altro" min="0">
+                </div>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>Che percentuale dei ricavi dipende dalla presenza del titolare/fondatore?</label>
+
+            <select name="ricavi_fondatore">
+                <option>Meno del 20%</option>
+                <option>20% – 30%</option>
+                <option>30% – 40%</option>
+                <option>40% – 50%</option>
+                <option>Oltre 50%</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Turnover del personale negli ultimi 12 mesi</label>
+
+            <select name="turnover">
+                <option>Basso</option>
+                <option>Moderato</option>
+                <option>Elevato</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Costo totale del personale / fatturato (inclusi dipendenti, partita IVA, ecc.)</label>
+
+            <select name="staff_cost">
+                <option>Meno del 40%</option>
+                <option>40% – 45%</option>
+                <option>45% – 50%</option>
+                <option>50% – 60%</option>
+                <option>Oltre 60%</option>
+            </select>
+        </div>
+
+        <!-- SERVIZI -->
+
+        <h2>4. Infrastruttura e servizi</h2>
+
+        <div class="question">
+            <label>La struttura offre servizio H24 / pronto soccorso?</label>
+
+            <select name="h24">
+                <option>Sì</option>
+                <option>No</option>
+                <option>Parzialmente</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Quali servizi diagnostici sono disponibili internamente?</label>
+
+            <select name="diagnostica">
+                <option>Diagnostica di base</option>
+                <option>Laboratorio analisi interno</option>
+                <option>Radiologia digitale</option>
+                <option>Ecografia</option>
+                <option>TC</option>
+                <option>RMN</option>
+                <option value="Altro">Altro / più delle opzioni indicate</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Specifica quali servizi fra quelli sopra indicati sono forniti. Se più di uno, indicali separati da una virgola.</label>
+            <input type="text" name="diagnostica_altro" placeholder="Es. ecografia, TC, RMN">
+        </div>
+
+        <div class="question">
+            <label>Superficie della struttura</label>
+
+            <select name="superficie">
+                <option>Meno di 100 mq</option>
+                <option>100 – 250 mq</option>
+                <option>250 – 500 mq</option>
+                <option>500 – 1.000 mq</option>
+                <option>Oltre 1.000 mq</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Immobile</label>
+
+            <select name="immobile">
+                <option>In affitto</option>
+                <option>Di proprietà</option>
+                <option>In parte di proprietà</option>
+            </select>
+        </div>
+
+
+        <!-- PAZIENTI -->
+
+        <h2>5. Pazienti e attività</h2>
+
+        <div class="question">
+            <label>Numero di pazienti nell'ultimo anno</label>
+
+            <select name="pazienti_annui">
+                <option>Meno di 1.000</option>
+                <option>1.000 – 3.000</option>
+                <option>3.000 – 5.000</option>
+                <option>5.000 – 10.000</option>
+                <option>Oltre 10.000</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Percentuale indicativa di nuovi pazienti all'anno</label>
+
+            <select name="nuovi_pazienti">
+                <option>Meno del 10%</option>
+                <option>10% – 15%</option>
+                <option>15% – 20%</option>
+                <option>20% – 30%</option>
+                <option>Oltre 30%</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Percentuale indicativa di pazienti inviati da altri veterinari / strutture</label>
+
+            <select name="referral">
+                <option>Meno del 10%</option>
+                <option>10% – 20%</option>
+                <option>20% – 30%</option>
+                <option>30% – 50%</option>
+                <option>Oltre 50%</option>
+            </select>
+        </div>
+
+        <!-- M&A -->
+
+        <h2>6. Interesse a un'operazione</h2>
+
+        <div class="question">
+            <label>Vuoi vendere la struttura?</label>
+
+            <select name="interesse">
+                <option>Sì</option>
+                <option>Sì, mantengo una percentuale di minoranza</option>
+            </select>
+        </div>
+
+        <div class="question">
+            <label>Saresti disponibile a rimanere coinvolto nella gestione?</label>
+
+            <select name="permanenza">
+                <option>Sì</option>
+                <option>No, l'azienda è in grado di sopravvivere da sola</option>
+            </select>
+        </div>
+
+
+        <!-- CONTATTI -->
+
+        <h2>7. Contatti</h2>
+
+        <div class="grid">
+
+            <div class="question">
+                <label>Nome</label>
+                <input type="text" name="nome" required>
+            </div>
+
+            <div class="question">
+                <label>Cognome</label>
+                <input type="text" name="cognome" required>
+            </div>
+
+        </div>
+
+        <div class="grid">
+
+            <div class="question">
+                <label>Email</label>
+                <input type="email" name="email" required>
+            </div>
+
+            <div class="question">
+                <label>Telefono</label>
+                <input type="tel" name="telefono" required>
+            </div>
+
+        </div>
+
+        <div class="question">
+            <div class="checkbox-row">
+                <label class="checkbox-label" for="privacy-consent-index">
+                    <input id="privacy-consent-index" type="checkbox" name="privacy_consent" required>
+                    <span>
+                        Dichiaro di aver letto l'<a href="#informativa-privacy">Informativa Privacy</a> e acconsento al trattamento dei dati aziendali
+                        forniti per lo screening preliminare della struttura e per la verifica anonima (blind)
+                        dell'interesse da parte del network di investitori AETOS.
+                    </span>
+                </label>
+                <p id="privacy-error-index" class="privacy-error" role="alert" aria-live="polite">
+                    Devi confermare di aver letto l'Informativa Privacy per proseguire.
+                </p>
+            </div>
+        <button type="submit">
+            Invia candidatura
+        </button>
+        </div>
+
+                </form>
+            </section>
+
+            <section id="informativa-privacy-section" class="content-section" data-reveal>
+                <div class="simple-page privacy-page">
+                    <h1 id="informativa-privacy">Informativa sul Trattamento dei Dati Personali (Privacy Policy)</h1>
+                    <p class="lead"><em>Ai sensi dell'art. 13 del Regolamento (UE) 2016/679 ("GDPR")</em></p>
+
+                    <p>La presente informativa descrive le modalita di gestione, raccolta e trattamento dei dati personali e delle informazioni aziendali fornite dagli utenti e dai titolari, soci o legali rappresentanti di strutture e cliniche veterinarie che interagiscono con la nostra piattaforma web, richiedono informazioni sui servizi di advisory o trasmettono il questionario informativo per la valutazione preliminare finalizzata a percorsi di aggregazione, espansione o apertura del capitale.</p>
+
+                    <h2>1. Titolare del Trattamento</h2>
+                    <p>Il Titolare del trattamento dei dati e ONEtoONE Corporate Finance Group, con sede in Via Ercolano Salvi 12, 00143 Roma, Italia, telefono +39 335 5697097, sito web <a href="https://www.onetoonecf.com" target="_blank" rel="noopener noreferrer">www.onetoonecf.com</a>. Per qualsiasi richiesta di chiarimento, informazione o esercizio dei diritti in materia di protezione dei dati personali, e possibile contattare direttamente i referenti del progetto all'indirizzo email <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a> oppure <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>.</p>
+
+                    <h2>2. Dati Raccolti e Oggetto del Trattamento</h2>
+                    <p>Nel contesto delle interazioni con la piattaforma e dello svolgimento delle attivita preliminari di analisi, vengono raccolte esclusivamente le informazioni strettamente necessarie allo svolgimento delle finalita richieste. Tali dati comprendono: informazioni anagrafiche e recapiti di contatto (nome, cognome, indirizzo email, recapito telefonico e ruolo ricoperto all'interno della struttura sanitaria); informazioni economico-gestionali ed operative relative alla clinica veterinaria fornite tramite il questionario o comunicate successivamente (regione o area geografica, dimensioni dell'organico e numero di medici veterinari, fatturato e marginalita indicativi, specializzazioni mediche offerte e dotazioni diagnostiche o strumentali); dati tecnici di navigazione raccolti in via automatizzata dai sistemi informatici per il corretto funzionamento del sito web (indirizzi IP, orari di connessione e parametri del browser).</p>
+
+                    <h2>3. Finalita e Basi Giuridiche del Trattamento</h2>
+                    <p>I dati conferiti vengono trattati per scopi determinati e sempre supportati da un'idonea base giuridica ai sensi dell'art. 6 del GDPR:</p>
+                    <ul>
+                        <li><strong>Riscontro alle richieste di contatto:</strong> per rispondere ai quesiti, richieste di chiarimento o manifestazioni di interesse inviate dall'interessato. La base giuridica risiede nell'esecuzione di misure precontrattuali adottate su richiesta del titolare della clinica.</li>
+                        <li><strong>Screening preliminare della clinica veterinaria:</strong> per analizzare i dati trasmessi tramite questionario, verificare i requisiti di adesione al progetto e comunicare al titolare l'esito della valutazione di idoneita. La base giuridica e costituita dall'esecuzione di misure precontrattuali.</li>
+                        <li><strong>Verifica preliminare dell'interesse di mercato in forma cieca (Blind Profile):</strong> per consentire a ONEtoONE Corporate Finance Group di sondare l'eventuale interesse di fondi, gruppi sanitari o investitori prima dell'eventuale conferimento del mandato formale. Il trattamento e effettuato sulla base del legittimo interesse e delle misure precontrattuali richieste dall'interessato, operando unicamente tramite profili aggregati e totalmente anonimizzati.</li>
+                        <li><strong>Esecuzione del mandato di advisory:</strong> qualora, all'esito positivo dello screening, le parti decidano di formalizzare un mandato professionale di rappresentanza e assistenza nella negoziazione. La base giuridica e l'esecuzione di un contratto formale.</li>
+                        <li><strong>Adempimento di obblighi legali e tutela dei diritti:</strong> per adempiere a prescrizioni civilistiche, tributarie e antiriciclaggio applicabili all'attivita di consulenza aziendale, nonche per la difesa degli interessi legittimi del Titolare in caso di contenziosi.</li>
+                    </ul>
+
+                    <h2>4. Protocollo di Riservatezza e Gestione "Blind" (Fase Pre-Mandato)</h2>
+                    <p>La tutela della confidenzialita dell'identita della struttura veterinaria costituisce un principio cardine del nostro operato. La compilazione e l'invio del questionario conoscitivo non vincolano in alcun modo il titolare alla vendita della propria attivita, ne comportano mandati preventivi o costi fissi. L'eventuale confronto preliminare con investitori o operatori del settore sanitario finalizzato a verificare manifestazioni di interesse si svolge unicamente attraverso dati aggregati, indicatori dimensionali generici e macro-aree geografiche, senza mai consentire l'identificazione della clinica. Il nome della struttura, l'indirizzo esatto, l'identita dei soci o del personale non saranno in alcun caso comunicati, ceduti o rivelati a potenziali investitori o soggetti terzi senza il previo conferimento del mandato formale e l'espressa autorizzazione scritta del titolare. Anche successivamente al mandato, ogni informazione analitica sara condivisa esclusivamente con soggetti terzi vincolati da un preventivo accordo di riservatezza (Non-Disclosure Agreement - NDA).</p>
+
+                    <h2>5. Destinatari e Modalita del Trattamento</h2>
+                    <p>I dati personali e aziendali sono trattati mediante strumenti elettronici, informatici e telematici dotati di misure di sicurezza tecniche e organizzative adeguate a prevenire perdite, accessi non autorizzati o usi impropri. I dati non vengono ceduti a terzi per finalita promozionali. Possono averne accesso unicamente i professionisti, consulenti e collaboratori interni autorizzati e soggetti a doveri di segreto professionale, nonche fornitori tecnici esterni (quali hosting provider e piattaforme cloud) nominati Responsabili del Trattamento ai sensi dell'art. 28 del GDPR. I dati non sono diffusi pubblicamente e non vengono trasferiti al di fuori dello Spazio Economico Europeo, fatto salvo il ricorso a strumenti informatici conformi agli standard e alle garanzie approvate dalla Commissione Europea.</p>
+
+                    <h2>6. Tempi di Conservazione dei Dati</h2>
+                    <p>Le informazioni fornite tramite questionario che non dovessero risultare idonee o che non diano seguito all'accordo di advisory saranno cancellate o trasformate in forma totalmente anonima entro 60 giorni dalla comunicazione dell'esito, o tempestivamente su semplice richiesta dell'interessato. Per le strutture che abbiano superato lo screening e per le quali si concordi di valutare congiuntamente il percorso nei mesi successivi, le informazioni saranno conservate per un periodo compreso tra i 12 e i 24 mesi, corrispondente all'orizzonte temporale del ciclo di aggregazione e negoziazione. I dati relativi a mandati conferiti e conclusi formalmente saranno conservati per 10 anni in adempimento degli obblighi civilistici e fiscali di legge.</p>
+
+                    <h2>7. Diritti dell'Interessato</h2>
+                    <p>In qualsiasi momento, l'interessato ha il diritto di richiedere l'accesso ai propri dati personali, la verifica della loro esattezza, l'aggiornamento, la rettifica o l'integrazione, nonche la cancellazione totale dei dati trattati (diritto all'oblio). E altresi possibile richiedere la limitazione del trattamento, opporsi all'elaborazione dei dati per motivi legittimi o chiedere la portabilita dei dati in formato strutturato e leggibile da dispositivo automatico. Tali richieste possono essere inviate liberamente e senza formalita agli indirizzi email <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a> oppure <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>. Qualora ritenga che il trattamento sia avvenuto in violazione delle vigenti norme sulla tutela dei dati personali, l'interessato ha inoltre il diritto di proporre reclamo all'Autorita Garante per la Protezione dei Dati Personali (Piazza Venezia 11, 00187 Roma - <a href="https://www.garanteprivacy.it" target="_blank" rel="noopener noreferrer">www.garanteprivacy.it</a>).</p>
+
+                    <p><em>Data ultimo aggiornamento: Settembre 2026</em></p>
+                </div>
+            </section>
+
+            <section id="chi-siamo-section" class="content-section" data-reveal>
+                <div class="simple-page">
+                    <h1>Chi siamo</h1>
+                    <p class="lead">
+                        Aetos nasce per supportare imprenditori e aziende nelle decisioni più importanti, unendo
+                        esperienza finanziaria, governance e consulenza strategica a un approccio concreto, attento e
+                        orientato ai risultati.
+                    </p>
+
+                    <div class="profile-grid">
+                        <article class="profile-card" data-reveal>
+                            <span class="profile-badge">Senior Consultant</span>
+                            <h2 class="profile-name">Ciro Di Carluccio</h2>
+                            <p class="profile-role">Senior Consultant &amp; Corporate Governance Specialist</p>
+                            <p>
+                                Dottore Commercialista e Revisore Legale con una consolidata carriera ai vertici della
+                                consulenza e revisione internazionale (già Senior Partner e CEO di linea in Deloitte).
+                                Ricopre incarichi di primo piano negli organi di controllo e di amministrazione di
+                                primarie società quotate e corporate, tra cui Presidente del Collegio Sindacale di Reply
+                                S.p.A. Esperto in governance, audit, compliance e controllo strategico d'impresa.
+                            </p>
+                        </article>
+
+                        <article class="profile-card" data-reveal>
+                            <span class="profile-badge">Senior Consultant</span>
+                            <h2 class="profile-name">Riccardo Losi</h2>
+                            <p class="profile-role">Senior Consultant &amp; Financial Consultant</p>
+                            <p>
+                                Dottore Commercialista, Revisore Legale e docente universitario a contratto presso la
+                                LUISS Guido Carli. Vanta una pluriennale esperienza nella consulenza gestionale,
+                                tributaria e finanziaria per imprese e gruppi industriali, oltre a un'attività di rilievo
+                                nella corporate governance e negli organi di controllo di società quotate e vigilate
+                                (già Presidente del Collegio Sindacale di realtà di rilievo e referente in commissioni
+                                CNDCEC).
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contatti-section" class="content-section" data-reveal>
+                <div class="simple-page">
+                    <h1>Contatti</h1>
+                    <p class="lead">
+                        Per affrontare insieme le tue esigenze, valutare opportunità di crescita e capire le soluzioni più adeguate al tuo business, puoi contattarci in totale riservatezza per una prima conversazione senza impegno.
+                    </p>
+
+                    <div class="contact-layout">
+                        <div class="contact-card">
+                            <p class="contact-label">Email</p>
+                            <p class="contact-value">
+                                <a href="mailto:cirodicarluccio1@gmail.com">cirodicarluccio1@gmail.com</a>
+                            </p>
+                            <p class="contact-value" style="margin-top: 10px;">
+                                <a href="mailto:aetoscorporatefinance@gmail.com">aetoscorporatefinance@gmail.com</a>
+                            </p>
+                        </div>
+
+                        <div class="contact-card">
+                            <p class="contact-label">Sede</p>
+                            <p class="contact-value">
+                                Viale Europa 55<br>
+                                00144 Roma RM
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="legal-footer" aria-label="Informazioni societarie">
+            <strong>ONE TO ONE CORPORATE FINANCE ADVISORY ITALY S.R.L.</strong>
+            <p>Sede: Via Ercolano Salvi 12, 00143 Roma (RM)</p>
+            <p>P.IVA e C.F.: 17551751005 | PEC: onetoonecfaitaly@legalmail.it</p>
+            <p><a href="#informativa-privacy">Privacy Policy</a></p>
+        </footer>
+    </div>
+</div>
+
+<script>
+    const sideRail = document.getElementById('sideRail');
+    const menuToggle = document.getElementById('menuToggle');
+    const menuButtons = document.querySelectorAll('.side-menu-button');
+    const sections = document.querySelectorAll('.content-section');
+    const homeEmptyState = document.getElementById('homeEmptyState');
+    const revealItems = document.querySelectorAll('[data-reveal]');
+    const tipologiaSelect = document.querySelector('select[name="tipologia"]');
+    const tipologiaAltroWrapper = document.getElementById('tipologia-altro-wrapper');
+    const tipologiaAltroInput = document.querySelector('input[name="tipologia_altro"]');
+    const ricaviSelect = document.querySelector('select[name="ricavi"]');
+    const ricaviAltroWrapper = document.getElementById('ricavi-altro-wrapper');
+    const ricaviAltroInput = document.querySelector('input[name="ricavi_altro"]');
+    const capTableControl = document.getElementById('cap-table-control-index');
+    const capTablePartnersWrapper = document.getElementById('cap-table-partners-index');
+    const capTablePartnerCount = document.getElementById('cap-table-partner-count-index');
+    const privacyConsent = document.getElementById('privacy-consent-index');
+    const privacyError = document.getElementById('privacy-error-index');
+
+    if (privacyConsent && privacyError) {
+        privacyConsent.addEventListener('invalid', () => {
+            privacyError.classList.add('is-visible');
+            privacyConsent.setCustomValidity('Devi confermare di aver letto l\'Informativa Privacy per proseguire.');
+        });
+
+        privacyConsent.addEventListener('change', () => {
+            privacyConsent.setCustomValidity('');
+            privacyError.classList.toggle('is-visible', !privacyConsent.checked);
+        });
+    }
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                revealObserver.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.16,
+        rootMargin: '0px 0px -30px 0px'
+    });
+
+    const showHome = () => {
+        sections.forEach((section) => {
+            section.classList.remove('is-visible');
+        });
+        homeEmptyState.style.display = 'flex';
+    };
+
+    const showSection = (sectionId) => {
+        sections.forEach((section) => {
+            section.classList.toggle('is-visible', section.id === sectionId);
+        });
+        homeEmptyState.style.display = 'none';
+    };
+
+    revealItems.forEach((item, index) => {
+        item.style.transitionDelay = `${index * 90}ms`;
+        revealObserver.observe(item);
+    });
+
+    const toggleTipologiaAltro = () => {
+        if (!tipologiaSelect || !tipologiaAltroWrapper || !tipologiaAltroInput) {
+            return;
+        }
+
+        const showAltro = tipologiaSelect.value === 'Altro';
+        tipologiaAltroWrapper.style.display = showAltro ? 'block' : 'none';
+
+        if (!showAltro) {
+            tipologiaAltroInput.value = '';
+        }
+    };
+
+    if (tipologiaSelect) {
+        tipologiaSelect.addEventListener('change', toggleTipologiaAltro);
+        toggleTipologiaAltro();
+    }
+
+    const toggleRicaviAltro = () => {
+        if (!ricaviSelect || !ricaviAltroWrapper || !ricaviAltroInput) {
+            return;
+        }
+
+        const showAltro = ricaviSelect.value === 'Altro';
+        ricaviAltroWrapper.style.display = showAltro ? 'block' : 'none';
+
+        if (!showAltro) {
+            ricaviAltroInput.value = '';
+        }
+    };
+
+    if (ricaviSelect) {
+        ricaviSelect.addEventListener('change', toggleRicaviAltro);
+        toggleRicaviAltro();
+    }
+
+    const toggleCapTablePartners = () => {
+        if (!capTableControl || !capTablePartnersWrapper || !capTablePartnerCount) {
+            return;
+        }
+
+        const isJointControl = capTableControl.value === 'Controllo congiunto';
+        capTablePartnersWrapper.style.display = isJointControl ? 'block' : 'none';
+        capTablePartnerCount.required = isJointControl;
+
+        if (!isJointControl) {
+            capTablePartnerCount.value = '';
+        }
+    };
+
+    if (capTableControl) {
+        capTableControl.addEventListener('change', toggleCapTablePartners);
+        toggleCapTablePartners();
+    }
+
+    showHome();
+
+    menuToggle.addEventListener('click', () => {
+        sideRail.classList.toggle('is-expanded');
+    });
+
+    menuButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            sideRail.classList.remove('is-expanded');
+
+            if (button.dataset.home === 'true') {
+                showHome();
+                return;
+            }
+
+            showSection(button.dataset.section);
+        });
+    });
+
+    document.querySelectorAll('a[href="#informativa-privacy"]').forEach((link) => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            showSection('informativa-privacy-section');
+            document.getElementById('informativa-privacy').scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+</script>
+
+</body>
+</html>
