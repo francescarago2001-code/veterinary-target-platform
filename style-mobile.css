@@ -38,3 +38,14 @@ input, select, textarea, button {
   max-width: 100% !important;
   box-sizing: border-box !important;
 }
+
+/* Campi form al 100% senza uscire dai bordi */
+input[type="text"], 
+input[type="email"], 
+input[type="tel"], 
+input[type="number"],
+select, 
+textarea {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
