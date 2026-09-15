@@ -1,17 +1,6 @@
 
-/* Responsive Mobile Fix */
-@media (max-width: 768px) {
-  *, *::before, *::after { box-sizing: border-box !important; }
-  body { overflow-x: hidden !important; padding: 0 12px !important; }
-  img { max-width: 100% !important; height: auto !important; }
-  .section-shell, .hero-section, .comparison-grid, .conditions-grid, .process-grid, [class*="grid"] {
-    display: flex !important;
-    flex-direction: column !important;
-    grid-template-columns: 1fr !important;
-  }
-  .hero-copy h1, h1 { font-size: 2rem !important; line-height: 1.2 !important; }
-  h2 { font-size: 1.5rem !important; }
-}
+
+
 
 <<!DOCTYPE html>
 <html lang="it">
@@ -1352,48 +1341,7 @@
             font-weight: 700;
         }
 
-        @media (max-width: 768px) {
-            .side-rail {
-                position: static;
-                width: 100%;
-                min-height: auto;
-            }
-
-            .side-rail.is-expanded {
-                width: 100%;
-            }
-
-            .content-panel {
-                margin-left: 0;
-                margin-top: 18px;
-            }
-
-            .container {
-                padding: 22px 18px 12px;
-            }
-
-            .hero {
-                grid-template-columns: 1fr;
-            }
-
-            .stats-grid,
-            .grid {
-                grid-template-columns: 1fr;
-            }
-
-            .brand-header img {
-                width: min(100%, 380px);
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .legal-footer {
-                margin: 22px 18px 0;
-                padding: 18px 20px;
-            }
-        }
+        
     </style>
 </head>
 
