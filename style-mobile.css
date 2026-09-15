@@ -20,3 +20,21 @@
     margin-top: 24px !important;
   }
 }
+
+/* Adattamento contenitori e form per smartphone */
+.container,
+.form-container,
+#candidati-section,
+#candidati-section form,
+.candidati-section {
+  width: 100% !important;
+  max-width: 600px !important;
+  margin: 0 auto !important;
+  padding: 20px 16px !important;
+  box-sizing: border-box !important;
+}
+
+input, select, textarea, button {
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+}
