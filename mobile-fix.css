@@ -1,54 +1,29 @@
 @media screen and (max-width: 900px) {
-  /* Hero e layout base */
-  .hero, .hero-section {
+  .conditions-grid {
     display: flex !important;
     flex-direction: column !important;
     grid-template-columns: 1fr !important;
     width: 100% !important;
-  }
-  .hero-copy, .hero-copy *, .hero-content, p, h1, h2 {
-    width: 100% !important;
-    max-width: 100% !important;
-    white-space: normal !important;
-    word-break: normal !important;
-  }
-  .hero-aside, .hero-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin-top: 20px !important;
+    gap: 20px !important;
   }
 
-  /* Tutte le griglie a schede: pilastri, condizioni, comparazioni */
-  .conditions-grid,
-  .pillars-grid,
-  .comparison-grid,
-  .cards-grid,
-  [class*="grid"],
-  section:has(h2) > div:has(> div:nth-child(3)) {
-    display: flex !important;
-    flex-direction: column !important;
-    grid-template-columns: 1fr !important;
-    width: 100% !important;
-    gap: 16px !important;
-  }
-
-  /* Singole schede a larghezza piena con testo largo */
-  .conditions-grid > *,
-  .pillars-grid > *,
-  .comparison-grid > *,
-  [class*="card"],
-  [class*="col"] {
+  .condition-card {
     width: 100% !important;
     max-width: 100% !important;
     min-width: 0 !important;
+    display: block !important;
     box-sizing: border-box !important;
+    padding: 20px 16px !important;
   }
 
-  /* Evita qualsiasi sillabazione forzata */
-  h1, h2, h3, h4, p, span, li {
-    hyphens: none !important;
-    -webkit-hyphens: none !important;
+  .condition-card h3,
+  .condition-card p,
+  .condition-card span {
+    width: 100% !important;
+    white-space: normal !important;
     word-break: normal !important;
     overflow-wrap: break-word !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
   }
 }
